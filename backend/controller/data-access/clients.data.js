@@ -1,25 +1,30 @@
-// const ClientsModel = require('../../models/clients.model');
 
-// exports.findAll = async (filter, projection) => {
-//   if (filter && projection) {
-//     return await ClientsModel.find(filter, projection);
-//   } else if (!projection) {
-//     return await ClientsModel.find(filter);
-//   } else if (!filter && !projection) {
-//     return await ClientsModel.find();
-//   } else if (!filter) {
-//     return await ClientsModel.find({}, projection);
-//   }
-// };
+const clientsModel = require('../../models/clients.model');
 
-// // exports.findOneResult = async (filter) => {
-// //   return await findOne(filter);
-// // };
+exports.findAll = async (filter, projection) => {
+  if (filter && projection) {
+    return await clientsModel.find(filter, projection);
+  } else if (!projection) {
+    return await clientsModel.find(filter);
+  } else if (!filter && !projection) {
+    return await clientsModel.find();
+  } else if (!filter) {
+    return await clientsModel.find({}, projection);
+  }
+};
 
-// exports.insertOne = async (info) =>{
-//   return await ClientsModel.create(info);
-// };
+exports.findOneResult = async (filter) => {
+  return await findOne(filter);
+};
 
-// exports.updateOne = async (filter, dataUpdated) =>{
-//   return await ClientsModel.findOneAndUpdate(filter, dataUpdated);
-// }
+exports.insertOne = async (info) =>{
+  return await clientsModel.create(info);
+};
+
+exports.updateOne = async (filter, dataUpdated) =>{
+  return await clientsModel.findOneAndUpdate(filter, dataUpdated);
+};
+
+exports.deleteOne = async(filter) =>{
+    return await clientsModel.findOneAndDelete(filter)
+};

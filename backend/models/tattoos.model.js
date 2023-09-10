@@ -26,7 +26,9 @@ const schemaTattoo = new mongoose.Schema({
   },
   imagen: {
     type: String,
-  }});
+  }
+}
+);
 
-const tattoo = mognoose.model('Tattoo', schemaTattoo);
+const tattoo = mongoose.model('Tattoo', schemaTattoo);
 module.exports = tattoo;
