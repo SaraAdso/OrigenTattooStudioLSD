@@ -7,12 +7,14 @@ exports.showBooking = async() => {
 
 exports.createDate = async(dateInfo) => {
     const {fechaCita, estado, idTatuador} = dateInfo;
+
+    const dateCreated = await bookingData.findOneResult({fechaCita: fechaCita});
+    if (dateCreated) {
+        return {error: 'Ya existe una cita para esa fecha y hora'}
+    }
     const createDate = await bookingData.insertOne(dateInfo);
-    const dateCreated = await bookingData.findOneResult(fechaCita);
     if(!createDate) {
         return {error: 'No se creó la cita'}
-    } else if (dateCreated) {
-        return {error: 'Ya existe una cita para esa fecha y hora'}
     } else {
         return {success: 'Se agendó la cita exitosamente'}
     }
@@ -27,7 +29,7 @@ exports.updateDate = async(dateUpdate) => {
     }
     const dateExists = await bookingData.findOneResult(fechaCita);
     const dateUpdated = await bookingData.updateOne({_id: id}, dateToUpdate);
-    if (dateUpdated){ //Verificar tambien si el tatuador a elegir está ocupado
+    if (!dateUpdated){ //Verificar tambien si el tatuador a elegir está ocupado
         return{error: 'No se actualizó'}
     } else if (dateExists) {
         return {error: `La fecha ${fechaCita} ya está ocupada`}

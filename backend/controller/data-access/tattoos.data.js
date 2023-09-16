@@ -13,7 +13,7 @@ exports.findAll = async(filter, projection)=>{
 };
 
 exports.findOneResult = async (filter) => {
-    return await findOne(filter);
+    return await tattoosModel.findOne(filter);
   };
 
 exports.insertOne = async(info) => {

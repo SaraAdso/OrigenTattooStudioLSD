@@ -14,7 +14,7 @@ exports.findAll = async (filter, projection) => {
 };
 
 exports.findOneResult = async (filter) => {
-  return await findOne(filter);
+  return await clientsModel.findOne(filter);
 };
 
 exports.insertOne = async (info) =>{

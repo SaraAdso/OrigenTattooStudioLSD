@@ -6,12 +6,13 @@ exports.showClients = async() => {
 
 exports.createClient = async(clientInfo) => {
   const {nombre, apellido, celular, documento, correo, fechaNacimiento, alergias, contrasena} = clientInfo; // fragmentar la variable en partes. Cada uno son los names de los input del formulario 
+  const clientCreated = await clientsData.findOneResult({documento: documento});
+  if(clientCreated){
+    return {error: 'Ya existe el cliente'}
+  }
   const createClient = await clientsData.insertOne(clientInfo); // En el controlador se dice que es el req.body
-  const clientCreated = await clientsData.findOneResult(documento);
   if(!createClient) {
     return {error: 'No se creo'}
-  } else if (clientCreated) {
-    return {error: 'Ya existe el cliente'}
   } else {
     return {success: 'Se creo'}
   }
@@ -27,6 +28,7 @@ exports.updateClient = async(infoUpdate) => {
     alergias: alergias,
     contrasena: contrasena
   }
+  const clientExists = await clientsData
   const clientUpdated = await clientsData.updateOne({documento: documento}, infoToUpdate);
   if(!clientUpdated){
     return {error: 'No se actualizó'}
@@ -40,6 +42,6 @@ exports.deleteClient = async(id) => {
     if (clientDeleted){
         return {success: 'Se eliminó'}
     } else {
-        return{error:'No se eliminó'}
+        return{error: 'No se eliminó'}
     }
 }

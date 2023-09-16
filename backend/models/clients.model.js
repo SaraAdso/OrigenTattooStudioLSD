@@ -25,7 +25,7 @@ const SchemaClient = new mongoose.Schema({
     required: [true, 'Se require ingresar un correo electrónic'],
   },
   fechaNacimiento: {
-    type: Date,
+    type: String,
     required: [true, 'Se require una fecha de nacimiento'],
   },
   alergias: {

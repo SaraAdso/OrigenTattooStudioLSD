@@ -6,12 +6,13 @@ exports.showPiercings = async() => {
 
 exports.createPiercing = async(piercingInfo) => {
     const {nombre, zona} = piercingInfo;
+    const piercingCreated = await piercingsData.findOneResult({nombre: nombre});
+    if (piercingCreated) {
+        return {error: 'ya existe el piercing'}
+    }
     const createPiercing = await piercingsData.insertOne(piercingInfo);
-    const piercingCreated = await piercingsData.findOneResult(nombre);
     if(!createPiercing) {
         return {error: 'No se creó'}
-    } else if (piercingCreated) {
-        return {error: 'ya existe el piercing'}
     } else {
         return {success: 'Se creó'}
     }
@@ -20,6 +21,12 @@ exports.createPiercing = async(piercingInfo) => {
 exports.updatePiercing = async(infoUpdate) => {
     const {nombre, zona} = infoUpdate;
     const infoToUpdate = {
-        nombre : nombre
+        nombre : nombre,
+        zona : zona
+    }
+    const piercingExists = await piercingsData.findOneResult(nombre)
+    const piercingUpdated = await piercingsData.updateOne({nombre}, infoToUpdate)
+    if (piercingUpdated) {
+        return {error: ''}
     }
 }
