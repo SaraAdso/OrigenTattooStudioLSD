@@ -32,7 +32,7 @@ exports.updateUser = async(infoUpdate) => {
     }
     const userUpdated = await usersData.updateOne({correo: correo}, infoToUpdate)
     if(userUpdated) {
-        return {success: 'Si dió!!'}
+        return {success: '¡Se actualizó el usuario!'}
     } else {
         return {error: 'No se actualizó'}
     }
