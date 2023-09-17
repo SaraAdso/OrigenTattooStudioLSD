@@ -1,4 +1,22 @@
-const clientUseCases = require('./usecases/clients.usecase');
+const clientUseCases = require('../usecases/clients.usecase');
+
+exports.showClientController = async(req, res) =>{
+    try {
+        const result = await clientUseCases.showClients();
+
+        if(result.error){
+            return res.json({
+                error: result.error
+            })
+        } else if (result.success){
+            return res.json({
+                success: result.success
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 exports.createClientController = async(req, res) =>{
   try {
@@ -17,3 +35,39 @@ exports.createClientController = async(req, res) =>{
     console.log(error)
     }
 };
+
+exports.updateClientController = async (req, res) =>{
+    try {
+        const result = await clientUseCases.updateClient(req.body);
+
+        if(result.error){
+            return res.json({
+                error: result.error
+            });
+        } else if (result.success){
+            return res.json({
+                success: result.success
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+exports.deleteClientController = async (req, res) => {
+    try {
+        const result = await clientUseCases.deleteClient(req.body);
+        
+        if(result.error){
+            return res.json({
+                error: result.error
+            });
+        } else if(result.success){
+            return  res.json({
+                success: result.success
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}

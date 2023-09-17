@@ -1,4 +1,4 @@
-const usersModel = require('../../models/users.model');
+const usersModel = require('../models/users.model');
 
 exports.findAll = async(filter, projection)=>{
     if (filter && projection) {
@@ -21,7 +21,7 @@ exports.insertOne = async(info) =>{
 };
 
 exports.updateOne = async(filter, dataUpdated) =>{
-    return await usersModel.findOneAndUpdate(filter, dataUpdated);
+    return await usersModel.findOneAndReplace(filter, dataUpdated);
 };
 
 exports.deleteOne = async(filter) =>{

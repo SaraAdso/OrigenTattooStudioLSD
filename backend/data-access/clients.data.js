@@ -1,5 +1,5 @@
 
-const clientsModel = require('../../models/clients.model');
+const clientsModel = require('../models/clients.model');
 
 exports.findAll = async (filter, projection) => {
   if (filter && projection) {
@@ -18,11 +18,12 @@ exports.findOneResult = async (filter) => {
 };
 
 exports.insertOne = async (info) =>{
-  return await clientsModel.create(info);
+  const client = new clientsModel(info);
+  return await client.save();
 };
 
 exports.updateOne = async (filter, dataUpdated) =>{
-  return await clientsModel.findOneAndUpdate(filter, dataUpdated);
+  return await clientsModel.findOneAndReplace(filter, dataUpdated);
 };
 
 exports.deleteOne = async(filter) =>{

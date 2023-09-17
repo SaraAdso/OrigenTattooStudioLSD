@@ -9,7 +9,7 @@ const schemaTattoo = new mongoose.Schema({
     type: String,
     required: [true, 'Se requiere una descripcion de lo que contiene el tatuaje'],
   },
-  tamaño: {
+  tamano: {
     type: String,
     required: [true, 'Se requiere el tamaño, cm o decriptivo'],
   },

@@ -1,4 +1,4 @@
-const piercingsModel = require('../../models/piercings.model');
+const piercingsModel = require('../models/piercings.model');
 
 exports.findAll = async(filter, projection)=>{
     if (filter && projection) {
@@ -21,9 +21,9 @@ exports.insertOne = async(info) =>{
 };
 
 exports.updateOne = async(filter, dataUpdated) =>{
-    return await piercingsModel.findOneAndUpdate(filter, dataUpdated);
+    return await piercingsModel.findOneAndReplace(filter, dataUpdated);
 };
 
 exports.deleteOne = async(filter) =>{
-    return await piercingsModel.findOneAndDelete(filter)
+    return await piercingsModel.findOneAndReplace(filter)
 }

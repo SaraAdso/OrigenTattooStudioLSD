@@ -1,4 +1,4 @@
-const booking = require('../../models/booking.model');
+const booking = require('../models/booking.model');
 const bookingData = require('../data-access/booking.data');
 
 exports.showBooking = async() => {

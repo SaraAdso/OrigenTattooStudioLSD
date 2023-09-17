@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-const URI = 'mongodb+srv://origentattoostudio:o6igOv6nzRKr4lIH@cluster.yxblfnj.mongodb.net/OrigenTattooStudio?retryWrites=true&w=majority';
+require('dotenv').config();
+const URI = `mongodb+srv://${process.env.USERDB}:${process.env.PASSWORDDB}@cluster.yxblfnj.mongodb.net/${process.env.NAMEDB}?retryWrites=true&w=majority`;
 
 mongoose.connect(URI, {useNewUrlParser: true});
 module.exports = mongoose;

@@ -1,9 +1,10 @@
-const booking = require('../../models/booking.model');
-const bookingModel = require('../../models/booking.model');
+const booking = require('../models/booking.model');
+const bookingModel = require('../models/booking.model');
 
 exports.findAll = async (filter, projection) => {
     if (filter && projection) {
         return await bookingModel.find(filter, projection);
+        // return {error} poner 
     } else if (!projection) {
         return await bookingModel.find(filter);
     } else if (!filter && !projection) {
@@ -22,7 +23,7 @@ exports.insertOne = async (info) => {
 };
 
 exports.updateOne = async(filter, dataUpdated) => {
-    return await bookingModel.findOneAndUpdate(filter, dataUpdated);
+    return await bookingModel.findOneAndReplace(filter, dataUpdated);
 };
 
 exports.deleteOne = async(filter) =>{

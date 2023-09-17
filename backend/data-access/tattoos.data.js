@@ -1,4 +1,4 @@
-const tattoosModel = require('../../models/tattoos.model');
+const tattoosModel = require('../models/tattoos.model');
 
 exports.findAll = async(filter, projection)=>{
     if (filter && projection) {
@@ -21,7 +21,7 @@ exports.insertOne = async(info) => {
 };
 
 exports.updateOne = async(filter, dataUpdated) => {
-    return await tattoosModel.findOneAndUpdate(filter, dataUpdated);
+    return await tattoosModel.findOneAndReplace(filter, dataUpdated);
 };
 
 exports.deleteOne = async(filter) => {
