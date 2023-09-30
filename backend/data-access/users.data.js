@@ -21,8 +21,9 @@ exports.insertOne = async (info) =>{
   return await user.save();
 };
 
-exports.updateOne = async (filter, dataUpdated) =>{
-  return await usersModel.findOneAndReplace(filter, dataUpdated);
+exports.updateOne = async (filter, userUpdated) =>{
+  console.log(userUpdated);
+  return await usersModel.findOneAndReplace(filter, userUpdated);
 };
 
 exports.deleteOne = async (filter) =>{

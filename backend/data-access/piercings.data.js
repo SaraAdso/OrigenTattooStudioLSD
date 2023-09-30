@@ -1,4 +1,3 @@
-const {indigo} = require('excel4node/distribution/lib/types/excelColor');
 const piercingsModel = require('../models/piercings.model');
 
 exports.findAll = async (filter, projection)=>{

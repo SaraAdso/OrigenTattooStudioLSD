@@ -1,4 +1,4 @@
-const usersData = require('../controller/data-access/users.data');
+const usersData = require('../data-access/users.data');
 
 exports.showUsers = async () =>{
   const users = await usersData.findAll();
@@ -32,7 +32,7 @@ exports.updateUser = async (infoUpdate) => {
   };
   const userUpdated = await usersData.updateOne({correo: correo}, infoToUpdate);
   if (userUpdated) {
-    return {success: 'Si dió!!'};
+    return {success: 'Se actualizó el usuario'};
   } else {
     return {error: 'No se actualizó'};
   }

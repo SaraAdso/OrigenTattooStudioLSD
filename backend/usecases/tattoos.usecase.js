@@ -1,4 +1,4 @@
-const tattoosData = require('../controller/data-access/tattoos.data');
+const tattoosData = require('../data-access/tattoos.data');
 
 exports.showTattoos = async () => {
   const tattoos = await tattoosData.findAll();
@@ -35,7 +35,7 @@ exports.updateTattoo = async (tattooUpdate) => {
     imagen: imagen,
   };
   const tattooUpdated = await tattoosData.updateOne({nombre: nombre}, infoToUpdate);
-  if (!clientUpdated) {
+  if (!tattooUpdated) {
     return {error: 'No se actualizó'};
   } else {
     return {success: 'Actualizado correctamente'};

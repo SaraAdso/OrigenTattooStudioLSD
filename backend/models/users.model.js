@@ -1,4 +1,5 @@
 const mongoose = require('../config/mongodbconnection');
+
 const SchemaUser = new mongoose.Schema({
   correo: {
     type: String,
