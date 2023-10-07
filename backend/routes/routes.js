@@ -35,8 +35,53 @@ router.get('/showtattooartist', controllerTattooArtists.showTattooArtistControll
 router.post('/updatetattooartist', controllerTattooArtists.updatetattooArtistController);
 router.delete('/deletetattooartist', controllerTattooArtists.deletetattooArtistController);
 
-// CRUD USERS
+// create user
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *   User:
+ *    type: object
+ *    propieties:
+ *     correo:
+ *      type: string
+ *      description: el correo del usuario
+ *     contrasena:
+ *      type: string
+ *      description: contrasena del usuario
+ *     rol:
+ *      type: string
+ *      description: rol de usuario, sea cliente o tattoo artist
+ *    required:
+ *     - correo
+ *     - contrasena
+ *     - rol
+ *    example:
+ *     correo: alan@gmail.com
+ *     contrasena: 123456789
+ *     rol: cliente
+ *
+ */
 
+/**
+ * @swagger
+ * /api/v1/:
+ *  post:
+ *    summary: create new user
+ *    tags: [User]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              $ref: '#/components/schemas/User'
+ *      responses:
+ *        200:
+ *          description: new user created
+ *
+ *
+ */
 router.post('/newuser', controllerUsers.createUserController);
 router.get('/showuser', controllerUsers.showUserController);
 router.post('/updateuser', controllerUsers.updateUserController);

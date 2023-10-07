@@ -1,5 +1,6 @@
 const bookingModel = require('../models/booking.model');
 
+
 exports.findAll = async (filter, projection) => {
   if (filter && projection) {
     return await bookingModel.find(filter, projection);
