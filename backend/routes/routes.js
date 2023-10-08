@@ -65,26 +65,69 @@ router.delete('/deletetattooartist', controllerTattooArtists.deletetattooArtistC
 
 /**
  * @swagger
- * /api/v1/:
+ * /api/v1/newuser:
  *  post:
  *    summary: create new user
  *    tags: [User]
  *    requestBody:
  *      required: true
  *      content:
- *          application/json:
- *            schema:
+ *        application/json:
+ *          schema:
  *              type: object
  *              $ref: '#/components/schemas/User'
- *      responses:
- *        200:
- *          description: new user created
+ *    responses:
+ *      200:
+ *        description: new user created!
  *
  *
  */
 router.post('/newuser', controllerUsers.createUserController);
+
+/**
+ * @swagger
+ * /api/v1/showuser:
+ *  get:
+ *    summary: show all users
+ *    tags: [User]
+ *    responses:
+ *      200:
+ *        description: all users!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/User'
+ *
+ *
+ */
+
 router.get('/showuser', controllerUsers.showUserController);
+
 router.post('/updateuser', controllerUsers.updateUserController);
+
+/**
+ * @swagger
+ * /api/v1/deleteuser/{correo}:
+ *  delete:
+ *    summary: delete user
+ *    parameters:
+ *      - in: path
+ *        name: correo
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: el correo del usuario
+ *    responses:
+ *      200:
+ *        description: user deleted!
+ *      404:
+ *        description: user not found
+ *
+ *
+ */
+
 router.delete('/deleteuser', controllerUsers.deleteUserController);
 
 module.exports = router;
