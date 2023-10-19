@@ -7,7 +7,7 @@ exports.showPiercings = async () => {
   } else {
     return {success: piercings};
   }
-};
+}
 
 exports.createPiercing = async (piercingInfo) => {
   const {nombre, zona} = piercingInfo;
@@ -15,13 +15,13 @@ exports.createPiercing = async (piercingInfo) => {
   if (piercingExists) {
     return {error: 'ya existe el piercing'};
   }
-  const createPiercing = await piercingsData.insertOne(piercingInfo);
-  if (!createPiercing) {
-    return {error: 'No se creó'};
+  const createPiercing2 = piercingsData.insertOne(piercingInfo);
+  if (!createPiercing2) {
+    return {error: 'No se creó el piercing'};
   } else {
     return {success: 'Se creó'};
   }
-};
+}
 
 exports.updatePiercing = async (infoUpdate) => {
   const {nombre, zona} = infoUpdate;
@@ -35,7 +35,7 @@ exports.updatePiercing = async (infoUpdate) => {
   } else {
     return {error: 'No se actualizó'};
   }
-};
+}
 
 exports.deletePiercing = async (id) => {
   const piercingDeleted = await piercingsData.deleteOne(id);
@@ -44,4 +44,4 @@ exports.deletePiercing = async (id) => {
   } else {
     return {error: 'No se elimino'};
   }
-};
+}

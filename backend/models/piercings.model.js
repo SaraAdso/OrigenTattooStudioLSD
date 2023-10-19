@@ -1,5 +1,4 @@
 const mongoose = require('../config/mongodbconnection');
-
 const SchemaPiercing = new mongoose.Schema({
   nombre: {
     type: String,

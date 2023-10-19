@@ -1,4 +1,4 @@
-const tattoosData = require('../controller/data-access/tattoos.data');
+const tattoosData = require('../data-access/tattoos.data');
 
 exports.showTattoos = async () => {
   const tattoos = await tattoosData.findAll();

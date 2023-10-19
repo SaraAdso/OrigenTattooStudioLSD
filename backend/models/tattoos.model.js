@@ -26,8 +26,8 @@ const schemaTattoo = new mongoose.Schema({
   },
   imagen: {
     type: String,
-  }
-}
+  },
+},
 );
 
 const tattoo = mongoose.model('Tattoo', schemaTattoo);
