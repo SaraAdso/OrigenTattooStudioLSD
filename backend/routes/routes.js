@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controllerClients = require('../controller/clients.controller');
 const controllerBooking = require('../controller/booking.controller');
-const controllerPiercings = require('../controller/piercings.controller');
+const controllerPiercing = require('../controller/piercings.controller');
 const controllerTattoo = require('../controller/tattoo.controller');
 const controllerUser = require('../controller/users.controller');
 const controllerTattoArtist= require('../controller/tattooartists.controller');
@@ -43,7 +43,6 @@ router.get('/showpiercing', controllerPiercing.showPiercingController);
 router.post('/newpiercing', controllerPiercing.createPiercingController);
 router.post('/updatepiercing', controllerPiercing.updatePiercingController);
 router.delete('/deletepiercing', controllerPiercing.deletePiercingController);
-
 
 
 module.exports = router;

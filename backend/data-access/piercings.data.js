@@ -1,29 +1,29 @@
 const piercingsModel = require('../models/piercings.model');
 
-exports.findAll = async(filter, projection)=>{
-    if (filter && projection) {
-        return await piercingsModel.find(filter, projection);
-    } else if (!projection){
-        return await piercingsModel.find(filter);
-    } else if (!filter && !projection) {
-        return await piercingsModel.find();
-    } else if (!filter) {
-        return await piercingsModel.find({}, projection);
-    }
+exports.findAll = async (filter, projection)=>{
+  if (filter && projection) {
+    return await piercingsModel.find(filter, projection);
+  } else if (!projection) {
+    return await piercingsModel.find(filter);
+  } else if (!filter && !projection) {
+    return await piercingsModel.find();
+  } else if (!filter) {
+    return await piercingsModel.find({}, projection);
+  }
 };
 
 exports.findOneResult = async (filter) => {
-    return await piercingsModel.findOne(filter);
-  };
-
-exports.insertOne = async(info) =>{
-    return await piercingsModel.create(info);
+  return await piercingsModel.findOne(filter);
 };
 
-exports.updateOne = async(filter, dataUpdated) =>{
-    return await piercingsModel.findOneAndReplace(filter, dataUpdated);
+exports.insertOne = async (info) =>{
+  return await piercingsModel.create(info);
 };
 
-exports.deleteOne = async(filter) =>{
-    return await piercingsModel.findOneAndReplace(filter)
-}
+exports.updateOne = async (filter, dataUpdated) =>{
+  return await piercingsModel.findOneAndReplace(filter, dataUpdated);
+};
+
+exports.deleteOne = async (filter) =>{
+  return await piercingsModel.findOneAndReplace(filter);
+};

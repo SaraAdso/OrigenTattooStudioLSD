@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API de Clientes y Tatuajes",
+    "title": "OrigenTattoo",
     "version": "1.0.0",
-    "description": "API para administrar clientes y tatuajes"
+    "description": "API para administrar CRUD"
   },
   "servers": [
     {
