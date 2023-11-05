@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+
 // Controllers
 const controllerBooking = require('../controller/booking.controller');
 const controllerClients = require('../controller/clients.controller');
@@ -8,7 +10,11 @@ const controllerPiercings = require('../controller/piercings.controller');
 const controllerTattooArtists = require('../controller/tattooartists.controller');
 const controllerTattoos = require('../controller/tattoos.controller');
 const controllerUsers = require('../controller/users.controller');
+const controllerViews = require('../controller/views.controller')
 
+router.get('/', controllerViews.showLandingPage);
+router.get('/formregister', controllerViews.showFormRegister);
+router.get('/formlogin', controllerViews.showFormLogin);
 // Booking
 /**
  * @swagger
@@ -252,6 +258,8 @@ router.put('/updateclient', controllerClients.updateClientController);
  *              description: client not found
  */
 router.delete('/deleteclient', controllerClients.deleteClientController);
+router.post('/loginclient', controllerClients.loginClientController);
+
 
 // Piercings
 /**

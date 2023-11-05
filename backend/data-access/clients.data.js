@@ -1,4 +1,3 @@
-
 const clientsModel = require('../models/clients.model');
 
 exports.findAll = async (filter, projection) => {

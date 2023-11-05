@@ -1,4 +1,3 @@
-const {indigo} = require('excel4node/distribution/lib/types/excelColor');
 const piercingsModel = require('../models/piercings.model');
 
 exports.findAll = async (filter, projection)=>{
@@ -19,7 +18,7 @@ exports.findOneResult = async (filter) => {
 
 exports.insertOne = async (info) =>{
   const piercing = new piercingsModel(info);
-  return await piercing.save;
+  return await piercing.save();
 };
 
 exports.updateOne = async (filter, dataUpdated) =>{
@@ -27,5 +26,5 @@ exports.updateOne = async (filter, dataUpdated) =>{
 };
 
 exports.deleteOne = async (filter) =>{
-  return await piercingsModel.findOneAndReplace(filter);
+  return await piercingsModel.findOneAndDelete(filter);
 };

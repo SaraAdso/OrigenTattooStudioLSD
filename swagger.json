@@ -1,0 +1,1114 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "OrigenTattoo",
+        "version": "1.0.0",
+        "description": "API para administrar CRUD"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:7000"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "Client": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "description": "El nombre del cliente"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "description": "El apellido del cliente"
+                    },
+                    "celular": {
+                        "type": "integer",
+                        "description": "El celular del cliente"
+                    },
+                    "documento": {
+                        "type": "string",
+                        "description": "El documento del cliente"
+                    },
+                    "correo": {
+                        "type": "string",
+                        "description": "El correo del cliente"
+                    },
+                    "fechaNacimiento": {
+                        "type": "string",
+                        "description": "La fecha de nacimiento del cliente"
+                    },
+                    "alergias": {
+                        "type": "string",
+                        "description": "La o las alergias del cliente"
+                    },
+                    "idTatuaje": {
+                        "type": "string",
+                        "description": "Tatuaje pedido por el cliente"
+                    },
+                    "idPiercing": {
+                        "type": "string",
+                        "description": "Piercing pedido por el cliente"
+                    },
+                    "contrasena": {
+                        "type": "string",
+                        "description": "La contraseña del cliente"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "apellido",
+                    "celular",
+                    "documento",
+                    "correo",
+                    "fechaNacimiento",
+                    "alergias",
+                    "idTatuaje",
+                    "idPiercing",
+                    "contrasena"
+                ],
+                "example": {
+                    "nombre": "David",
+                    "apellido": "Gutierrez",
+                    "celular": 3147746834,
+                    "documento": 1001362779,
+                    "correo": "dprince@gmail.com",
+                    "fechaNacimiento": "04/03/2002",
+                    "alergias": "Ninguna",
+                    "idTatuaje": 0,
+                    "idPiercing": 1,
+                    "contrasena": 10123456
+                }
+            },
+            "Tattoo": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "description": "El nombre del tatuaje"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "description": "La descripción del tatuaje"
+                    },
+                    "tamano": {
+                        "type": "string",
+                        "description": "El tamaño del tatuaje"
+                    },
+                    "Autor": {
+                        "type": "string",
+                        "description": "El autor del tatuaje"
+                    },
+                    "imagen": {
+                        "type": "string",
+                        "description": "La imagen del tatuaje"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "descripcion",
+                    "tamano",
+                    "Autor",
+                    "imagen"
+                ],
+                "example": {
+                    "nombre": "Demino del mar",
+                    "descripcion": "Calamar de grandes tentáculos sobre el agua",
+                    "tamano": "30cm",
+                    "color": "negro y blanco",
+                    "tecnica": "Clásico",
+                    "autor": "Artista Tattoo",
+                    "imagen": "url de la imagen"
+                }
+            },
+            "Users": {
+                "type": "object",
+                "properties": {
+                    "correo": {
+                        "type": "string",
+                        "description": "El correo del usuario"
+                    },
+                    "contraseña": {
+                        "type": "string",
+                        "description": "La contraseña del usuario"
+                    },
+                    "rol": {
+                        "type": "string",
+                        "description": "El rol del usuario"
+                    }
+                },
+                "required": [
+                    "correo",
+                    "contraseña",
+                    "rol"
+                ],
+                "example": {
+                    "correo": "dgutierrez@gmail.com",
+                    "contraseña": "1234567",
+                    "rol": "usuario"
+                }
+            },
+            "TattooArtist": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "description": "El nombre del tatuador"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "description": "El apellido del tatuador"
+                    },
+                    "celular": {
+                        "type": "string",
+                        "description": "El celular del tatuador"
+                    },
+                    "documento": {
+                        "type": "string",
+                        "description": "El documento del tatuador"
+                    },
+                    "correo": {
+                        "type": "string",
+                        "description": "El correo del tatuador"
+                    },
+                    "contraseña": {
+                        "type": "string",
+                        "description": "La contraseña del tatuador"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "apellido",
+                    "celular",
+                    "documento",
+                    "correo",
+                    "contraseña"
+                ],
+                "example": {
+                    "nombre": "David",
+                    "apellido": "Restrepo Gutierrez",
+                    "celular": "37655439",
+                    "documento": "111110111",
+                    "correo": "dgtuierre@gmail.com",
+                    "contraseña": "12334567"
+                }
+            },
+            "Booking": {
+                "type": "object",
+                "properties": {
+                    "fechaCita": {
+                        "type": "string",
+                        "description": "La cita de la reserva"
+                    },
+                    "idTatuador": {
+                        "type": "string",
+                        "description": "El ID del tatuador"
+                    },
+                    "idCliente": {
+                        "type": "string",
+                        "description": "El ID del cliente"
+                    },
+                    "idPiercing": {
+                        "type": "string",
+                        "description": "El ID del piercing"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "description": "El estado de la cita"
+                    }
+                },
+                "required": [
+                    "fechaCita",
+                    "idTatuador",
+                    "idCliente",
+                    "idPiercing",
+                    "estado"
+                ],
+                "example": {
+                    "fechaCita": "12/10/2023",
+                    "idTatuador": "1",
+                    "idCliente": "5",
+                    "idPiercing": "2",
+                    "estado": "activo"
+                }
+            },
+            "Piercing": {
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "type": "string",
+                        "description": "El nombre del piercing"
+                    },
+                    "zona": {
+                        "type": "string",
+                        "description": "La zona del piercing"
+                    },
+                    "imagen": {
+                        "type": "string",
+                        "description": "La imagen del piercing"
+                    }
+                },
+                "required": [
+                    "nombre",
+                    "zona",
+                    "imagen"
+                ],
+                "example": {
+                    "nombre": "nostril",
+                    "zona": "oreja",
+                    "imagen": "url de la imagen"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/api/v1/newclient": {
+            "post": {
+                "summary": "create a new client",
+                "tags": [
+                    "Clients"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Client"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nuevo usuario creado!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showclient": {
+            "get": {
+                "summary": "return all clients",
+                "tags": [
+                    "Clients"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "all users!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Client"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showclient/{id}": {
+            "get": {
+                "summary": "return client",
+                "tags": [
+                    "Clients"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the client id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "all clients!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/deleteclient/{id}": {
+            "delete": {
+                "summary": "delete client",
+                "tags": [
+                    "Clients"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the client id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user deleted"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/updateclient/{id}": {
+            "put": {
+                "summary": "update client",
+                "tags": [
+                    "Clients"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the client id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user update"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/newtattoo": {
+            "post": {
+                "summary": "create a new tattoo",
+                "tags": [
+                    "Tattoo"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Tattoo"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nuevo tatuaje creado!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showtattoo": {
+            "get": {
+                "summary": "return all tattoos",
+                "tags": [
+                    "Tattoo"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "all tattoos!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "/Tattoo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showtattoo/{id}": {
+            "get": {
+                "summary": "return a tattoo",
+                "tags": [
+                    "Tattoo"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the tattoo id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "tattoo found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "/Tattoo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "tattoo not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/deletetattoo/{id}": {
+            "delete": {
+                "summary": "delete a tattoo",
+                "tags": [
+                    "Tattoo"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the tattoo id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "tattoo deleted"
+                    },
+                    "404": {
+                        "description": "tattoo not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/updatetattoo/{id}": {
+            "put": {
+                "summary": "update a tattoo",
+                "tags": [
+                    "Tattoo"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the tattoo id"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Tattoo"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tattoo updated"
+                    },
+                    "404": {
+                        "description": "tattoo not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/newuser": {
+            "post": {
+                "summary": "create a new user",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Users"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nuevo usuario creado!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showusers": {
+            "get": {
+                "summary": "return all users",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "all users!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "/Users"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showuser/{id}": {
+            "get": {
+                "summary": "return a user",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the user id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user found!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "/Users"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/deleteuser/{id}": {
+            "delete": {
+                "summary": "delete a user",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the user id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user deleted"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/updateeuser/{id}": {
+            "put": {
+                "summary": "update a user",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "the user id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user update"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/newtattoartist": {
+            "post": {
+                "summary": "Crear un nuevo tatuador",
+                "tags": [
+                    "TattooArtist"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/TattooArtist"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nuevo tatuador creado!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showtattoartists": {
+            "get": {
+                "summary": "Devolver todos los tatuadores",
+                "tags": [
+                    "TattooArtist"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Todos los tatuadores",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "/TattooArtist"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showtattoartist/{id}": {
+            "get": {
+                "summary": "Devolver un tatuador por ID",
+                "tags": [
+                    "TattooArtist"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del tatuador"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tatuador encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "/TattooArtist"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Tatuador no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/v1/deletetattoartist/{id}": {
+            "delete": {
+                "summary": "Eliminar un tatuador por ID",
+                "tags": [
+                    "TattooArtist"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del tatuador"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tatuador eliminado"
+                    },
+                    "404": {
+                        "description": "Tatuador no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/v1/updatetattoartist/{id}": {
+            "put": {
+                "summary": "Actualizar un tatuador por ID",
+                "tags": [
+                    "TattooArtist"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del tatuador"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/TattooArtist"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tatuador actualizado"
+                    },
+                    "404": {
+                        "description": "Tatuador no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/v1/newbooking": {
+            "post": {
+                "summary": "Crear una nueva reserva",
+                "tags": [
+                    "Booking"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nueva reserva creada!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showbookings": {
+            "get": {
+                "summary": "Devolver todas las citas",
+                "tags": [
+                    "Booking"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Todas las citas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showbooking/{id}": {
+            "get": {
+                "summary": "Devolver la cita por ID",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID de la cita"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cita encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cita no encontrada"
+                    }
+                }
+            }
+        },
+        "/api/v1/deletebooking/{id}": {
+            "delete": {
+                "summary": "Eliminar una cita por ID",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID de la cita"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cita eliminada"
+                    },
+                    "404": {
+                        "description": "Cita no encontrada"
+                    }
+                }
+            }
+        },
+        "/api/v1/updatebooking/{id}": {
+            "put": {
+                "summary": "Actualizar una cita por ID",
+                "tags": [
+                    "Booking"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID de la cita"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cita actualizada"
+                    },
+                    "404": {
+                        "description": "Cita no encontrada"
+                    }
+                }
+            }
+        },
+        "/api/v1/newpiercing": {
+            "post": {
+                "summary": "Crear un nuevo piercing",
+                "tags": [
+                    "Piercing"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Piercing"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Nuevo piercing creado!"
+                    }
+                }
+            }
+        },
+        "/api/v1/showpiercings": {
+            "get": {
+                "summary": "Devolver todos los piercings",
+                "tags": [
+                    "Piercing"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Todos los piercings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "/Piercing"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/showpiercing/{id}": {
+            "get": {
+                "summary": "Devolver el piercing por ID",
+                "tags": [
+                    "Piercing"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del piercing"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piercing encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "/Piercing"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Piercing no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/v1/deletepiercing/{id}": {
+            "delete": {
+                "summary": "Eliminar un piercing por ID",
+                "tags": [
+                    "Piercing"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del piercing"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piercing eliminado"
+                    },
+                    "404": {
+                        "description": "Piercing no encontrado"
+                    }
+                }
+            }
+        },
+        "/api/v1/updatepiercing/{id}": {
+            "put": {
+                "summary": "Actualizar un piercing por ID",
+                "tags": [
+                    "Piercing"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "ID del piercing"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "/Piercing"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Piercing actualizado"
+                    },
+                    "404": {
+                        "description": "Piercing no encontrado"
+                    }
+                }
+            }
+        }
+    }
+}
