@@ -4,7 +4,7 @@ const router = express.Router();
 const controllerClients = require('../controller/clients.controller');
 const controllerBooking = require('../controller/booking.controller');
 const controllerPiercing = require('../controller/piercings.controller');
-const controllerTattoo = require('../controller/tattoo.controller');
+const controllerTattoo = require('../controller/tattoos.controller');
 const controllerUser = require('../controller/users.controller');
 const controllerTattoArtist= require('../controller/tattooartists.controller');
 
@@ -27,10 +27,10 @@ router.post('/updateuser', controllerUser.updateUserController);
 router.delete('/deleteuser', controllerUser.deleteUserController);
 
 // tattoartist
-router.get('/showtattoartist', controllerTattoArtist.showTattooArtistController);
-router.post('/newtattoartist', controllerTattoArtist.createTattooArtistController);
-router.post('/updatetattoartist', controllerTattoArtist.updateTattooArtitController);
-router.delete('/deletetattoartist', controllerTattoArtist.deleteTattooArtitController);
+router.get('/showtattoartist', controllerTattoo.showTattooController);
+router.post('/newtattoartist', controllerTattoo.createTattooController);
+router.post('/updatetattoartist', controllerTattoo.updateTattooController);
+router.delete('/deletetattoartist', controllerTattoo.deleteTattooController);
 
 // booking
 router.get('/showbooking', controllerBooking.showBookingController);

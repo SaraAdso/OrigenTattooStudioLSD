@@ -1,8 +1,8 @@
-const clientUseCases = require('../usecases/clients.usecase');
+const tattooUseCases = require('../usecases/tattoos.usecase');
 
-exports.showClientController = async (req, res) =>{
+exports.showTattooController = async (req, res) =>{
   try {
-    const result = await clientUseCases.showClients();
+    const result = await tattooUseCases.showTattoos();
 
     if (result.error) {
       return res.json({
@@ -18,9 +18,9 @@ exports.showClientController = async (req, res) =>{
   }
 };
 
-exports.createClientController = async (req, res) =>{
+exports.createTattooController = async (req, res) => {
   try {
-    const result = await clientUseCases.createClient(req.body);
+    const result = await tattooUseCases.createTattoo(req.body);
 
     if (result.error) {
       return res.json({
@@ -36,9 +36,9 @@ exports.createClientController = async (req, res) =>{
   }
 };
 
-exports.updateClientController = async (req, res) =>{
+exports.updateTattooController = async (req, res) =>{
   try {
-    const result = await clientUseCases.updateClient(req.body);
+    const result = await tattooUseCases.updateTattoo(req.body);
 
     if (result.error) {
       return res.json({
@@ -54,9 +54,9 @@ exports.updateClientController = async (req, res) =>{
   }
 };
 
-exports.deleteClientController = async (req, res) => {
+exports.deleteTattooController = async (req, res) =>{
   try {
-    const result = await clientUseCases.deleteClient(req.body);
+    const result = await tattooUseCases.deleteTattoo(req.body);
 
     if (result.error) {
       return res.json({
@@ -66,22 +66,6 @@ exports.deleteClientController = async (req, res) => {
       return res.json({
         success: result.success,
       });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-exports.loginClientController = async (req, res) => {
-  try {
-    const result = await clientUseCases.loginClient(req.body);
-
-    if (result.error) {
-      return res.json({
-        error: result.error,
-      });
-    } else if (result.ruta) {
-      return res.redirect(result.ruta);
     }
   } catch (error) {
     console.log(error);

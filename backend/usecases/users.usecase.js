@@ -1,4 +1,4 @@
-const usersData = require('../controller/data-access/users.data');
+const usersData = require('../data-access/users.data');
 
 exports.showUser = async () =>{
   const users = await usersData.findAll();

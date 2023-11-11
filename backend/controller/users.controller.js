@@ -1,8 +1,8 @@
-const clientUseCases = require('../usecases/clients.usecase');
+const userUseCases = require('../usecases/users.usecase');
 
-exports.showClientController = async (req, res) =>{
+exports.showUserController = async (req, res) => {
   try {
-    const result = await clientUseCases.showClients();
+    const result = await userUseCases.showUsers();
 
     if (result.error) {
       return res.json({
@@ -18,9 +18,9 @@ exports.showClientController = async (req, res) =>{
   }
 };
 
-exports.createClientController = async (req, res) =>{
+exports.createUserController = async (req, res) =>{
   try {
-    const result = await clientUseCases.createClient(req.body);
+    const result = await userUseCases.createUser(req.body);
 
     if (result.error) {
       return res.json({
@@ -36,9 +36,9 @@ exports.createClientController = async (req, res) =>{
   }
 };
 
-exports.updateClientController = async (req, res) =>{
+exports.updateUserController = async (req, res) =>{
   try {
-    const result = await clientUseCases.updateClient(req.body);
+    const result = await userUseCases.updateUser(req.body);
 
     if (result.error) {
       return res.json({
@@ -54,9 +54,9 @@ exports.updateClientController = async (req, res) =>{
   }
 };
 
-exports.deleteClientController = async (req, res) => {
+exports.deleteUserController = async (req, res) => {
   try {
-    const result = await clientUseCases.deleteClient(req.body);
+    const result = await userUseCases.deleteUser(req.body);
 
     if (result.error) {
       return res.json({
@@ -66,22 +66,6 @@ exports.deleteClientController = async (req, res) => {
       return res.json({
         success: result.success,
       });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-exports.loginClientController = async (req, res) => {
-  try {
-    const result = await clientUseCases.loginClient(req.body);
-
-    if (result.error) {
-      return res.json({
-        error: result.error,
-      });
-    } else if (result.ruta) {
-      return res.redirect(result.ruta);
     }
   } catch (error) {
     console.log(error);

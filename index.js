@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const routes = require('./backend/routes/routes');
 const swaggerUI = require('swagger-ui-express');
 const {appendFile, rename} = require('fs/promises'); // Importa fs/promises
 const fs = require('fs'); // Importa fs
@@ -17,6 +18,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 // Directorio de destino para el archivo .txt
 const destinationFolder = path.join(__dirname, '/backend/files/logs');
 
+// eslint-disable-next-line require-jsdoc
 async function appendToFile(fileName, data) {
   try {
     await appendFile(fileName, data, {flag: 'w'});
@@ -37,6 +39,13 @@ if (!fs.existsSync(destinationFolder)) {
 }
 
 appendToFile('activities.txt', 'Archivo Importante ');
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/frontend/views/pages'));
+app.use(express.static(path.join(__dirname, '/frontend/static')));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use('/', routes);
 
 // Inicia el servidor
 const port = process.env.PORT || 7000;
