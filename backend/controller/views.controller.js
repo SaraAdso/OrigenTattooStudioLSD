@@ -11,10 +11,13 @@ exports.showFormRegister = async (req, res) => {
 exports.showFormLogin = async (req, res) => {
     res.render('loginclients')
 };
-exports.showFormAdmin = async (req,res) => {
+exports.showFormAdmin = async (req, res) => {
     const client = await showClientController();
     console.log(client)
     res.render('admin', {
         clientes: client.success,
     });
+};
+exports.showFormTattoo = async (req, res) => {
+    res.render('tattoo')
 };

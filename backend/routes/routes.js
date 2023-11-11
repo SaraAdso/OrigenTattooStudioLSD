@@ -12,10 +12,11 @@ const controllerTattoos = require('../controller/tattoos.controller');
 const controllerUsers = require('../controller/users.controller');
 const controllerViews = require('../controller/views.controller')
 
-router.get('/', controllerViews.showLandingPage);
+router.get('/landing', controllerViews.showLandingPage);
 router.get('/formregister', controllerViews.showFormRegister);
 router.get('/formlogin', controllerViews.showFormLogin);
 router.get('/formadmin', controllerViews.showFormAdmin);
+router.get('/tattoo', controllerViews.showFormTattoo);
 
 // Booking
 /**
