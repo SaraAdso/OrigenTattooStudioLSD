@@ -27,10 +27,10 @@ router.post('/updateuser', controllerUser.updateUserController);
 router.delete('/deleteuser', controllerUser.deleteUserController);
 
 // tattoartist
-router.get('/showtattoartist', controllerTattoo.showTattooController);
-router.post('/newtattoartist', controllerTattoo.createTattooController);
-router.post('/updatetattoartist', controllerTattoo.updateTattooController);
-router.delete('/deletetattoartist', controllerTattoo.deleteTattooController);
+router.get('/showtattoartist', controllerTattoArtist.showTattooArtistController);
+router.post('/newtattoartist', controllerTattoArtist.createtattooArtistController);
+router.post('/updatetattoartist', controllerTattoArtist.updatetattooArtistController);
+router.delete('/deletetattoartist', controllerTattoArtist.deletetattooArtistController);
 
 // booking
 router.get('/showbooking', controllerBooking.showBookingController);

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const routes = require('./backend/routes/routes');
+const router = require('./backend/routes/routes');
 const swaggerUI = require('swagger-ui-express');
 const {appendFile, rename} = require('fs/promises'); // Importa fs/promises
 const fs = require('fs'); // Importa fs
@@ -45,7 +45,11 @@ app.set('views', path.join(__dirname, '/frontend/views/pages'));
 app.use(express.static(path.join(__dirname, '/frontend/static')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use('/', routes);
+
+router.get('/', (req, res) => {
+  res.send('¡Hola desde la página principal!');
+});
+
 
 // Inicia el servidor
 const port = process.env.PORT || 7000;
