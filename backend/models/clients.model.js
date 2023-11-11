@@ -41,6 +41,10 @@ const SchemaClient = new mongoose.Schema({
     type: String,
     required: [true, 'Se require ingresar una contraseña'],
     minLength: [8, 'La contraseña debe tener mínimo 8 caracteres'],
+  },
+  fotoDocumento: {
+    type: String,
+    required: [true, 'Se requiere adjuntar una foto del documento de identidad'],
   }});
 
 const client = mongoose.model('Client', SchemaClient);

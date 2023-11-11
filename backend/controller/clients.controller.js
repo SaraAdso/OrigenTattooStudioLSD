@@ -3,15 +3,14 @@ const clientUseCases = require('../usecases/clients.usecase');
 exports.showClientController = async (req, res) =>{
   try {
     const result = await clientUseCases.showClients();
-
     if (result.error) {
-      return res.json({
+      return {
         error: result.error,
-      });
+      };
     } else if (result.success) {
-      return res.json({
+      return {
         success: result.success,
-      });
+      };
     }
   } catch (error) {
     console.log(error);
@@ -71,3 +70,19 @@ exports.deleteClientController = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.loginClientController = async (req, res) => {
+  try {
+    const result = await clientUseCases.loginClient(req.body);
+
+    if (result.error) {
+      return res.json({
+        error: result.error,
+      });
+    } else if (result.ruta) {
+      return res.redirect(result.ruta);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

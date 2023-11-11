@@ -1,9 +1,7 @@
 const mongoose = require('../config/mongodbconnection');
-
 const SchemaPiercing = new mongoose.Schema({
   nombre: {
     type: String,
-    unique: [true, 'el piercing debe ser unico'],
     required: [true, 'Se require el nombre del piercing'],
   },
   zona: {

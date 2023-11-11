@@ -1,37 +1,37 @@
 const express = require('express');
 const app = express();
 const routes = require('./backend/routes/routes');
-const path = require('path');
-
+require('dotenv').config();
 // swagger
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerSpec = {
+const path = require('path');
+
+swaggerSpec = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Othalan - Origen Tattoo',
+      title: 'NodeJS MongoDB API',
       version: '1.0.0',
     },
     servers: [
       {
-        url: 'http://localhost:7000',
-      },
-    ],
+        url: `http://localhost:${process.env.PORT}`
+      }
+    ]
   },
-  apis: [`${path.join(__dirname, './backend/routes/routes.js')}`],
-};
+  apis: [`${path.join(__dirname, '/backend/routes/routes.js')}`]
+}
+const swaggerDoc = require('./swagger.json');
 
-require('dotenv').config();
-
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/frontend/views/pages'))
+app.use(express.static(path.join(__dirname, '/frontend/static')))
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)));
-
-app.use('/api/v1/', routes);
-
+app.use(express.urlencoded({ extended: true }));
+app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
+app.use('/', routes);
 
 app.listen(process.env.PORT, () => {
-  console.log('funciona');
+  console.log(`funciona en el puerto ${process.env.PORT}`);
 });

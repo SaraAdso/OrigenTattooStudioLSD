@@ -1,0 +1,197 @@
+ /* Estilo para el banner */
+ .banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    background-image: url('/assets/imagenes/fondo.png');
+    background-size: cover;
+}
+
+/* Estilo para el fondo del banner con opacidad */
+.banner::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Opacidad en el fondo */
+}
+
+/* Estilo para el contenido del banner */
+.banner-content {
+    text-align: center;
+    color: white; 
+    padding: 50px; 
+    position: absolute;
+}
+
+/* Estilo para el logo */
+.navbar-logo {
+    width: 300px; 
+    height: auto;
+}
+
+/* Estilo para los enlaces de navegación */
+.navbar-nav .nav-link {
+    margin: 20px; 
+    font-size: 24px; 
+}
+
+/.agenda-button {
+    position: relative; /* Cambiado a 'relative' */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+
+/*Redes*/
+/* Estilo de los botones flotantes */
+.boton-float {
+    position: fixed;
+    bottom: 20px; /* Ajusta la distancia desde la parte inferior de la página */
+    right: 20px; /* Ajusta la distancia desde el lado derecho de la página */
+    z-index: 999;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.boton-float:hover {
+    opacity: 1;
+}
+
+.boton-float button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+}
+
+.boton-float img {
+    width: 50px; /* Tamaño de la imagen del botón */
+}
+
+@font-face {
+    font-family: "gothic_school";
+    src: url("/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf") format("truetype");
+}
+
+.info{
+    font-family: "gothic_school";
+    font-size: 60px; 
+    text-align: center;
+}
+.info{
+    background-color: rgb(255, 255, 255);
+    width: 100%; 
+}
+
+.info-footer{
+    font-size: 60px; 
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+background-color: gray;}
+
+
+
+/*Imagenes*/
+
+
+/* Estilo para la sección de imágenes */
+.image-section {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.image-section img {
+    width: 250px; /* Aumenta el ancho de las imágenes */
+    height: auto;
+    margin-right: 15px; /* Aumenta el margen derecho */
+}
+
+.image-section img:last-child {
+    margin-right: 0;
+}
+
+/* Estilo para centrar el botón "Ver más" en cada sección */
+.ver-mas {
+    font-size: 24px; /* Aumenta el tamaño del botón */
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: 2px solid black; /* Restaura el borde */
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.footer-logo{
+    width: 100px; 
+    height: auto;
+}
+a.ver-mas {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 15px; /* Relleno reducido verticalmente */
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px; /* Tamaño de fuente ajustado */
+    line-height: 30px; /* Alinea verticalmente */
+    margin: 0 auto; /* Centra horizontalmente */
+}
+
+a.ver-mas:hover {
+    background-color: #1c1c1c;
+    color: #c6c6c6;
+}
+
+a.ver-mas:focus {
+    outline: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.agenda-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    padding: 10px 20px; /* Relleno en los cuatro lados */
+    border-radius: 10px;
+    font-size: 16px; /* Tamaño de fuente mediano */
+    text-align: center;
+}
+
+.agenda-button:hover {
+    background-color: #232323; /* Cambia el color al pasar el cursor sobre el botón */
+    color: #b5b5b5;
+}
+
+.boton {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 50px; /* Esto hace que el botón sea semi circular */
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+  }
