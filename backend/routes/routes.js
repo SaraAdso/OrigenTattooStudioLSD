@@ -7,6 +7,13 @@ const controllerPiercing = require('../controller/piercings.controller');
 const controllerTattoo = require('../controller/tattoos.controller');
 const controllerUser = require('../controller/users.controller');
 const controllerTattoArtist= require('../controller/tattooartists.controller');
+const controllerViews = require('../controller/views.controller')
+
+router.get('/landing', controllerViews.showLandingPage);
+router.get('/formregister', controllerViews.showFormRegister);
+router.get('/formlogin', controllerViews.showFormLogin);
+router.get('/formadmin', controllerViews.showFormAdmin);
+router.get('/tattoo', controllerViews.showFormTattoo);
 
 // client
 router.get('/showclient', controllerClients.showClientController);
