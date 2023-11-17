@@ -34,6 +34,7 @@ exports.updateTattoo = async (tattooUpdate) => {
     autor: autor,
     imagen: imagen,
   };
+  
   const tattooUpdated = await tattoosData.updateOne({nombre: nombre}, infoToUpdate);
   if (!clientUpdated) {
     return {error: 'No se actualizó'};
