@@ -12,17 +12,6 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/styles/landingpage.css">
-    <style>
-        @font-face {
-            font-family: 'Sketch';
-            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
-        }
-
-        h1 {
-            font-family: sketch;
-            font-size: 90px;
-        }
-    </style>
 </head>
 
 <body>
@@ -63,19 +52,118 @@
                     <ul class="navbar-nav mr-auto">
                     </ul>
                     <div class="div1" class="btn-toolbar">
-                        <a href="formlogin" class="btn btn-dark fw-bold" role="button">INICIAR SESIÓN</a>
+                        <a href="formregister" class="btn btn-dark fw-bold me-4 " role="button">REGISTRARSE</a>
+                        <a href="formlogin" class="btn btn-dark fw-bold " role="button">INICIAR SESIÓN</a>
 
-                        <a href="formregister" class="btn btn-dark fw-bold" role="button">REGISTRARSE</a>
                     </div>
                 </nav>
             </ul>
         </div>
         <div class="container  text-center mt-5">
-            <button style="margin-top: 150px" type="button" class="btn btn-dark">Agendar cita</button>
+            <button style="margin-top: 150px" type="button" class="btn btn-dark">AGENDAR CITA</button>
         </div>
     </div>
-    <div id="tattooPreview">
-        <h1 id="fuente">Tatuajes</h1>
+
+    <div class="row p-md-2" id="tattooPreview">
+        <h1 id="fuente" class="col-12">Tatuajes</h1>
+
+        <div class="d-flex justify-content-center flex-wrap">
+        <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 30rem;">
+            <img src="/assets/images/ojolineastattoo.jpeg" class="card-img-top" alt="Tatuaje ojo con lineas">
+            <div class="mt-2">
+              <h5 class="card-title">Ojo con lineas curvas</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+        
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
+            <img src="/assets/images/ramafloresrojas.jpg" class="card-img-top" alt="Rama de flores rojas">
+            <div class="mt-2">
+              <h5 class="card-title">Rama con flores rojas</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+        
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
+            <img src="/assets/images/blackoutflores.jpeg" class="card-img-top" alt="blackout con flores">
+            <div class="mt-2">
+              <h5 class="card-title">Blackout con flores</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
+            <img src="/assets/images/gatossiameses.jpeg" class="card-img-top" alt="Gatos siameses">
+            <div class="mt-2">
+              <h5 class="card-title">Gatos siameses</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+      </div>
+
+        <div class="mt-5">
+            <a href="" class="btn btn-outline-dark">Ver más</a>
+        </div>
+    </div>
+
+    <div class="row p-md-4 " id="piercingspreview">
+        <h1 id="fuente" class="col-12 text-center">Piercings</h1>
+
+        <div class="d-flex justify-content-center flex-wrap">
+        <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 25rem;">
+            <img src="/assets/images/snakebites.jpeg" class="card-img-top" alt="Snake bites">
+            <div class="mt-2">
+              <h5 class="card-title">Snake Bites</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+        
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 25rem;">
+            <img src="/assets/images/nostril.jpeg" class="card-img-top" alt="Nostril">
+            <div class="mt-2">
+              <h5 class="card-title">Nostril</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+        
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 25rem;">
+            <img src="/assets/images/transversal.jpeg" class="card-img-top" alt="Transversal">
+            <div class="mt-2">
+              <h5 class="card-title">Transversal</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+        </div>
+
+        <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 25rem;">
+            <img src="/assets/images/verticallabret.jpeg" class="card-img-top" alt="Vertical Labret">
+            <div class="mt-2">
+              <h5 class="card-title">Vertical Labret</h5>
+            </div>
+            <div class="mt-4">
+              <a href="#" class="btn btn-dark">Más información</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5">
+            <a href="" class="btn btn-outline-dark">Ver más</a>
+        </div>
+    </div>
+
     </div>
 </body>
 

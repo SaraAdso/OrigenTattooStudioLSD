@@ -6,6 +6,24 @@
     background-size: cover;
 }
 
-#tattooPreview {
+#tattooPreview, #piercingspreview{
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Sketch';
+    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+}
+
+h1 {
+    font-family: sketch;
+    font-size: 90px;
+}
+
+.card-body {
+    margin: 0;
+}
+
+.mt {
     text-align: center;
 }

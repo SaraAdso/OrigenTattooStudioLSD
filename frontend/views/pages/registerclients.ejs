@@ -13,14 +13,11 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/styles/navbar.css">
   <link rel="stylesheet" href="/assets/styles/registerclients.css">
-  <style>
-
-  </style>
-</head>
+  </head>
 
 <body>
   <%- include ('../partials/navbar.ejs') %>
-    <section class="h-100" style="background-color: #363232;">
+    <section class="h-100" >
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col">
@@ -34,7 +31,7 @@
                 <div class="col-xl-6">
                   <div class="card-body p-md-5 text-black">
                     <h2 class="mb-5">Registro de clientes</h2>
-                    <form action="/newclient" method="post">
+                    <form onsubmit="return validatePassword()" action="/newclient" method="post">
                       <div class="row">
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
@@ -87,16 +84,19 @@
                             <input type="password" id="contrasena" name="contrasena"
                               class="form-control form-control-lg" />
                             <label class="form-label" for="contrasena">Contraseña</label>
+                            
                           </div>
                         </div>
                         <div class="col-md-6 mb-4 ">
                           <div class="form-outline mb-4">
-                            <input type="password" id="contrasena2" name="contrasena2"
-                              class="form-control form-control-lg" />
-                            <label class="form-label" for="contrasena2">Repetir contraseña</label>
+                            <input type="password" id="contrasenaconfirmar" name="contrasena2"
+                              class="form-control form-control-lg" /> 
+                            <label class="form-label" for="contrasenaconfirmar">Repetir contraseña</label>
                           </div>
-
                         </div>
+                        <div>
+
+                      </div>
                       </div>
 
                       <div class="form-outline mb-4">
@@ -105,8 +105,13 @@
                         <label class="form-label" for="fotoDocumento">Foto del Documento</label>
                       </div>
 
+                      <div id="alerta" class="alert alert-warning" role="alert" style="display: none;">
+                        Las contraseñas no coinciden. Por favor, inténtalo de nuevo.
+                      </div>
+
+                      <a href="/formlogin">¿ya tienes una cuenta?</a>
                       <div class="d-flex justify-content-end pt-3">
-                        <button type="submit" class="btn btn-dark btn-lg ms-2">Registrarse</button>
+                        <button type="submit" id="botom"class="btn btn-dark btn-lg ms-2">Registrarse</button>
                       </div>
                     </form>
                   </div>
@@ -119,4 +124,5 @@
     </section>
 </body>
 
+<script src="/js/contrasenas.js"></script>
 </html>
