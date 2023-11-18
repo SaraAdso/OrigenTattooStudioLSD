@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/styles/landingpage.css">
+    <style>
+        @font-face {
+            font-family: 'Sketch';
+            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+        }
+
+        h1 {
+            font-family: sketch;
+            font-size: 90px;
+        }
+    </style>
+</head>
+
+<body style="background-color: #887878;">
+
+    <%- include ('../partials/navbar.ejs') %>
+
+        <div class="container mt-5 text-center">
+            <h1>Formulario de Cita</h1>
+            <section class="h-100">
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col">
+                            <div class="card card-registration my-4">
+                                <div class="row g-0">
+                                    <div class="col-xl-6 d-none d-xl-block">
+                                        <img src="/assets/images/espaldastatuadas.jpeg"
+                                            class="h-100 w-100 object-fit-cover " alt="Sample photo" class="img-fluid"
+                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card-body p-md-5 text-black">
+
+
+                                            <div class="form-outline mb-4">
+                                                <label for="fechaCita">Fecha de Cita:</label>
+                                                <input type="date" class="form-control" id="fechaCita" name="fechaCita"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label for="tatuador">Nombre del Tatuador:</label>
+                                                <select class="form-control" id="tatuador" name="tatuador" required>
+                                                    <option value="tatuador1">Tatuador 1</option>
+                                                    <option value="tatuador2">Tatuador 2</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label for="servicio">Tipo de Servicio:</label>
+                                                <select class="form-control" id="servicio" name="servicio" required>
+                                                    <option value="piercing">Piercing</option>
+                                                    <option value="tatuaje">Tatuaje</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label for="menorEdad">¿Eres menor de edad?</label>
+                                                <select class="form-control" id="menorEdad" name="menorEdad" required>
+                                                    <option value="si">Sí</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label for="consentimiento">Consentimiento:</label><br> <br>
+                                                <input type="file" class="form-control-file" id="consentimiento"
+                                                    name="consentimiento" required>
+
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

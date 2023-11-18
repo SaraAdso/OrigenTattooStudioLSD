@@ -10,11 +10,18 @@ const controllerPiercings = require('../controller/piercings.controller');
 const controllerTattooArtists = require('../controller/tattooartists.controller');
 const controllerTattoos = require('../controller/tattoos.controller');
 const controllerUsers = require('../controller/users.controller');
-const controllerViews = require('../controller/views.controller')
+const controllerViews = require('../controller/views.controller');
 
-router.get('/', controllerViews.showLandingPage);
+router.get('/landing', controllerViews.showLandingPage);
 router.get('/formregister', controllerViews.showFormRegister);
 router.get('/formlogin', controllerViews.showFormLogin);
+router.get('/formadmin', controllerViews.showFormAdmin);
+router.get('/tattoo', controllerViews.showFormTattoo);
+router.get('/formbooking', controllerViews.showFormBooking);
+router.get('/piercing', controllerViews.showFormPiercing);
+router.get('/landingadmin', controllerViews.showLandingAdmin);
+///router.get('/adminbooking', controllerViews.showAdminBooking);
+
 // Booking
 /**
  * @swagger
