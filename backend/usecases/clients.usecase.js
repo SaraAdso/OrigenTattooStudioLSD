@@ -30,27 +30,6 @@ exports.createClient = async (clientInfo) => {
   }
 }
 
-exports.loginClient = async (clientInfo) => {
-  const {correo, contrasena} = clientInfo;
-  const userInfo = await usersData.findOneResult({correo: correo}) 
-  if(!userInfo){
-    return {error: 'No existe el usuario'}
-  }
-  const isPasswordCorrect = await bcrypt.compare(contrasena, userInfo.contrasena);
-  const token = await jwt.sign({ id: userInfo._id}, jwtSecret, {expiresIn: 18000000});
-  if (isPasswordCorrect) {
-    if (userInfo.rol === 'Cliente') {
-      // REDIRECT
-    } else if (usuario.rol === 'Administrador') {
-      // REDIRECT
-    } else {
-      return {error: 'NO SE RECONOCE EL ROL'}
-    }
-  } else {
-    return {error: 'USUARIO Y/O CONTRASEÑA INCORRECTA'}
-  }
-}
-
 exports.updateClient = async (infoUpdate) => {
   const {nombre, apellido, celular, documento, correo, alergias, contrasena, fechaNacimiento} = infoUpdate;
   const infoToUpdate = {

@@ -1,4 +1,7 @@
 const usersData = require('../data-access/users.data');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken'); 
+const jwtSecret = 'private'
 
 exports.showUsers = async () =>{
   const users = await usersData.findAll();
@@ -22,6 +25,27 @@ exports.createUser = async (userInfo) => {
     return {success: 'Se creó'};
   }
 };
+
+exports.loginUser = async (clientInfo) => {
+  const {correo, contrasena} = clientInfo;
+  const userInfo = await usersData.findOneResult({correo: correo}) 
+  if(!userInfo){
+    return {error: 'No existe el usuario'}
+  }
+  const isPasswordCorrect = await bcrypt.compare(contrasena, userInfo.contrasena);
+  const token = await jwt.sign({ id: userInfo._id}, jwtSecret, {expiresIn: 18000000});
+  if (isPasswordCorrect) {
+    if (userInfo.rol === 'Cliente') {
+      return{path: '/'}
+    } else if (userInfo.rol === 'Administrador') {
+      return{path: '/admin'}
+    } else {
+      return {error: 'NO SE RECONOCE EL ROL'}
+    }
+  } else {
+    return {error: 'USUARIO Y/O CONTRASEÑA INCORRECTA'}
+  }
+}
 
 exports.updateUser = async (infoUpdate) => {
   const {correo, contrasena, rol} = infoUpdate;

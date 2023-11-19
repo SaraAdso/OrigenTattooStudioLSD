@@ -71,4 +71,20 @@ exports.createUserController = async (req, res) =>{
       console.log(error);
     }
   };
+
+  exports.loginUsersController = async (req, res) => {
+    try {
+      const result = await userUseCases.loginUser(req.body);
+  
+      if (result.error) {
+        return res.json({
+          error: result.error,
+        });
+      } else {
+        return res.redirect(result.path)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   

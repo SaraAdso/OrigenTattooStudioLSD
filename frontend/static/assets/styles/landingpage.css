@@ -6,7 +6,7 @@
     background-size: cover;
 }
 
-#tattooPreview, #piercingspreview{
+#tattooPreview, #piercingspreview, #tattooartistspreview{
     text-align: center;
 }
 
@@ -24,6 +24,22 @@ h1 {
     margin: 0;
 }
 
+.font {
+    font-family: sketch;
+    font-size: 2rem;
+}
+
 .mt {
     text-align: center;
+}
+
+.imageartists {
+    height: 321px;
+    width: 286px;
+    object-fit: cover;
+}
+
+.cardsizepiercings {
+    width: 18rem; 
+    height: 26rem;
 }
