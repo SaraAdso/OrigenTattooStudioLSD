@@ -1,4 +1,5 @@
 const { showClientController } = require("./clients.controller");
+const { showTattooController } = require("./tattoos.controller");
 ///const { showBookingController } = require("./booking.controller");
 
 exports.showLandingPage = async (req, res) => {
@@ -19,8 +20,11 @@ exports.showFormAdmin = async (req, res) => {
         clientes: client.success,
     });
 };
-exports.showFormTattoo = async (req, res) => {
-    res.render('tattoo')
+exports.showTattoo = async (req, res) => {
+    const tattoo = await showTattooController();
+    res.render('tattoo',{
+        tattoos: tattoo.success,
+    })
 };
 exports.showFormBooking = async (req, res) => {
     res.render('booking')
@@ -30,6 +34,12 @@ exports.showFormPiercing = async (req, res) => {
 };
 exports.showLandingAdmin = async (req, res) => {
     res.render('landingadmin')
+};
+exports.showAdminTattoo = async (req, res) => {
+    const tattoo = await showTattooController();
+    res.render('admintattoo',{
+        tattoos: tattoo.success,
+    })
 };
 
 ///***exports.showAdminBooking = async (req, res) => {

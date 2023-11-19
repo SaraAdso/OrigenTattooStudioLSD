@@ -18,6 +18,7 @@ exports.findOneResult = async (filter) => {
 
 exports.insertOne = async (info) => {
   const tattoo = new tattoosModel(info);
+  tattoo._id = null;
   return await tattoo.save();
 };
 

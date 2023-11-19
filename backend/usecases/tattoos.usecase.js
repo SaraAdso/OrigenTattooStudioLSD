@@ -10,12 +10,14 @@ exports.showTattoos = async () => {
 };
 
 exports.createTattoo = async (tattooInfo) => {
-  const {nombre, descripcion, tamano, color, tecnica, autor, imagen} = tattooInfo;
+  const nombre = tattooInfo.nombre;
   const tattooExists = await tattoosData.findOneResult({nombre: nombre});
   if (tattooExists) {
     return {error: 'Ya existe ese tatuaje'};
   }
+  console.log('antes de crear');
   const createTattoo = await tattoosData.insertOne(tattooInfo);
+  console.log('dps de crear');
   if (!createTattoo) {
     return {error: 'No se creó el tatuaje'};
   } else {
@@ -24,7 +26,7 @@ exports.createTattoo = async (tattooInfo) => {
 };
 
 exports.updateTattoo = async (tattooUpdate) => {
-  const {nombre, descripcion, tamano, color, tecnica, autor, imagen} = tattooUpdate;
+  const {id, nombre, descripcion, tamano, color, tecnica, autor, imagen} = tattooUpdate;
   const infoToUpdate = {
     nombre: nombre,
     descripcion: descripcion,
@@ -35,8 +37,8 @@ exports.updateTattoo = async (tattooUpdate) => {
     imagen: imagen,
   };
   
-  const tattooUpdated = await tattoosData.updateOne({nombre: nombre}, infoToUpdate);
-  if (!clientUpdated) {
+  const tattooUpdated = await tattoosData.updateOne({_id: id}, infoToUpdate);
+  if (!tattooUpdated) {
     return {error: 'No se actualizó'};
   } else {
     return {success: 'Actualizado correctamente'};

@@ -16,44 +16,50 @@ router.get('/landing', controllerViews.showLandingPage);
 router.get('/formregister', controllerViews.showFormRegister);
 router.get('/formlogin', controllerViews.showFormLogin);
 router.get('/formadmin', controllerViews.showFormAdmin);
-router.get('/tattoo', controllerViews.showFormTattoo);
+router.get('/tattoo', controllerViews.showTattoo);
 router.get('/formbooking', controllerViews.showFormBooking);
 router.get('/piercing', controllerViews.showFormPiercing);
 router.get('/landingadmin', controllerViews.showLandingAdmin);
+
+//Tattoo CRUD
+
+router.get('/admin/tattoo', controllerViews.showAdminTattoo);
+router.get('/admin/deletetattoo/:id', controllerTattoos.deleteTattooController);
+router.post('/admin/guardar', controllerTattoos.saveTattoo);
+
+
+
 ///router.get('/adminbooking', controllerViews.showAdminBooking);
 
-// Booking
-/**
- * @swagger
- * components:
- *  schemas:
- *      Booking:
- *          type: object
- *          properties:
- *              fechaCita:
- *                  type: date
- *              estado:
- *                  type: string
- *              idCliente:
- *                  type: string
- *              idTatuador:
- *                  type: string
- *              idPiercing:
- *                  type: string
- *              idTatuaje:
- *                  type: string
- *          required:
- *              - fechaCita
- *              - estado
- *              - idCliente
- *              - idTatuador
- *          example:
- *              fechaCita: 2023-11-02T12:30:00
- *              estado: activa
- *              idCliente: 65070c3b5dc80e4398f960a9
- *              idTatuador: 6518678fbd8dc7609a105f63
- *              idTatuaje: 4733749379739857345735
- */
+//  * components:
+//  *  schemas:
+//  *      Booking:
+//  *          type: object
+//  *          properties:
+//  *              fechaCita:
+//  *                  type: date
+//  *              estado:
+//  *                  type: string
+//  *              idCliente:
+//  *                  type: string
+//  *              idTatuador:
+//  *                  type: string
+//  *              idPiercing:
+//  *                  type: string
+//  *              idTatuaje:
+//  *                  type: string
+//  *          required:
+//  *              - fechaCita
+//  *              - estado
+//  *              - idCliente
+//  *              - idTatuador
+//  *          example:
+//  *              fechaCita: 2023-11-02T12:30:00
+//  *              estado: activa
+//  *              idCliente: 65070c3b5dc80e4398f960a9
+//  *              idTatuador: 6518678fbd8dc7609a105f63
+//  *              idTatuaje: 4733749379739857345735
+//  */
 // SHOW BOOKING
 /**
  * @swagger
