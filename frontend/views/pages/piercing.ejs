@@ -2,18 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-qW6eGx2QYJz9RqEGPELAv52XH2DZlb9TqLo7hXQFqgR6u5c5k6Azl3i5F2ZT3Y" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/assets/styles/navbar.css">
-  <link rel="stylesheet" href="/assets/styles/landingpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-qW6eGx2QYJz9RqEGPELAv52XH2DZlb9TqLo7hXQFqgR6u5c5k6Azl3i5F2ZT3Y"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <link rel="stylesheet" href="/assets/styles/landingpage.css">
     <style>
         @font-face {
             font-family: 'Sketch';
@@ -24,203 +25,85 @@
             font-family: sketch;
             font-size: 80px;
         }
-        
+
         h5 {
-          font-family: sketch;
-          font-size: 30px;
-      }
+            font-family: sketch;
+            font-size: 30px;
+        }
     </style>
 
 <body style="background-color: #887878;">
-  <%- include ('../partials/navbar.ejs') %>
+    <%- include ('../partials/navbar.ejs') %>
 
-  <div class="container mt-5">
-    <h1 class="text-center">Piercings </h1>
-</div>
-<div class="d-flex justify-content-center">
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-md-3 mb-5">
-        <div class="card p-3">
-            <img src="https://styles.redditmedia.com/t5_5gzp9e/styles/profileIcon_ktan2fi9wb581.jpg?width=256&height=256&frame=1&auto=webp&crop=256:256,smart&s=23081f305b9acea503555dfdf7211b1f5822bb91" class="card-img-top" alt="Imagen de Producto 1">
-            <div class="card-body text-center">
-                <h5 class="card-title">Oreja</h5><br>
-                <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" data-bs-toggle="modal" data-bs-target="#modalProducto1">
-                    Más información
-                </button>
-            </div>
+        <div class="container mt-5">
+            <h1 class="text-center">Piercings </h1>
         </div>
-    </div>
+        <div class="d-flex justify-content-center">
+            <div class="container mt-3">
+                <div class="row">
 
-        
-        <div class="col-md-3 mb-5">
-            <div class="card p-3">
-                <img src="https://m.media-amazon.com/images/I/71PNI7fH5uL._UC256,256_CACC,256,256_.jpg" class="card-img-top" alt="Imagen de Producto 2">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Oreja</h5><br>
-                    <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" type="button" data-bs-toggle="modal" data-bs-target="#modalProducto2">
-                        Más información
-                    </button>
+                    <% piercings.forEach(function(piercing){%>
+
+                        <div class="col-md-3 mb-5">
+                            <div class="card p-3">
+                                <img src="<%= piercing.imagen %>" class="card-img-top" alt="<%= piercing.nombre %>">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <%= piercing.nombre %>
+                                    </h5><br>
+                                    <button type="button" class="btn btn-primary"
+                                        style="background-color: #40292d; border-color: #000000; color: #ffffff;"
+                                        data-bs-toggle="modal" data-bs-target="#modalPiercing"
+                                        onclick="rellenarmodalpiercing('<%=piercing.nombre%>', '<%=piercing.zona%>', '<%=piercing.imagen%>')">
+                                        Más información
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% });%>
+
+
+
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-3 mb-5">
-          <div class="card p-3">
-              <img src="https://c-cl.cdn.smule.com/rs-s34/arr/ec/99/331eaf20-8064-4cf0-9dba-ff4964deb71a.jpg" class="card-img-top" alt="Imagen de Producto 2">
-              <div class="card-body text-center">
-                  <h5 class="card-title">Nariz</h5><br>
-                  <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" data-bs-toggle="modal" data-bs-target="#modalProducto3">
-                      Más información
-                  </button>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-3 mb-5">
-        <div class="card p-3">
-            <img src="https://autentica.pe/cdn/shop/products/RAY-TITANIO-WEB1_256x.webp?v=1698602129" class="card-img-top" alt="Imagen de Producto 2">
-            <div class="card-body text-center">
-                <h5 class="card-title">Oreja</h5><br>
-                <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" data-bs-toggle="modal" data-bs-target="#modalProducto4">
-                    Más información
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 mb-5">
-      <div class="card p-3">
-          <img src="https://static.wixstatic.com/media/f01554_bd298d48ec47436dbd4cd3903ad3f724~mv2.jpg/v1/fill/w_256,h_256,al_c,q_80,usm_1.20_1.00_0.01,enc_auto/f01554_bd298d48ec47436dbd4cd3903ad3f724~mv2.jpg" class="card-img-top" alt="Imagen de Producto 2">
-          <div class="card-body text-center">
-              <h5 class="card-title">Nariz</h5><br>
-              <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" Sdata-bs-toggle="modal" data-bs-target="#modalProducto5">
-                  Más información
-              </button>
-          </div>
-      </div>
-  </div>
-        <div class="col-md-3 mb-5">
-            <div class="card p-3">
-                <img src="https://static.wixstatic.com/media/f01554_dc7c81cb17ca4fd3b05e339e6c3c90ce~mv2.jpg/v1/fill/w_256,h_256,al_c,q_80,usm_1.20_1.00_0.01,enc_auto/f01554_dc7c81cb17ca4fd3b05e339e6c3c90ce~mv2.jpg" class="card-img-top" alt="Imagen de Producto 3">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Nariz</h5><br>
-                    <button type="button" class="btn btn-primary" style="background-color: #40292d; border-color: #000000; color: #ffffff;" data-bs-toggle="modal" data-bs-target="#modalProducto6">
-                        Más información
-                    </button>
+                <div class="modal fade" id="modalPiercing" tabindex="-1" aria-labelledby="modalPiercingLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalPiercingTitle"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img id="modalPiercingImage" src="" class="img-fluid" alt="">
+                                <p id="modalPiercingZone"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal fade" id="modalProducto1" tabindex="-1" aria-labelledby="modalProducto1Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalProducto1Label">Información del Producto 1</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 1">
-                <p>Detalles detallados del Producto 1.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Modal Producto 2 -->
-<div class="modal fade" id="modalProducto2" tabindex="-1" aria-labelledby="modalProducto2Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalProducto2Label">Información del Producto 2</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 2">
-                <p>Detalles detallados del Producto 2.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modalProducto3" tabindex="-1" aria-labelledby="modalProducto3Label" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="modalProducto3Label">Información del Producto 3</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 2">
-              <p>Detalles detallados del Producto 2.</p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="modal fade" id="modalProducto4" tabindex="-1" aria-labelledby="modalProducto4Label" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="modalProducto4Label">Información del Producto 4</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 2">
-              <p>Detalles detallados del Producto 4.</p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="modal fade" id="modalProducto5" tabindex="-1" aria-labelledby="modalProducto5Label" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="modalProducto5Label">Información del Producto 5</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 2">
-              <p>Detalles detallados del Producto 2.</p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="modal fade" id="modalProducto6" tabindex="-1" aria-labelledby="modalProducto6Label" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalProducto6Label">Información del Producto 6</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <img src="https://via.placeholder.com/600" class="img-fluid" alt="Imagen de Producto 3">
-                <p>Detalles detallados del Producto 6.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-        crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+                crossorigin="anonymous"></script>
+            <script>
+                function rellenarmodalpiercing(nombre, imagen, zona) {
+                    console.log("Hola");
+                    document.getElementById("modalPiercingTitle").textContent = nombre;
+                    document.getElementById("modalPiercingImage").src = imagen;
+                    document.getElementById("modalPiercingZone").textContent = zona;
+
+                }
+
+            </script>
 </body>
 
 </html>

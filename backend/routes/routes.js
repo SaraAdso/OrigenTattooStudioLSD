@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 
-
 // Controllers
 const controllerBooking = require('../controller/booking.controller');
 const controllerClients = require('../controller/clients.controller');
@@ -27,7 +26,11 @@ router.get('/admin/tattoo', controllerViews.showAdminTattoo);
 router.get('/admin/deletetattoo/:id', controllerTattoos.deleteTattooController);
 router.post('/admin/guardar', controllerTattoos.saveTattoo);
 
+//Piercing CRUD
 
+router.get('/admin/piercing', controllerViews.showAdminPiercing);
+router.get('/admin/deletepiercing/:id', controllerPiercings.deletePiercingController);
+router.post('/admin/guardarpiercing', controllerPiercings.savePiercing);
 
 ///router.get('/adminbooking', controllerViews.showAdminBooking);
 

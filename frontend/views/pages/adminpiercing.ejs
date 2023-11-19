@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table piercing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <link rel="stylesheet" href="/assets/styles/landingpage.css">
+    <link rel="stylesheet" href="../../static/assets/styles/datatables.css">
+    <style>
+        @font-face {
+            font-family: 'Sketch';
+            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+        }
+
+        th {
+        letter-spacing: 1px;
+        
+        }
+
+        body {
+        text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <%- include ('../partials/navbar.ejs') %>
+
+    <div class="mx-5 my-5">    
+                <table id="tabletattoos" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">zona</th>
+                            <th scope="col">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <% piercings.forEach(function(piercing){%>
+                <tr>
+                    <td><%=piercing._id%></td>
+                    <td><%=piercing.nombre%></td>
+                    <td><%=piercing.zona%></td>
+                    <td><%=piercing.imagen%></td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactpiercings">
+                            Crear
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactpiercings" onclick="llenarpiercings('<%=piercing._id%>', '<%=piercing.nombre%>', '<%=piercing.zona%>', '<%=piercing.imagen%>')">
+                            Editar
+                        </button>
+                        <a href="deletepiercing/<%= piercing._id %>">Eliminar</a>
+                    </td>
+                </tr>
+                <% });%>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalactpiercings" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar piercing</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/guardarpiercing" method="POST">
+                        <input type="hidden" name="id" class="form-control" id="idactpiercing" placeholder="" readonly>
+
+                        <label for="nomactpiercing" class="form-label">Nombre:</label>
+                        <input type="text" name="nombre" class="form-control" id="nomactpiercing" placeholder="Ingrese el nombre" >
+
+                        <label for="zonaactpiercing" class="form-label">zona:</label>
+                        <input type="text" name="zona" class="form-control" id="zonaactpiercing" placeholder="Ingrese la zona del piercing">
+            
+                        <label for="imagenactpiercing" class="form-label">Imagen:</label>
+                        <input type="text" name="imagen" class="form-control" id="imagenactpiercing" placeholder="Ingrese la foto del piercing">
+                        
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#tablepiercings').DataTable()
+
+        function llenarpiercings(id,nombre,zona,imagen){
+            idactpiercing.value = id;
+            nomactpiercing.value = nombre;
+            zonaactpiercing.value = zona;
+            imagenactpiercing.value = imagen;
+            
+            
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -28,3 +28,10 @@ exports.updateOne = async (filter, dataUpdated) =>{
 exports.deleteOne = async (filter) =>{
   return await piercingsModel.findOneAndDelete(filter);
 };
+
+exports.showPiercings = async (req, res) => {
+  const listadoPiercings = await piercing.find();
+  res.render('piercing', {
+    piercing: listadoPiercings,
+  });
+};

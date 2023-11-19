@@ -15,9 +15,7 @@ exports.createTattoo = async (tattooInfo) => {
   if (tattooExists) {
     return {error: 'Ya existe ese tatuaje'};
   }
-  console.log('antes de crear');
   const createTattoo = await tattoosData.insertOne(tattooInfo);
-  console.log('dps de crear');
   if (!createTattoo) {
     return {error: 'No se creó el tatuaje'};
   } else {
@@ -36,7 +34,7 @@ exports.updateTattoo = async (tattooUpdate) => {
     autor: autor,
     imagen: imagen,
   };
-  
+
   const tattooUpdated = await tattoosData.updateOne({_id: id}, infoToUpdate);
   if (!tattooUpdated) {
     return {error: 'No se actualizó'};

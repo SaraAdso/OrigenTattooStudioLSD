@@ -67,7 +67,7 @@ exports.deleteTattooController = async (req, res) => {
 };
 
 exports.saveTattoo = async (req, res) => {
-    try { 
+    try {
         const body = req.body;
         var result;
         if (body.id && body.id != '') {

@@ -33,6 +33,6 @@ exports.deleteOne = async (filter) => {
 exports.showTattoos = async (req, res) => {
   const listadoTattoos = await tattoo.find();
   res.render('tattoo', {
-    tattoos: listadoTattoos
+    tattoos: listadoTattoos,
   });
 };

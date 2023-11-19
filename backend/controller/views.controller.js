@@ -1,4 +1,5 @@
 const { showClientController } = require("./clients.controller");
+const { showPiercingController } = require("./piercings.controller");
 const { showTattooController } = require("./tattoos.controller");
 ///const { showBookingController } = require("./booking.controller");
 
@@ -38,7 +39,14 @@ exports.showLandingAdmin = async (req, res) => {
 exports.showAdminTattoo = async (req, res) => {
     const tattoo = await showTattooController();
     res.render('admintattoo',{
-        tattoos: tattoo.success,
+        tattoos: tattoo.success
+    })
+};
+
+exports.showAdminPiercing = async (req, res) => {
+    const piercing = await showPiercingController();
+    res.render('adminpiercing',{
+        piercings: piercing.success
     })
 };
 
