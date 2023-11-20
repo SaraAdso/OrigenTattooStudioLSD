@@ -11,15 +11,15 @@ exports.showBooking = async () => {
 
 // agregar una para find one
 
-exports.createDate = async (dateInfo) => {
-  const {fechaCita, estado, idTatuador} = dateInfo;
+exports.createBooking = async (bookingInfo) => {
+  const fechaCita = bookingInfo.fechaCita;
 
-  const dateCreated = await bookingData.findOneResult({fechaCita: fechaCita});
-  if (dateCreated) {
+  const bookingCreated = await bookingData.findOneResult({fechaCita: fechaCita});
+  if (bookingCreated) {
     return {error: 'Ya existe una cita para esa fecha y hora'};
   }
-  const createDate = await bookingData.insertOne(dateInfo);
-  if (!createDate) {
+  const createBooking = await bookingData.insertOne(bookingInfo);
+  if (!createBooking) {
     return {error: 'No se creó la cita'};
   } else {
     return {success: 'Se agendó la cita exitosamente'};

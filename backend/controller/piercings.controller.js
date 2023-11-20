@@ -73,7 +73,6 @@ exports.savePiercing = async (req, res) => {
     if (body.id && body.id != '') {
       result = await piercingsUseCases.updatePiercing(body);
     } else {
-      console.log(body)
       result = await piercingsUseCases.createPiercing(body);
     }
 

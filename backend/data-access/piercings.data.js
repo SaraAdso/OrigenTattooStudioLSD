@@ -18,6 +18,7 @@ exports.findOneResult = async (filter) => {
 
 exports.insertOne = async (info) =>{
   const piercing = new piercingsModel(info);
+  piercing._id = null;
   return await piercing.save();
 };
 

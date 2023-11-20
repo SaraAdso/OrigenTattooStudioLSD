@@ -46,43 +46,42 @@
                                         <div class="card-body p-md-5 text-black">
 
 
-                                            <div class="form-outline mb-4">
-                                                <label for="fechaCita">Fecha de Cita:</label>
-                                                <input type="date" class="form-control" id="fechaCita" name="fechaCita"
-                                                    required>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <label for="tatuador">Nombre del Tatuador:</label>
-                                                <select class="form-control" id="tatuador" name="tatuador" required>
-                                                    <option value="tatuador1">Tatuador 1</option>
-                                                    <option value="tatuador2">Tatuador 2</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <label for="servicio">Tipo de Servicio:</label>
-                                                <select class="form-control" id="servicio" name="servicio" required>
-                                                    <option value="piercing">Piercing</option>
-                                                    <option value="tatuaje">Tatuaje</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <label for="menorEdad">¿Eres menor de edad?</label>
-                                                <select class="form-control" id="menorEdad" name="menorEdad" required>
-                                                    <option value="si">Sí</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-outline mb-4">
-                                                <label for="consentimiento">Consentimiento:</label><br> <br>
-                                                <input type="file" class="form-control-file" id="consentimiento"
-                                                    name="consentimiento" required>
-
-                                                <button type="submit" class="btn btn-primary">Enviar</button>
-                                            </div>
+                                            <form action="/guardarbooking" method="POST">
+                                                <input type="hidden" name="id" class="form-control" id="idactbooking" placeholder="" readonly>
+                        
+                                                <label for="fechaCita" class="form-label">Fecha de la cita:</label>
+                                                <input type="date" name="fechaCita" class="form-control" id="fechaCita" placeholder="Ingrese fecha de la cita" >
+                        
+                                                <label for="idTatuador" class="form-label">Id del Tatuador:</label>
+                                                <input type="text" name="idTatuador" class="form-control" id="idTatuador" placeholder="Ingrese el id del tatuador">
+                                    
+                                                <label for="idCliente" class="form-label">Id del Cliente:</label>
+                                                <input type="text" name="idCliente" class="form-control" id="idCliente" placeholder="Ingrese el id del Cliente"> <br>
+                                                
+                                                <label for="idPiercing" class="form-label">Id del Piercing:</label>
+                                                <select name="idPiercing" id="idPiercing">
+                                                    <option value="">No Aplica</option>
+                                                    <% piercings.forEach(function(piercing){%>
+                                                        <option value="<%= piercing._id %>"><%= piercing.nombre %></option>
+                                                    <% });%>
+                                                </select><br>
+                                                
+                                                <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
+                                                <select name="idTatuaje" id="idTatuaje">
+                                                    <option value="">No Aplica</option>
+                                                    <% tattoos.forEach(function(tattoo){%>
+                                                        <option value="<%= tattoo._id %>"><%= tattoo.nombre %></option>
+                                                    <% });%>
+                                                </select><br>
+                        
+                                                <label for="fotoConsentimiento" class="form-label">Foto del consentimiento:</label>
+                                                <input type="text" name="fotoConsentimiento" class="form-control" id="fotoConsentimiento" placeholder="Ingrese la foto del consentimiento">
+                        
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Actualizar cambios</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

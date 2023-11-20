@@ -19,6 +19,7 @@ exports.findOneResult = async (filter) => {
 
 exports.insertOne = async (info) => {
   const booking = new bookingModel(info);
+  booking._id = null;
   return await booking.save();
 };
 
