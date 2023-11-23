@@ -24,7 +24,7 @@ exports.createBooking = async (req, res) => {
     const result = await bookingUseCases.createBooking(body);
 
     if (result.error) {
-      res.redirect('/admin/booking'); ///Hay que cambiarlo por un aviso de fallo
+      res.redirect('/error'); 
     } else if (result.success) {
         res.redirect('/successfull');
     }

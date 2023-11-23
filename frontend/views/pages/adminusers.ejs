@@ -11,13 +11,30 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <style>
+        @font-face {
+            font-family: 'Sketch';
+            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+        }
+
+        th {
+        letter-spacing: 1px;
+        
+        }
+
+        body {
+        text-align: center;
+        }
+        
+    </style>
 </head>
 
 <body>
     <%- include ('../partials/navbar.ejs') %>
 
     <div class="container">
-        <table id="tableclients" class="table table-striped" style="width:100%">
+        <div class="table-responsive"> 
+            <table id="tableclients" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
                     <th scope="col">id</th>
@@ -54,6 +71,7 @@
                 <% });%>
             </tbody>
         </table>
+    </div>
     </div>
 
     <div class="modal fade" id="modalactclientes" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">

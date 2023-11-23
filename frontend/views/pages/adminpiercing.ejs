@@ -33,36 +33,41 @@
 <body>
     <%- include ('../partials/navbar.ejs') %>
 
-    <div class="mx-5 my-5">    
-                <table id="tabletattoos" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">zona</th>
-                            <th scope="col">Imagen</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <% piercings.forEach(function(piercing){%>
-                <tr>
-                    <td><%=piercing._id%></td>
-                    <td><%=piercing.nombre%></td>
-                    <td><%=piercing.zona%></td>
-                    <td><%=piercing.imagen%></td>
-                    <td>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactpiercings">
+    <div class="mx-3 mt-3">
+        <div class="table-responsive">
+            <table id="tabletattoos" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">id</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">zona</th>
+                        <th scope="col" class="text-center">Imagen</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <div class="btn-group-vertical" role="group">
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalactpiercings">
                             Crear
                         </button>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactpiercings" onclick="llenarpiercings('<%=piercing._id%>', '<%=piercing.nombre%>', '<%=piercing.zona%>', '<%=piercing.imagen%>')">
-                            Editar
-                        </button>
-                        <a href="deletepiercing/<%= piercing._id %>">Eliminar</a>
-                    </td>
-                </tr>
-                <% });%>
-            </tbody>
-        </table>
+                    <% piercings.forEach(function(piercing){%>
+                        <tr>
+                            <td><%=piercing._id%></td>
+                            <td><%=piercing.nombre%></td>
+                            <td><%=piercing.zona%></td>
+                            <td><%=piercing.imagen%></td>
+                            <td>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalactpiercings" onclick="llenarpiercings('<%=piercing._id%>', '<%=piercing.nombre%>', '<%=piercing.zona%>', '<%=piercing.imagen%>')">
+                                        Editar
+                                    </button>
+                                    <a href="deletepiercing/<%= piercing._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <% });%>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="modal fade" id="modalactpiercings" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">

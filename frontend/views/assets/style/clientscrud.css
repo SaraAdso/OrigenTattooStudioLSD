@@ -1,0 +1,54 @@
+#tabletattoos {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #tabletattoos th,
+  #tabletattoos td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #tabletattoos th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .table-btns .btn {
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    width: 100px; /* Ancho deseado */
+    text-align: center;
+    margin-right: 5px;
+  }
+  
+  .table-btns .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .table-btns .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .table-btns .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+
+  .mx-5 {
+    margin-left: 40px; /* Ajusta según tu diseño */
+  }
+  
+  .my-5 {
+    margin-top: 40px; /* Ajusta según tu diseño */
+  }
+
+  h1 {
+    text-align: center;
+  }

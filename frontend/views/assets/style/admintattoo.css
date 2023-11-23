@@ -1,0 +1,4 @@
+.table-responsive {
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si la tabla excede el ancho */
+    max-width: 100%; /* Ajusta el ancho máximo para evitar desbordamientos */
+}

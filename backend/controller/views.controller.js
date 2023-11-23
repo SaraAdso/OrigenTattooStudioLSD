@@ -73,3 +73,7 @@ exports.showAdminBooking = async (req, res) => {
  exports.showSuccessfull = async (req, res) => {
     res.render('successfull')
 };
+
+exports.showError = async (req, res) => {
+    res.render('error')
+};

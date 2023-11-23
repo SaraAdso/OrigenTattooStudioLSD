@@ -11,49 +11,70 @@
     <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <link rel="stylesheet" href="/assets/styles/admintattoo.css">
+    <style>
+        @font-face {
+            font-family: 'Sketch';
+            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+        }
+
+        th {
+        letter-spacing: 1px;
+        
+        }
+
+        body {
+        text-align: center;
+        }
+        
+    </style>
 </head>
 
 <body>
     <%- include ('../partials/navbar.ejs') %>
 
-    <div class="mx-5 my-5">
-        <table id="tabletattoos" class="table table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Tamaño</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Técnica</th>
-                    <th scope="col">Autor</th>
-                    <th scope="col">Imagen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% tattoos.forEach(function(tattoo){%>
-                <tr>
-                    <td><%=tattoo._id%></td>
-                    <td><%=tattoo.nombre%></td>
-                    <td><%=tattoo.descripcion%></td>
-                    <td><%=tattoo.tamano%></td>
-                    <td><%=tattoo.color%></td>
-                    <td><%=tattoo.tecnica%></td>
-                    <td><%=tattoo.autor%></td>
-                    <td><%=tattoo.imagen%></td>
-                    <td>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalacttattoos">
+    <div class="mx-3 mt-3">
+        <div class="table-responsive">
+            <table id="tabletattoos" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">id</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Descripción</th>
+                        <th scope="col" class="text-center">Tamaño</th>
+                        <th scope="col" class="text-center">Color</th>
+                        <th scope="col" class="text-center">Técnica</th>
+                        <th scope="col" class="text-center">Autor</th>
+                        <th scope="col" class="text-center">Imagen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div class="btn-group-vertical" role="group">
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalacttattoos">
                             Crear
                         </button>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalacttattoos" onclick="llenarTattoos('<%=tattoo._id%>', '<%=tattoo.nombre%>', '<%=tattoo.descripcion%>', '<%=tattoo.tamano%>', '<%=tattoo.color%>', '<%=tattoo.tecnica%>', '<%=tattoo.autor%>', '<%=tattoo.imagen%>')">
-                            Editar
-                        </button>
-                        <a href="deletetattoo/<%= tattoo._id %>">Eliminar</a>
-                    </td>
-                </tr>
-                <% });%>
-            </tbody>
-        </table>
+                    <% tattoos.forEach(function(tattoo){%>
+                    <tr>
+                        <td><%=tattoo._id%></td>
+                        <td><%=tattoo.nombre%></td>
+                        <td><%=tattoo.descripcion%></td>
+                        <td><%=tattoo.tamano%></td>
+                        <td><%=tattoo.color%></td>
+                        <td><%=tattoo.tecnica%></td>
+                        <td><%=tattoo.autor%></td>
+                        <td><%=tattoo.imagen%></td>
+                        <td>
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalacttattoos" onclick="llenarTattoos('<%=tattoo._id%>', '<%=tattoo.nombre%>', '<%=tattoo.descripcion%>', '<%=tattoo.tamano%>', '<%=tattoo.color%>', '<%=tattoo.tecnica%>', '<%=tattoo.autor%>', '<%=tattoo.imagen%>')">
+                                    Editar
+                                </button>
+                                <a href="deletetattoo/<%= tattoo._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <% });%>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="modal fade" id="modalacttattoos" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">

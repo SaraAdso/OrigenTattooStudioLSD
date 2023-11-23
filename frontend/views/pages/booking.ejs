@@ -22,6 +22,39 @@
             font-family: sketch;
             font-size: 90px;
         }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card-registration {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        img.object-fit-cover {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            margin-bottom: 15px;
+            width: 100%; 
+        }
+
     </style>
 </head>
 
@@ -50,15 +83,15 @@
                                                 <input type="hidden" name="id" class="form-control" id="idactbooking" placeholder="" readonly>
                         
                                                 <label for="fechaCita" class="form-label">Fecha de la cita:</label>
-                                                <input type="date" name="fechaCita" class="form-control" id="fechaCita" placeholder="Ingrese fecha de la cita" >
+                                                <input type="date" name="fechaCita" class="form-control" id="fechaCita"  min="2023-01-01" placeholder="Ingrese fecha de la cita" >
                         
-                                                <label for="idTatuador" class="form-label">Id del Tatuador:</label>
-                                                <input type="text" name="idTatuador" class="form-control" id="idTatuador" placeholder="Ingrese el id del tatuador">
+                                                <label for="idTatuador" class="form-label">Tatuador:</label>
+                                                <input type="text" name="idTatuador" class="form-control" id="idTatuador" placeholder="Ingresa tu tatuador de preferencia">
                                     
-                                                <label for="idCliente" class="form-label">Id del Cliente:</label>
-                                                <input type="text" name="idCliente" class="form-control" id="idCliente" placeholder="Ingrese el id del Cliente"> <br>
+                                                <label for="idCliente" class="form-label">Correo electrónico:</label>
+                                                <input type="text" name="idCliente" class="form-control" id="idCliente" placeholder="Ingresa tu correo electrónico"> <br>
                                                 
-                                                <label for="idPiercing" class="form-label">Id del Piercing:</label>
+                                                <label for="idPiercing" class="form-label">Piercing:</label>
                                                 <select name="idPiercing" id="idPiercing">
                                                     <option value="">No Aplica</option>
                                                     <% piercings.forEach(function(piercing){%>
@@ -78,8 +111,8 @@
                                                 <input type="text" name="fotoConsentimiento" class="form-control" id="fotoConsentimiento" placeholder="Ingrese la foto del consentimiento">
                         
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Actualizar cambios</button>
+                                            
+                                                    <button type="submit" class="btn btn-primary">Agenda tu cita</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -94,6 +127,18 @@
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            <script>
+                var fecha = new Date();
+                var anio = fecha.getFullYear();
+                var dia = fecha.getDate();
+                var _mes = fecha.getMonth();
+                _mes = _mes + 1;
+                { var mes = "0" + _mes;}
+                else { 
+                    var mes = _mes.toString;
+                }
+                document.getElementById("fechaCita").min = anio+'-'+mes+'-'+dia; 
+            </script>
 </body>
 
 </html>

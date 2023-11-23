@@ -10,50 +10,72 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="/assets/styles/navbar.css">
+    <style>
+        @font-face {
+            font-family: 'Sketch';
+            src: url('assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+        }
+
+        th {
+        letter-spacing: 1px;
+        
+        }
+
+        body {
+        text-align: center;
+        }
+        
+    </style>
 </head>
 
 <body>
     <%- include ('../partials/navbar.ejs') %>
 
-    <div class="container mt-4"> 
-        <table id="tablebooking" class="table table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">fechaCita</th>
-                    <th scope="col">idTatuador</th>
-                    <th scope="col">idCliente</th>
-                    <th scope="col">idPiercing</th>
-                    <th scope="col">idTatuaje</th>
-                    <th scope="col">estado</th>
-                    <th scope="col">fotoConsentimiento</th>
-                    <th scope="col">Acciones</th> 
-                </tr>
-            </thead>
-            <tbody>
-                <% bookings.forEach(function(booking){%>
-                <tr>
-                    <td><%=booking._id%></td>
-                    <td><%=booking.fechaCita%></td>
-                    <td><%=booking.idTatuador%></td>
-                    <td><%=booking.idCliente%></td>
-                    <td><%=booking.idPiercing%></td>
-                    <td><%=booking.idTatuaje%></td>
-                    <td><%=booking.estado%></td>
-                    <td><%=booking.fotoConsentimiento%></td>
-                    <td>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactbooking" >
-                            Crear
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalactbooking" onclick="llenarBooking('<%=booking._id%>', '<%=booking.fechaCita%>', '<%=booking.idTatuador%>', '<%=booking.idCliente%>', '<%=booking.idPiercing%>', '<%=booking.idTatuaje%>', '<%=booking.estado%>', '<%=booking.fotoConsentimiento%>')">
-                            Editar
-                        </button>
-                        <a href="deletebooking/<%= booking._id %>" class="btn btn-danger">Eliminar</a> 
-                    </td>
-                </tr>
-                <% });%>
-            </tbody>
-        </table>
+    <div class="mx-3 mt-3">
+        <div class="table-responsive">
+            <table id="tablebooking" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col" class="text-center">Fecha de Cita</th>
+                        <th scope="col" class="text-center">ID Tatuador</th>
+                        <th scope="col" class="text-center">ID Cliente</th>
+                        <th scope="col" class="text-center">ID Piercing</th>
+                        <th scope="col" class="text-center">ID Tatuaje</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center">Foto de Consentimiento</th>
+                        <th scope="col" class="text-center">Acciones</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalactbooking">
+                        Crear
+                    </button>
+                    <% bookings.forEach(function(booking){%>
+                        <tr>
+                            <td><%=booking._id%></td>
+                            <td><%=booking.fechaCita%></td>
+                            <td><%=booking.idTatuador%></td>
+                            <td><%=booking.idCliente%></td>
+                            <td><%=booking.idPiercing%></td>
+                            <td><%=booking.idTatuaje%></td>
+                            <td><%=booking.estado%></td>
+                            <td><%=booking.fotoConsentimiento%></td>
+                            <td>
+                                <div class="btn-group-vertical" role="group">
+                                    
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalactbooking" onclick="llenarBooking('<%=booking._id%>', '<%=booking.fechaCita%>', '<%=booking.idTatuador%>', '<%=booking.idCliente%>', '<%=booking.idPiercing%>', '<%=booking.idTatuaje%>', '<%=booking.estado%>', '<%=booking.fotoConsentimiento%>')">
+                                        Editar
+                                    </button>
+                                    <a href="deletebooking/<%= booking._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <% });%>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="modal fade" id="modalactbooking" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">

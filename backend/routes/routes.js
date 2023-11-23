@@ -19,6 +19,7 @@ router.get('/tattoo', controllerViews.showTattoo);
 router.get('/formbooking', controllerViews.showFormBooking);
 router.get('/piercing', controllerViews.showFormPiercing);
 router.get('/landingadmin', controllerViews.showLandingAdmin);
+router.get('/error', controllerViews.showError);
 
 //Tattoo CRUD
 
