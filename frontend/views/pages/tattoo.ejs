@@ -30,8 +30,11 @@
             font-family: sketch;
             font-size: 30px;
         }
+        
+
     </style>
 </head>
+
 <body style="background-color: #887878;">
     <%- include ('../partials/navbar.ejs') %>
 
@@ -70,7 +73,7 @@
                 <div class="modal fade" id="modalTattoo" tabindex="-1" aria-labelledby="modalTattooLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div class="modal-content text-center">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalTattooTitle"></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -79,6 +82,11 @@
                             <div class="modal-body">
                                 <img id="modalTattooImage" src="" class="img-fluid" alt="">
                                 <p id="modalTattooDescription"></p>
+                                <p id="modalTattooTamano"></p>
+                                <p id="modalTattooTecnica"></p>
+                                <p id="modalTattooColor"></p>
+                                <p id="modalTattooAutor"></p>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -91,14 +99,21 @@
             </div>
 
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
                 crossorigin="anonymous"></script>
             <script>
-                function rellenarmodal(nombre,descripcion,tamano,tecnica,color,autor,imagen){
-                    console.log("Hola");
+                function rellenarmodal(nombre, descripcion, tamano, tecnica, color, autor, imagen) {
                     document.getElementById("modalTattooTitle").textContent = nombre;
                     document.getElementById("modalTattooImage").src = imagen;
                     document.getElementById("modalTattooDescription").textContent = descripcion;
+                    document.getElementById("modalTattooTamano").textContent = tamano;
+                    document.getElementById("modalTattooTecnica").textContent = tecnica;
+                    document.getElementById("modalTattooColor").textContent = color;
+                    document.getElementById("modalTattooAutor").textContent = autor;
+
+
+
 
                 }
 
