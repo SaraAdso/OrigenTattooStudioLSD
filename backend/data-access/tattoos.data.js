@@ -28,10 +28,3 @@ exports.updateOne = async (filter, dataUpdated) => {
 exports.deleteOne = async (filter) => {
   return await tattoosModel.findOneAndDelete(filter);
 };
-
-exports.showTattoos = async (req, res) => {
-  const listadoTattoos = await tattoo.find();
-  res.render('tattoo', {
-    tattoos: listadoTattoos
-  });
-};

@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Sketch';
+    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+}
+
+h2 {
+    font-family: sketch;
+    font-size: 50px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.card-registration {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+img.object-fit-cover {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+select,
+input {
+    margin-bottom: 15px;
+    width: 100%; 
+}

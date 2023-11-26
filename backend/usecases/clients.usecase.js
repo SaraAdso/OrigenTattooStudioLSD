@@ -1,9 +1,6 @@
 const clientsData = require('../data-access/clients.data');
 const usersData = require('../data-access/users.data');
-const bcrypt = require('bcrypt');
 
-const jwt = require('jsonwebtoken'); 
-const jwtSecret = 'private'
 exports.showClients = async () => {
   const clients = await clientsData.findAll();
   if (!clients) {

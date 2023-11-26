@@ -5,13 +5,13 @@ exports.showBookingController = async (req, res) =>{
     const result = await bookingUseCases.showBooking();
 
     if (result.error) {
-      return res.json({
+      return{
         error: result.error,
-      });
+      };
     } else if (result.success) {
-      return res.json({
+      return{
         success: result.success,
-      });
+      };
     }
   } catch (error) {
     console.log(error);

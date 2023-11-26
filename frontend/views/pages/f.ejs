@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/assets/styles/navbar.css">
+  <link rel="stylesheet" href="/assets/styles/registerclients.css">
+  </head>
+
+<body>
+  <%- include ('../partials/navbar.ejs') %>
+    <section class="h-100" >
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card card-registration my-4">
+              <div class="row g-0">
+                <div class="col-xl-6 d-none d-xl-block">
+                  <img src="/assets/images/espaldastatuadas.jpeg" class="h-100 w-100 object-fit-cover "
+                    alt="Sample photo" class="img-fluid"
+                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                </div>
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    <h2 class="mb-5">Registro de clientes</h2>
+                    <form action="/guardarbooking" method="post" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <input type="hidden" name="id" class="form-control" id="idactbooking" placeholder="" readonly>
+
+                            
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" class="form-control form-control-lg" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="celular">Celular</label>
+                            <input type="text" id="celular" name="celular" class="form-control form-control-lg" />
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="documento">Documento</label>
+                            <input type="text" id="documento" name="documento" class="form-control form-control-lg" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="correo">Correo</label>
+                        <input type="email" id="correo" name="correo" class="form-control form-control-lg" />
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="fechaNacimiento ">Fecha Nacimiento</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                          class="form-control form-control-lg" />
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="alergias">Alergias</label>
+                        <input type="text" id="alergias" name="alergias" class="form-control form-control-lg" />
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline mb-4">
+                            <label class="form-label" for="contrasena">Contraseña</label>
+                            <input type="password" id="contrasena" name="contrasena"
+                              class="form-control form-control-lg" />
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4 ">
+                          <div class="form-outline mb-4">
+                            <label class="form-label" for="contrasenaconfirmar">Repetir contraseña</label>
+                            <input type="password" id="contrasenaconfirmar" name="contrasena2"
+                              class="form-control form-control-lg" /> 
+                          </div>
+                        </div>
+                        <div>
+
+                      </div>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="fotoDocumento">Foto del Documento</label>
+                        <input type="file" id="fotoDocumento" name="fotoDocumento"
+                          class="form-control form-control-lg" required />
+                      </div>
+
+                      <div id="alerta" class="alert alert-warning" role="alert" style="display: none;">
+                        Las contraseñas no coinciden. Por favor, inténtalo de nuevo.
+                      </div>
+
+                      <a href="/formlogin">¿ya tienes una cuenta?</a>
+                      <div class="d-flex justify-content-end pt-3">
+                        <button type="submit" id="botom"class="btn btn-dark btn-lg ms-2">Registrarse</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+
+<script src="/js/contrasenas.js"></script>
+</html>

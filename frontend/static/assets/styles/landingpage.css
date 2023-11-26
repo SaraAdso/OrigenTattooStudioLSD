@@ -6,7 +6,7 @@
     background-size: cover;
 }
 
-#tattooPreview, #piercingspreview, #tattooartistspreview{
+#tattooPreview, #piercingspreview, #tattooartistspreview, #locationpreview{
     text-align: center;
 }
 
@@ -42,4 +42,13 @@ h1 {
 .cardsizepiercings {
     width: 18rem; 
     height: 26rem;
+}
+
+#staticBackdropLabel {
+    font-family: sketch;
+    font-size: 3rem;
+}
+
+h2.font {
+    font-size: 2.7rem;
 }

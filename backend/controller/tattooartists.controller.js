@@ -1,16 +1,17 @@
 const tattooArtistUseCases = require('../usecases/tattooartists.usecase');
+
 exports.showTattooArtistController = async (req, res) =>{
   try {
     const result = await tattooArtistUseCases.showTattooArtists();
 
     if (result.error) {
-      return res.json({
+      return{
         error: result.error,
-      });
+      };
     } else if (result.success) {
-      return res.json({
+      return{
         success: result.success,
-      });
+      };
     }
   } catch (error) {
     console.log(error);

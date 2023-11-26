@@ -5,13 +5,13 @@ exports.showPiercingController = async (req, res) =>{
     const result = await piercingsUseCases.showPiercings();
 
     if (result.error) {
-      return res.json({
+      return{
         error: result.error,
-      });
+      };
     } else if (result.success) {
-      return res.json({
+      return{
         success: result.success,
-      });
+      };
     }
   } catch (error) {
     console.log(error);
