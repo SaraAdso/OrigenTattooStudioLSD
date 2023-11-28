@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
-
 // Controllers
 const controllerBooking = require('../controller/booking.controller');
 const controllerClients = require('../controller/clients.controller');
@@ -19,18 +17,21 @@ router.get('/formlogin', controllerViews.showFormLogin);
 router.get('/tattoocatalogue', controllerViews.showTattoosCatalogue);
 router.get('/piercingscatalogue', controllerViews.showPiercingsCatalogue);
 router.get('/makeabooking', controllerViews.showFormBooking);
+router.get('/bookingerror', controllerViews.showErrorBooking);
+router.get('/bookingsuccess', controllerViews.showSuccessfullBooking);
+const upload = require('../middleware/uploadimages');
 
-//ADMIN
-//Tatuajes
+// ADMIN
+// Tatuajes
 router.get('/admintattoos', controllerViews.showAdminTattoo);
 
-//Piercings
+// Piercings
 router.get('/adminpiercings', controllerViews.showAdminPiercing);
 
-//Tatuadores
+// Tatuadores
 router.get('/admintattooartists', controllerViews.showAdminTattooArtists);
 
-//Citas
+// Citas
 router.get('/adminbooking', controllerViews.showAdminBooking);
 // Booking
 // SHOW BOOKING
@@ -46,7 +47,7 @@ router.delete('/deletebooking', controllerBooking.deleteBookingController);
 // SHOW CLIENT
 router.get('/showclient', controllerClients.showClientController);
 // CREATE CLIENT
-router.post('/newclient', controllerClients.createClientController);
+router.post('/newclient', upload.single('fotoDocumento'), controllerClients.createClientController);
 // UPDATE CLIENT
 router.put('/updateclient', controllerClients.updateClientController);
 // DELETE CLIENT
@@ -58,7 +59,7 @@ router.post('/loginclient', controllerUsers.loginUsersController);
 // SHOW PIERCINGS
 router.get('/showpiercing', controllerPiercings.showPiercingController);
 // CREATE PIERCING
-router.post('/newpiercing', controllerPiercings.createPiercingController);
+router.post('/newpiercing', upload.single('fotoDocumento'), controllerPiercings.createPiercingController);
 // UPDATE PIERCING
 router.put('/updatepiercing', controllerPiercings.updatePiercingController);
 // DELETE PIERCING
@@ -68,7 +69,7 @@ router.delete('/deletepiercing', controllerPiercings.deletePiercingController);
 // SHOW TATTOOS
 router.get('/showtattoo', controllerTattoos.showTattooController);
 // CREATE TATTOO
-router.post('/newtattoo', controllerTattoos.createTattooController);
+router.post('/newtattoo', upload.single('imagen'), controllerTattoos.createTattooController);
 // UPDATE TATTOO
 router.put('/updatetattoo', controllerTattoos.updateTattooController);
 // DELETE TATTOO
@@ -88,7 +89,7 @@ router.delete('/deleteuser', controllerUsers.deleteUserController);
 // SHOW TATTOOARTISTS
 router.get('/showtattooartist', controllerTattooArtists.showTattooArtistController);
 // CREATE TATTOOARTIST
-router.post('/newtattooartist', controllerTattooArtists.createtattooArtistController);
+router.post('/newtattooartist', upload.single('fotoDocumento'), controllerTattooArtists.createtattooArtistController);
 // UPDATE TATTOOARTIST
 router.put('/updatetattoartist', controllerTattooArtists.updatetattooArtistController);
 // DELETE TATTOOARTIST

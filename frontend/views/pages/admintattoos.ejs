@@ -69,11 +69,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/admin/guardar" method="POST">
-                        <input type="hidden" name="id" class="form-control" id="idacttattoo" placeholder="" readonly>
+                    <form action="/newtattoo" method="POST">
 
                         <label for="nomacttattoo" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" class="form-control" id="nomacttattoo" placeholder="Ingrese el nombre" >
+                        <input type="text" name="nombre" class="form-control" id="nameacttattoo" placeholder="Ingrese el nombre" >
 
                         <label for="desacttattoo" class="form-label">Descripcion:</label>
                         <input type="text" name="descripcion" class="form-control" id="desacttattoo" placeholder="Ingrese la descripción del tattoo">
@@ -91,7 +90,7 @@
                         <input type="text" name="autor" class="form-control" id="autoracttattoo" placeholder="Ingrese el autor del tattoo">
                     
                         <label for="imagenacttattoo" class="form-label">Imagen:</label>
-                        <input type="text" name="imagen" class="form-control" id="imagenacttattoo" placeholder="Ingrese la foto del tattoo">
+                        <input type="file" name="imagen" class="form-control" id="imagenacttattoo" placeholder="Ingrese la foto del tattoo">
                         
                         
                         <div class="modal-footer">

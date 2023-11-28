@@ -5,11 +5,11 @@ exports.showTattooArtistController = async (req, res) =>{
     const result = await tattooArtistUseCases.showTattooArtists();
 
     if (result.error) {
-      return{
+      return {
         error: result.error,
       };
     } else if (result.success) {
-      return{
+      return {
         success: result.success,
       };
     }

@@ -5,14 +5,14 @@ exports.showBookingController = async (req, res) =>{
     const result = await bookingUseCases.showBooking();
 
     if (result.error) {
-      return{
+      return {
         error: result.error,
       };
     } else if (result.success) {
-      return{
+      return {
         success: result.success,
       };
-    }
+    };
   } catch (error) {
     console.log(error);
   }
@@ -39,7 +39,7 @@ exports.createBookingController = async (req, res) => {
 exports.updateBookingController = async (req, res) =>{
   try {
     const result = await bookingUseCases.updateDate(req.body);
-    console.log(result)
+    console.log(result);
     if (result.error) {
       return res.json({
         error: result.error,

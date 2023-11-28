@@ -20,6 +20,8 @@ exports.showClientController = async (req, res) =>{
 
 exports.createClientController = async (req, res) =>{
   try {
+    const imageDestination = `/assets/images/${req.file.originalname}`;
+    req.body.imagen = imageDestination;
     const result = await clientUseCases.createClient(req.body);
 
     if (result.error) {

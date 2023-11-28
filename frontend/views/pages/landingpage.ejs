@@ -61,54 +61,28 @@
     </div>
   </div>
 
-  <div class="p-md-2" id="tattooPreview">
+  <div class="d-flex flex-column p-md-2" id="tattooPreview">
     <h1 class="col-12">Tatuajes</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 30rem;">
-        <img src="/assets/images/ojolineastattoo.jpeg" class="card-img-top" alt="Tatuaje ojo con lineas">
-        <div class="mt-2">
-          <h5 class="font card-title">Ojo con lineas curvas</h5>
+      <% tattoos.forEach(tattoo=>{%>
+        <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 30rem;">
+          <img src="<%=tattoo.imagen%>" class="card-img-top" alt="Tatuaje ojo con lineas">
+          <div class="mt-2">
+            <h5 class="font card-title">
+              <%=tattoo.nombre%>
+            </h5>
+          </div>
+          <div class="mt-2">
+            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfo">Más información</a>
+          </div>
         </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfo">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
-        <img src="/assets/images/ramafloresrojas.jpg" class="card-img-top" alt="Rama de flores rojas">
-        <div class="mt-2">
-          <h5 class="font card-title">Rama con flores rojas</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
-        <img src="/assets/images/blackoutflores.jpeg" class="card-img-top" alt="blackout con flores">
-        <div class="mt-2">
-          <h5 class="font card-title">Blackout con flores</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6  m-3" style="width: 18rem; height: 30rem;">
-        <img src="/assets/images/gatossiameses.jpeg" class="card-img-top" alt="Gatos siameses">
-        <div class="mt-2">
-          <h5 class="font card-title">Gatos siameses</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
+      <%})%>
     </div>
 
-    <div class="mt-5">
-      <a href="tattoocatalogue" class="btn btn-outline-dark fw-bold ">Ver más</a>
-    </div>
+      <div class="mt-5">
+        <a href="tattoocatalogue" class="btn btn-outline-dark fw-bold ">Ver más</a>
+      </div>
 
   </div>
 
@@ -235,7 +209,7 @@
           <h5 class="font card-title">C.C Santa Fe</h5>
         </div>
       </div>
-    
+
 
       <div class="card col-md-6 col-lg-6 m-3" style="width: 600px; height: 450px;">
         <div class="embed-responsive embed-responsive-1by1 w-100 h-100 ">
@@ -261,7 +235,7 @@
       <div class="modal-content">
         <div class="d-flex modal-body">
           <div class="w-50">
-          <img src="/assets/images/ojolineastattoo.jpeg" alt="Tatuaje ojo con lineas" class="w-100 ">
+            <img src="/assets/images/ojolineastattoo.jpeg" alt="Tatuaje ojo con lineas" class="w-100 ">
           </div>
           <div class="w-50  ">
             <h2 class="font ms-3">Ojo con lineas curvas</h2>
