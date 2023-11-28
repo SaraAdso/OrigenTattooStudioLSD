@@ -23,13 +23,14 @@ exports.createPiercing = async (piercingInfo) => {
   }
 };
 
-exports.updatePiercing = async (infoUpdate) => {
-  const {nombre, zona} = infoUpdate;
+exports.updatePiercing = async (piercingUpdate) => {
+  const {id, nombre, zona, imagen} = piercingUpdate;
   const infoToUpdate = {
     nombre: nombre,
     zona: zona,
+    imagen: imagen,
   };
-  const piercingUpdated = await piercingsData.updateOne({nombre}, infoToUpdate);
+  const piercingUpdated = await piercingsData.updateOne({_id: id}, infoToUpdate);
   if (piercingUpdated) {
     return {error: 'No se actualizó'};
   } else {

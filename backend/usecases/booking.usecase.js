@@ -9,11 +9,8 @@ exports.showBooking = async () => {
   }
 };
 
-// agregar una para find one
-
 exports.createBooking = async (bookingInfo) => {
   const fechaCita = bookingInfo.fechaCita;
-
   const bookingCreated = await bookingData.findOneResult({fechaCita: fechaCita});
   if (bookingCreated) {
     return {error: 'Ya existe una cita para esa fecha y hora'};
@@ -27,11 +24,15 @@ exports.createBooking = async (bookingInfo) => {
 };
 
 exports.updateDate = async (dateUpdate) => {
-  const {id, fechaCita, estado, idTatuador} = dateUpdate;
+  const {id, fechaCita, estado, idTatuador, idCliente, idPiercing, idTatuaje, fotoConsentimiento} = dateUpdate;
   const dateToUpdate = {
     fechaCita: fechaCita,
     estado: estado,
     idTatuador: idTatuador,
+    idCliente: idCliente,
+    idPiercing: idPiercing,
+    idTatuaje: idTatuaje,
+    fotoConsentimiento: fotoConsentimiento,
   };
   const dateExists = await bookingData.findOneResult({fechaCita: fechaCita});
   const dateUpdated = await bookingData.updateOne({_id: id}, dateToUpdate);
