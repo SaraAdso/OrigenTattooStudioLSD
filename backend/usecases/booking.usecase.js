@@ -12,7 +12,7 @@ exports.showBooking = async () => {
 // agregar una para find one
 
 exports.createDate = async (dateInfo) => {
-  const {fechaCita, estado, idTatuador} = dateInfo;
+  const {fechaCita} = dateInfo;
 
   const dateCreated = await bookingData.findOneResult({fechaCita: fechaCita});
   if (dateCreated) {
@@ -35,7 +35,6 @@ exports.updateDate = async (dateUpdate) => {
   };
   const dateExists = await bookingData.findOneResult({fechaCita: fechaCita});
   const dateUpdated = await bookingData.updateOne({_id: id}, dateToUpdate);
-  console.log(dateUpdated)
   if (!dateUpdated) { // Verificar tambien si el tatuador a elegir está ocupado
     return {error: 'No se actualizó'};
   } else if (dateExists) {

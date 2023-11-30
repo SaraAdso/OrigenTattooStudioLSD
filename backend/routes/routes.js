@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 const express = require('express');
 const router = express.Router();
 
@@ -8,7 +9,7 @@ const controllerPiercings = require('../controller/piercings.controller');
 const controllerTattooArtists = require('../controller/tattooartists.controller');
 const controllerTattoos = require('../controller/tattoos.controller');
 const controllerUsers = require('../controller/users.controller');
-const controllerViews = require('../controller/views.controller')
+const controllerViews = require('../controller/views.controller');
 
 router.get('/admin', controllerViews.showLandingAdmin);
 router.get('/', controllerViews.showLandingPage);
@@ -39,7 +40,7 @@ router.get('/showbooking', controllerBooking.showBookingController);
 // CREATE BOOKING
 router.post('/newbooking', controllerBooking.createBookingController);
 
-router.put('/updatebooking', controllerBooking.updateBookingController);
+router.post('/updatebooking', controllerBooking.updateBookingController);
 // DELETE BOOKING
 router.delete('/deletebooking', controllerBooking.deleteBookingController);
 
@@ -49,7 +50,7 @@ router.get('/showclient', controllerClients.showClientController);
 // CREATE CLIENT
 router.post('/newclient', upload.single('fotoDocumento'), controllerClients.createClientController);
 // UPDATE CLIENT
-router.put('/updateclient', controllerClients.updateClientController);
+router.post('/updateclient', controllerClients.updateClientController);
 // DELETE CLIENT
 router.delete('/deleteclient', controllerClients.deleteClientController);
 router.post('/loginclient', controllerUsers.loginUsersController);
@@ -59,9 +60,9 @@ router.post('/loginclient', controllerUsers.loginUsersController);
 // SHOW PIERCINGS
 router.get('/showpiercing', controllerPiercings.showPiercingController);
 // CREATE PIERCING
-router.post('/newpiercing', upload.single('fotoDocumento'), controllerPiercings.createPiercingController);
+router.post('/newpiercing', upload.single('imagen'), controllerPiercings.createPiercingController);
 // UPDATE PIERCING
-router.put('/updatepiercing', controllerPiercings.updatePiercingController);
+router.post('/updatepiercing', controllerPiercings.updatePiercingController);
 // DELETE PIERCING
 router.delete('/deletepiercing', controllerPiercings.deletePiercingController);
 
@@ -71,7 +72,7 @@ router.get('/showtattoo', controllerTattoos.showTattooController);
 // CREATE TATTOO
 router.post('/newtattoo', upload.single('imagen'), controllerTattoos.createTattooController);
 // UPDATE TATTOO
-router.put('/updatetattoo', controllerTattoos.updateTattooController);
+router.post('/updatetattoo', controllerTattoos.updateTattooController);
 // DELETE TATTOO
 router.delete('/deletetattoo', controllerTattoos.deleteTattooController);
 
@@ -81,7 +82,7 @@ router.get('/showuser', controllerUsers.showUserController);
 // CREATE USER
 router.post('/newuser', controllerUsers.createUserController);
 // UPDATE USER
-router.put('/updateuser', controllerUsers.updateUserController);
+router.post('/updateuser', controllerUsers.updateUserController);
 // DELETE USERS
 router.delete('/deleteuser', controllerUsers.deleteUserController);
 
@@ -91,7 +92,7 @@ router.get('/showtattooartist', controllerTattooArtists.showTattooArtistControll
 // CREATE TATTOOARTIST
 router.post('/newtattooartist', upload.single('fotoDocumento'), controllerTattooArtists.createtattooArtistController);
 // UPDATE TATTOOARTIST
-router.put('/updatetattoartist', controllerTattooArtists.updatetattooArtistController);
+router.post('/updatetattoartist', controllerTattooArtists.updatetattooArtistController);
 // DELETE TATTOOARTIST
 router.delete('/deletetattoortist', controllerTattooArtists.deletetattooArtistController);
 module.exports = router;

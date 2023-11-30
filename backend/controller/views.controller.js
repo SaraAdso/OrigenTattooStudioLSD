@@ -4,6 +4,7 @@ const {showTattooController} = require('./tattoos.controller');
 const {showBookingController} = require('./booking.controller');
 const {showTattooArtistController} = require('./tattooartists.controller');
 const tattooDataAccess = require('../data-access/tattoos.data');
+const piercingDataAccess = require('../data-access/piercings.data');
 
 exports.showLandingAdmin = async (req, res) => {
   res.render('landingadmin');
@@ -11,9 +12,11 @@ exports.showLandingAdmin = async (req, res) => {
 
 exports.showLandingPage = async (req, res) => {
   const tattoos = await tattooDataAccess.findAll();
+  const piercings = await piercingDataAccess.findAll();
   console.log(tattoos);
   res.render('landingpage', {
     tattoos: tattoos,
+    piercings: piercings,
   });
 };
 

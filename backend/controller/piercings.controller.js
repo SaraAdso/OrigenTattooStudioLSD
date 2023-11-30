@@ -19,6 +19,8 @@ exports.showPiercingController = async (req, res) =>{
 };
 exports.createPiercingController = async (req, res) =>{
   try {
+    const imageDestination = `/assets/images/${req.file.originalname}`;
+    req.body.imagen = imageDestination;
     const result = await piercingsUseCases.createPiercing(req.body);
 
     if (result.error) {
@@ -26,9 +28,7 @@ exports.createPiercingController = async (req, res) =>{
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/adminpiercings');
     }
   } catch (error) {
     console.log(error);
@@ -44,9 +44,7 @@ exports.updatePiercingController = async (req, res) =>{
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/adminpiercings');
     }
   } catch (error) {
     console.log(error);

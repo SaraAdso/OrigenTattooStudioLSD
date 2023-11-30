@@ -1,14 +1,37 @@
 @font-face {
-    font-family: 'Sketch';
-    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+  font-family: 'Sketch';
+  src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
 }
 
 h1 {
-    font-family: sketch;
-    font-size: 80px;
+  font-family: sketch;
+  font-size: 80px;
 }
 
 h5 {
+font-family: sketch;
+font-size: 2rem;
+}
+
+.card-body {
+margin: 0;
+}
+
+.mt {
+text-align: center;
+}
+
+#piercingscatalogue {
+  text-align: center;
+}
+
+
+.cardsizepiercings {
+  width: 18rem; 
+  height: 26rem;
+}
+
+.modalfont {
   font-family: sketch;
-  font-size: 2rem;
+  font-size: 50px;
 }

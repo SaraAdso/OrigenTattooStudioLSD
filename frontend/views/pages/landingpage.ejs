@@ -11,7 +11,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/styles/landingpage.css">
-  <title>Principal</title>
+  <title>Origen Tattoo</title>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
             </h5>
           </div>
           <div class="mt-2">
-            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfo">Más información</a>
+            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfotattoo" onclick="moreInfoTattoo(`<%= tattoo.nombre %>`, `<%= tattoo.descripcion%>`, `<%= tattoo.tamano%>`, `<%= tattoo.color %>`, `<%= tattoo.tecnica%>`, `<%=tattoo.autor%>`, `<%= tattoo.imagen%>`)">Más información</a>
           </div>
         </div>
       <%})%>
@@ -90,45 +90,17 @@
     <h1 class="col-12">Piercings</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <div class="cardsizepiercings card col-md-6 col-lg-6 m-3 ms-4">
-        <img src="/assets/images/snakebites.jpeg" class="card-img-top" alt="Snake bites">
+      <% piercings.forEach(piercing=>{%>
+      <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
+        <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
         <div class="mt-2">
-          <h5 class="font card-title">Snake Bites</h5>
+          <h5 class="font card-title"><%=piercing.nombre%></h5>
         </div>
         <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="cardsizepiercings card col-md-6 col-lg-6  m-3">
-        <img src="/assets/images/nostril.jpeg" class="card-img-top" alt="Nostril">
-        <div class="mt-2">
-          <h5 class="font card-title">Nostril</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
+          <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfopiercing" onclick="moreInfoPiercing(`<%= piercing.nombre %>`, `<%= piercing.zona%>`, `<%= piercing.imagen%>`)">Más información</a>
         </div>
       </div>
-
-      <div class="cardsizepiercings card col-md-6 col-lg-6  m-3">
-        <img src="/assets/images/Transversal.jpeg" class="card-img-top" alt="Transversal">
-        <div class="mt-2">
-          <h5 class="font card-title">Transversal</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="cardsizepiercings card col-md-6 col-lg-6  m-3">
-        <img src="/assets/images/verticallabret.jpeg" class="card-img-top" alt="Vertical Labret">
-        <div class="mt-2">
-          <h5 class="font card-title">Vertical Labret</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
+      <%})%>
     </div>
 
     <div class="mt-5">
@@ -229,17 +201,51 @@
 
   </div>
 
-  <div class="modal fade" id="moreInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <div class="modal fade" id="moreInfotattoo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="d-flex modal-body">
           <div class="w-50">
-            <img src="/assets/images/ojolineastattoo.jpeg" alt="Tatuaje ojo con lineas" class="w-100 ">
+            <img alt="blackoutflores" class="w-100 " id="imagentattoo">
           </div>
-          <div class="w-50  ">
-            <h2 class="font ms-3">Ojo con lineas curvas</h2>
-            <p> </p>
+          <div class="d-flex flex-column w-50  ">
+            <h2 class="modalfont ms-3" id="nombretattoo"></h2>
+            <div class="ms-3 mt-2 ">
+              <h6 >Descripción:</h6>
+              <p class="text-justify" id="descripciontattoo"></p>
+              <h6>Tamaño:</h6>
+              <p id="tamanotattoo"></p>
+              <h6>Color:</h6>
+              <p id="colortattoo"></p>
+              <h6>Tecnica:</h6>
+              <p id="tecnicatattoo"></p>
+              <h6>Autor:</h6>
+              <p id="autortattoo"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="moreInfopiercing" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="d-flex modal-body">
+          <div class="w-50">
+            <img class="w-100 " id="imagenpiercing">
+          </div>
+          <div class="d-flex flex-column w-50  ">
+            <h2 class="modalfont ms-3" id="nombrepiercing"></h2>
+            <div class="ms-3 mt-2 ">
+              <h6 >Zona:</h5>
+              <p id="zonapiercing"></p>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -250,6 +256,8 @@
   </div>
 
 </body>
+<script src="/assets/js/moreinfotattoo.js"> </script>
+<script src="/assets/js/moreinfopiercing.js"></script>
 
 
 </html>

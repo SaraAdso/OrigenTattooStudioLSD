@@ -20,22 +20,16 @@ exports.showTattooController = async (req, res) =>{
 
 exports.createTattooController = async (req, res) => {
   try {
-    // const imageDestination = `/assets/images/${req.file.originalname}`;
-    const body = req.body;
-    console.log(req.body);
-    let result;
-
-    if (body.id && body.id != '') {
-      result = await tattooUseCases.updateTattoo(body);
-    } else {
-      console.log(body);
-      result = await tattooUseCases.createTattoo(body);
-    }
+    const imageDestination = `/assets/images/${req.file.originalname}`;
+    req.body.imagen = imageDestination;
+    const result = await tattooUseCases.createTattoo(req.body);
 
     if (result.error) {
-      console.log('error');
+      return res.json({
+        error: result.error,
+      });
     } else if (result.success) {
-      res.redirect('/admintattoos');
+      return res.redirect('/admintattoos');
     }
   } catch (error) {
     console.log(error);
@@ -50,9 +44,7 @@ exports.updateTattooController = async (req, res) =>{
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/admintattoos');
     }
   } catch (error) {
     console.log(error);

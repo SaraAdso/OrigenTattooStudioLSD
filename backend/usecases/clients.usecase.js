@@ -1,5 +1,6 @@
 const clientsData = require('../data-access/clients.data');
 const usersData = require('../data-access/users.data');
+const bcrypt = require('bcrypt');
 
 exports.showClients = async () => {
   const clients = await clientsData.findAll();
@@ -8,10 +9,10 @@ exports.showClients = async () => {
   } else {
     return {success: clients};
   }
-}
+};
 
 exports.createClient = async (clientInfo) => {
-  const {nombre, apellido, celular, documento, correo, fechaNacimiento, alergias, contrasena} = clientInfo; // fragmentar la variable en partes. Cada uno son los names de los input del formulario
+  const {documento, correo, contrasena} = clientInfo; // fragmentar la variable en partes. Cada uno son los names de los input del formulario
   const passwordencrypted = await bcrypt.hash(contrasena, 10);
   clientInfo.contrasena = passwordencrypted;
   const clientExists = await clientsData.findOneResult({documento: documento});
@@ -19,13 +20,13 @@ exports.createClient = async (clientInfo) => {
     return {error: 'Ya existe el cliente'};
   }
   const createClient = await clientsData.insertOne(clientInfo); // En el controlador se dice que es el req.body
-  const createUser = await usersData.insertOne({correo: correo, contrasena: passwordencrypted, rol: 'Cliente'})
+  const createUser = await usersData.insertOne({correo: correo, contrasena: passwordencrypted, rol: 'Cliente'});
   if (!createClient && !createUser) {
     return {error: 'No se creó'};
   } else {
     return {success: 'Se creó'};
   }
-}
+};
 
 exports.updateClient = async (infoUpdate) => {
   const {nombre, apellido, celular, documento, correo, alergias, contrasena, fechaNacimiento} = infoUpdate;
@@ -46,7 +47,7 @@ exports.updateClient = async (infoUpdate) => {
   } else {
     return {error: 'No se actualizó'};
   }
-}
+};
 
 exports.deleteClient = async (id) => {
   const clientDeleted = await clientsData.deleteOne(id);
@@ -55,4 +56,5 @@ exports.deleteClient = async (id) => {
   } else {
     return {error: 'No se eliminó'};
   }
-}
+};
+

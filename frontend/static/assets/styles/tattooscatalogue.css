@@ -3,7 +3,7 @@
     src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
 }
 
-h1 {
+h1{
     font-family: sketch;
     font-size: 80px;
 }
@@ -11,4 +11,21 @@ h1 {
 h5 {
   font-family: sketch;
   font-size: 2rem;
+}
+
+.card-body {
+  margin: 0;
+}
+
+.mt {
+  text-align: center;
+}
+
+#tattooscatalogue {
+    text-align: center;
+}
+
+.modalfont {
+  font-family: sketch;
+  font-size: 50px;
 }

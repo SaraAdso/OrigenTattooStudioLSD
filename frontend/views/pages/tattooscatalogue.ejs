@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Origen Tattoo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -14,92 +14,72 @@
         integrity="sha384-qW6eGx2QYJz9RqEGPELAv52XH2DZlb9TqLo7hXQFqgR6u5c5k6Azl3i5F2ZT3Y"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/styles/navbar.css">
-    <link rel="stylesheet" href="/assets/styles/landingpage.css">
+    <link rel="stylesheet" href="/assets/styles/tattooscatalogue.css">
 </head>
 
-<body style="background-color: #887878;">
+<body>
     <%- include ('../partials/navbar.ejs') %>
 
-        <div class="container mt-5">
+        <div class="container mt-5" >
             <h1 class="text-center">Tatuajes </h1>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="container mt-3">
-                <div class="row">
 
-                    <% tattoos.forEach(function(tattoo){%>
-
-                        <div class="col-md-3 mb-5">
-                            <div class="card p-3">
-                                <img src="<%= tattoo.imagen %>" class="card-img-top" alt="<%= tattoo.nombre %>">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <%= tattoo.nombre %>
-                                    </h5><br>
-                                    <button type="button" class="btn btn-primary"
-                                        style="background-color: #40292d; border-color: #000000; color: #ffffff;"
-                                        data-bs-toggle="modal" data-bs-target="#modalTattoo"
-                                        onclick="rellenarmodal('<%=tattoo.nombre%>', '<%=tattoo.descripcion%>', '<%=tattoo.tamano%>', '<%=tattoo.color%>', '<%=tattoo.tecnica%>', '<%=tattoo.autor%>', '<%=tattoo.imagen%>')">
-                                        Más información
-                                    </button>
-                                </div>
-                            </div>
+            <div class="d-flex justify-content-center flex-wrap" id="tattooscatalogue">
+                <% tattoos.forEach(tattoo=>{%>
+                    <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 30rem;">
+                        <img src="<%=tattoo.imagen%>" class="card-img-top" alt="Tatuaje ojo con lineas">
+                        <div class="mt-2">
+                            <h5 class="font card-title">
+                                <%=tattoo.nombre%>
+                            </h5>
                         </div>
-
-                        <% });%>
-
-
-
-                </div>
-
-                <div class="modal fade" id="modalTattoo" tabindex="-1" aria-labelledby="modalTattooLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-center">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalTattooTitle"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img id="modalTattooImage" src="" class="img-fluid" alt="">
-                                <p id="modalTattooDescription"></p>
-                                <p id="modalTattooTamano"></p>
-                                <p id="modalTattooTecnica"></p>
-                                <p id="modalTattooColor"></p>
-                                <p id="modalTattooAutor"></p>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
+                        <div class="mt-2">
+                            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfotattoo"
+                                onclick="moreInfoTattoo(`<%= tattoo.nombre %>`, `<%= tattoo.descripcion%>`, `<%= tattoo.tamano%>`, `<%= tattoo.color %>`, `<%= tattoo.tecnica%>`, `<%=tattoo.autor%>`, `<%= tattoo.imagen%>`)">Más
+                                información</a>
                         </div>
                     </div>
-                </div>
-
-
+                    <%})%>
             </div>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-                crossorigin="anonymous"></script>
-            <script>
-                function rellenarmodal(nombre, descripcion, tamano, tecnica, color, autor, imagen) {
-                    document.getElementById("modalTattooTitle").textContent = nombre;
-                    document.getElementById("modalTattooImage").src = imagen;
-                    document.getElementById("modalTattooDescription").textContent = descripcion;
-                    document.getElementById("modalTattooTamano").textContent = tamano;
-                    document.getElementById("modalTattooTecnica").textContent = tecnica;
-                    document.getElementById("modalTattooColor").textContent = color;
-                    document.getElementById("modalTattooAutor").textContent = autor;
+        <div class="modal fade" id="moreInfotattoo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="d-flex modal-body">
+              <div class="w-50">
+                <img alt="blackoutflores" class="w-100 " id="imagentattoo">
+              </div>
+              <div class="d-flex flex-column w-50">
+                <h2 class="modalfont ms-3" id="nombretattoo"></h2>
+                <div class="ms-3 mt-2 text-justify">
+                  <h6 >Descripción:</h6>
+                  <p id="descripciontattoo"></p>
+                  <h6>Tamaño:</h6>
+                  <p id="tamanotattoo"></p>
+                  <h6>Color:</h6>
+                  <p id="colortattoo"></p>
+                  <h6>Tecnica:</h6>
+                  <p id="tecnicatattoo"></p>
+                  <h6>Autor:</h6>
+                  <p id="autortattoo"></p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"></script>
+        <script src="/assets/js/moreinfotattoo.js"></script>
 
-
-                }
-
-            </script>
 </body>
 
 </html>

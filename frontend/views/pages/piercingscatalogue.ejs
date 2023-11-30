@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Origen Tattoo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -14,80 +14,61 @@
         integrity="sha384-qW6eGx2QYJz9RqEGPELAv52XH2DZlb9TqLo7hXQFqgR6u5c5k6Azl3i5F2ZT3Y"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/styles/navbar.css">
-    <link rel="stylesheet" href="/assets/styles/landingpage.css">
+    <link rel="stylesheet" href="/assets/styles/piercingscatalogue.css">
 
-<body style="background-color: #887878;">
+<body style="background-color: #ffffff;">
     <%- include ('../partials/navbar.ejs') %>
 
         <div class="container mt-5">
             <h1 class="text-center">Piercings </h1>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="container mt-3">
-                <div class="row">
-
-                    <% piercings.forEach(function(piercing){%>
-
-                        <div class="col-md-3 mb-5">
-                            <div class="card p-3">
-                                <img src="<%= piercing.imagen %>" class="card-img-top" alt="<%= piercing.nombre %>">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        <%= piercing.nombre %>
-                                    </h5><br>
-                                    <button type="button" class="btn btn-primary"
-                                        style="background-color: #40292d; border-color: #000000; color: #ffffff;"
-                                        data-bs-toggle="modal" data-bs-target="#modalPiercing"
-                                        onclick="rellenarmodalpiercing('<%=piercing.nombre%>', '<%=piercing.imagen%>', '<%=piercing.zona%>')">
-                                        Más información
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <% });%>
-
-
-
+        <div class="d-flex justify-content-center flex-wrap" id="piercingscatalogue">
+            <% piercings.forEach(piercing=>{%>
+                <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
+                    <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
+                    <div class="mt-2">
+                        <h5 class="font card-title">
+                            <%=piercing.nombre%>
+                        </h5>
+                    </div>
+                    <div class="mt-2">
+                        <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfopiercing"
+                            onclick="moreInfoPiercing(`<%= piercing.nombre %>`, `<%= piercing.zona%>`, `<%= piercing.imagen%>`)">Más
+                            información</a>
+                    </div>
                 </div>
+                <%})%>
+        </div>
 
-                <div class="modal fade" id="modalPiercing" tabindex="-1" aria-labelledby="modalPiercingLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content text-center">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalPiercingTitle"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <img id="modalPiercingImage" src="" class="img-fluid" alt="">
-                                <p id="modalPiercingZone"></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+        <div class="modal fade" id="moreInfopiercing" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="d-flex modal-body">
+                        <div class="w-50">
+                            <img class="w-100 " id="imagenpiercing">
+                        </div>
+                        <div class="d-flex flex-column w-50  ">
+                            <h2 class="modalfont ms-3" id="nombrepiercing"></h2>
+                            <div class="ms-3 mt-2 ">
+                                <h6>Zona:</h5>
+                                    <p id="zonapiercing"></p>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-
-
             </div>
+        </div>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-                crossorigin="anonymous"></script>
-            <script>
-                function rellenarmodalpiercing(nombre, imagen, zona) {
-                    console.log("Hola");
-                    document.getElementById("modalPiercingTitle").textContent = nombre;
-                    document.getElementById("modalPiercingImage").src = imagen;
-                    document.getElementById("modalPiercingZone").textContent = zona;
-
-                }
-
-            </script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"></script>
+        <script src="/assets/js/moreinfopiercing.js"></script>
 </body>
 
 </html>

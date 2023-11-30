@@ -10,7 +10,7 @@ exports.showTattooArtists = async () => {
 };
 
 exports.createTattooArtists = async (tattooartistInfo) => {
-  const {nombre, apellido, celular, documento, correo, contrasena} = tattooartistInfo;
+  const {documento} = tattooartistInfo;
   const tattooArtistExists = await tattooartistsData.findOneResult({documento: documento});
   if (tattooArtistExists) {
     return {error: 'Ya existe el tatuador'};
