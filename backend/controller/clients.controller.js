@@ -47,9 +47,7 @@ exports.updateClientController = async (req, res) =>{
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/adminusers');
     }
   } catch (error) {
     console.log(error);

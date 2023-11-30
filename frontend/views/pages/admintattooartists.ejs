@@ -6,93 +6,123 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Origen Tattoo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <%- include ('../partials/datatable.ejs') %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="/assets/styles/navbaradmin.css">
-    <link rel="stylesheet" href="/assets/styles/tattooartistscrud.css">
+    <link rel="stylesheet" href="/assets/styles/admintattoo.css">
 </head>
 
 <body>
-    
     <%- include ('../partials/navbaradmin.ejs') %>
-    <div class="mx-5 my-5">
-        <table id="tabletattoos" class="table table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Celular</th>
-                    <th scope="col">Documento</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Contraseña</th>
 
-                </tr>
-            </thead>
-            <tbody>
+    <div class="mx-3 mt-3">
+        <h1 class="text-center">Tatuadores</h1>
+        <div class="table-responsive">
+            <table id="tabletattooartists" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">id</th>
+                        <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Apellido</th>
+                        <th scope="col" class="text-center">Celular</th>
+                        <th scope="col" class="text-center">Documento</th>
+                        <th scope="col" class="text-center">Correo</th>
+                        <th scope="col" class="text-center">Contraseña</th>
+                        <th scope="col" class="text-center">Opciones</th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <% tattooartists.forEach(function(tattooartist) { %>
-                      <tr>
-                        <td><%= tattooartist.nombre %></td>
-                        <td><%= tattooartist.apellido %></td>
-                        <td><%= tattooartist.celular %></td>
-                        <td><%= tattooartist.documento %></td>
-                        <td><%= tattooartist.correo %></td>
-                        <td><%= tattooartist.contrasena %></td>
-                        <td class="table-btns">
-                          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalacttattoos">
+                    <div class="btn-group-vertical" role="group">
+                        <button type="button" class="btn btn-light btn-sm fw-bold " data-bs-toggle="modal"
+                            data-bs-target="#modalcreateTattooArtists">
                             Crear
-                          </button>
-                          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalacttattoos" onclick="llenarTattoos('<%= tattooartist.nombre %>', '<%= tattooartist.apellido %>', '<%= tattooartist.celular %>', '<%= tattooartist.documento %>', '<%= tattooartist.correo %>', '<%= tattooartist.contrasena %>')">
-                            Editar
-                          </button>
-                          <a href="deletetattoo/<%= tattooartist._id %>" class="btn btn-danger">Eliminar</a>
-                        </td>
-                      </tr>
-                    <% }); %>
-                  </tbody>
-                  
-            </tbody>
-        </table>
+                        </button>
+                        <% tattooartists.forEach(function(tattooartist){ %>
+                            <tr>
+                                <td><%= tattooartist._id %></td>
+                                <td><%= tattooartist.nombre %></td>
+                                <td><%= tattooartist.apellido %></td>
+                                <td><%= tattooartist.celular %></td>
+                                <td><%= tattooartist.documento %></td>
+                                <td><%= tattooartist.correo %></td>
+                                <td><%= tattooartist.contrasena %></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalactTattooArtists"
+                                        onclick="llenarTattooArtists('<%= tattooartist._id %>', '<%= tattooartist.nombre %>', '<%= tattooartist.apellido %>', '<%= tattooartist.celular %>', '<%= tattooartist.documento %>', '<%= tattooartist.correo %>', '<%= tattooartist.contrasena %>')">
+                                        Editar
+                                    </button>
+                                    <a href="deletetattoo/<%= tattooartist._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </div>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="modal fade" id="modalacttattoos" tabindex="-1" aria-labelledby="modalactLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="modalcreateTattooArtists" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Tattoo</h1>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crear TattooArtist</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/admin/guardar" method="POST">
-                        <input type="hidden" name="id" class="form-control" id="idacttattoo" placeholder="" readonly>
+                    <form action="/newtattooartist" method="post" enctype="multipart/form-data" class="m-3">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold " for="nombreTattooArtist">Nombre</label>
+                                    <input type="text" id="nombreTattooArtist" name="nombre"
+                                        class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold" for="apellidoTattooArtist">Apellido</label>
+                                    <input type="text" id="apellidoTattooArtist" name="apellido"
+                                        class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                        </div>
 
-                        <label for="nomacttattoo" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" class="form-control" id="nomacttattoo" placeholder="Ingrese el nombre" >
+                        <div class="form-outline mb-4">
+                            <label class="form-label fw-bold" for="celularTattooArtist">Celular</label>
+                            <input type="text" id="celularTattooArtist" name="celular"
+                                class="form-control form-control-lg" />
+                        </div>
 
-                        <label for="desacttattoo" class="form-label">Descripcion:</label>
-                        <input type="text" name="descripcion" class="form-control" id="desacttattoo" placeholder="Ingrese la descripción del tattoo">
-                
-                        <label for="tamacttattoo" class="form-label">Tamaño:</label>
-                        <input type="text" name="tamano" class="form-control" id="tamacttattoo" placeholder="Ingrese el tamaño del tattoo" >
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold" for="documentoTattooArtist">Documento</label>
+                                    <input type="text" id="documentoTattooArtist" name="documento"
+                                        class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold" for="correoTattooArtist">Correo</label>
+                                    <input type="text" id="correoTattooArtist" name="correo"
+                                        class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                        </div>
 
-                        <label for="coloracttattoo" class="form-label">Color:</label>
-                        <input type="text" name="color" class="form-control" id="coloracttattoo" placeholder="Ingrese el color del tattoo">
-                        
-                        <label for="tecnacttattoo" class="form-label">Técnica:</label>
-                        <input type="text" name="tecnica" class="form-control" id="tecnacttattoo" placeholder="Ingrese la tecnica del tattoo">
-                        
-                        <label for="autoracttattoo" class="form-label">Autor:</label>
-                        <input type="text" name="autor" class="form-control" id="autoracttattoo" placeholder="Ingrese el autor del tattoo">
-                    
-                        <label for="imagenacttattoo" class="form-label">Imagen:</label>
-                        <input type="text" name="imagen" class="form-control" id="imagenacttattoo" placeholder="Ingrese la foto del tattoo">
-                        
-                        
+                        <div class="form-outline mb-4">
+                            <label class="form-label fw-bold" for="contrasenaTattooArtist">Contraseña</label>
+                            <input type="text" id="contrasenaTattooArtist" name="contrasena"
+                                class="form-control form-control-lg" />
+                        </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Actualizar cambios</button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-outline-dark ">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -100,24 +130,106 @@
         </div>
     </div>
 
-    <script>
-        $('#tabletattoos').DataTable()
+    <div class="modal fade" id="modalactTattooArtists" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Tattoo Artist</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/updatetattoartist" method="post" class="m-3 ">
+                        <div class="row">
+                            <input type="text" id="idactTattooArtist" name="id" class="form-control form-control-lg"
+                                hidden />
 
-        function llenarTattoos(id,nombre,descripcion,tamano,tecnica,color,autor,imagen){
-            idacttattoo.value = id;
-            nomacttattoo.value = nombre;
-            desacttattoo.value = descripcion;
-            tamacttattoo.value = tamano;
-            tecnacttattoo.value = tecnica;
-            coloracttattoo.value = color;
-            autoracttattoo.value = autor;
-            imagenacttattoo.value = imagen;
-            
-            
-        }
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="nomactTattooArtist">Nombre</label>
+                                    <input type="text" id="nomactTattooArtist" name="nombre"
+                                        class="form-control form-control-lg" placeholder="Ingrese el nombre del tatuador"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="apellidoactTattooArtist">Apellido</label>
+                                    <input type="text" id="apellidoactTattooArtist" name="apellido"
+                                        class="form-control form-control-lg" />
+                                </div>
+                            </div>
+                        
+
+                        <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="celularactTattooArtist">Celular</label>
+                                <input type="text" id="celularactTattooArtist" name="celular"
+                                    class="form-control form-control-lg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="documentoactTattooArtist">Documento</label>
+                                <input type="text" id="documentoactTattooArtist" name="documento"
+                                    class="form-control form-control-lg" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label class="form-label" for="correoactTattooArtist">Correo</label>
+                                <input type="text" id="correoactTattooArtist" name="correo"
+                                    class="form-control form-control-lg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <div class="form-outline"></div>
+                        <label class="form-label" for="contrasenaactTattooArtist">Contraseña</label>
+                        <input type="text" id="contrasenaactTattooArtist" name="contrasena"
+                            class="form-control form-control-lg" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-dark ">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const table = $('#tabletattooartists').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+            });
+            table.buttons().container().appendTo('#datatable_wrapper .col-md-6:eq(0)');
+        });
+
+        function llenarTattooArtists(id, nombre, apellido, celular, documento, correo, contrasena) {
+            idactTattooArtist.value = id;
+            nomactTattooArtist.value = nombre;
+            apellidoactTattooArtist.value = apellido;
+            celularactTattooArtist.value = celular;
+            documentoactTattooArtist.value = documento;
+            correoactTattooArtist.value = correo;
+            contrasenaactTattooArtist.value = contrasena;
+        };
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 
 </body>
 

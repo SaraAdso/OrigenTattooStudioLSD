@@ -32,6 +32,9 @@ router.get('/adminpiercings', controllerViews.showAdminPiercing);
 // Tatuadores
 router.get('/admintattooartists', controllerViews.showAdminTattooArtists);
 
+// Clientes
+router.get('/adminusers', controllerViews.showAdminUsers);
+
 // Citas
 router.get('/adminbooking', controllerViews.showAdminBooking);
 // Booking

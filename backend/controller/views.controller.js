@@ -5,6 +5,7 @@ const {showBookingController} = require('./booking.controller');
 const {showTattooArtistController} = require('./tattooartists.controller');
 const tattooDataAccess = require('../data-access/tattoos.data');
 const piercingDataAccess = require('../data-access/piercings.data');
+const tattooArtist = require('../models/tattooartists.model');
 
 exports.showLandingAdmin = async (req, res) => {
   res.render('landingadmin');
@@ -45,9 +46,11 @@ exports.showPiercingsCatalogue = async (req, res) => {
 exports.showFormBooking = async (req, res) => {
   const piercing = await showPiercingController();
   const tattoo = await showTattooController();
+  const tattooartist = await showTattooArtistController();
   res.render('makebooking', {
     piercings: piercing.success,
     tattoos: tattoo.success,
+    tattooartists: tattooartist.success,
   });
 };
 
@@ -93,10 +96,12 @@ exports.showAdminBooking = async (req, res) => {
   const booking = await showBookingController();
   const piercing = await showPiercingController();
   const tattoo = await showTattooController();
+  const tattooartist = await showTattooArtistController();
   res.render('adminbooking', {
     bookings: booking.success,
     piercings: piercing.success,
     tattoos: tattoo.success,
+    tattooartists: tattooartist.success,
   });
 };
 
@@ -108,10 +113,10 @@ exports.showError = async (req, res) => {
   res.render('error');
 };
 
-exports.showClientCrud = async (req, res) => {
-  const clients= await showClientController();
-  res.render('clientscrud', {
-    clients: clients.success,
+exports.showAdminUsers = async (req, res) => {
+  const cliente= await showClientController();
+  res.render('adminusers', {
+    clientes: cliente.success,
   });
 };
 
