@@ -43,7 +43,7 @@ exports.updateTattoo = async (tattooUpdate) => {
 };
 
 exports.deleteTattoo = async (id) =>{
-  const tattooDeleted = await tattoosData.deleteOne(id);
+  const tattooDeleted = await tattoosData.deleteOne({_id: id});
   if (tattooDeleted) {
     return {success: 'Se eliminó'};
   } else {

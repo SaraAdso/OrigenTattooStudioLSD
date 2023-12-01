@@ -53,16 +53,13 @@ exports.updateTattooController = async (req, res) =>{
 
 exports.deleteTattooController = async (req, res) =>{
   try {
-    const result = await tattooUseCases.deleteTattoo(req.body);
-
+    const result = await tattooUseCases.deleteTattoo(req.params.id);
     if (result.error) {
       return res.json({
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/admintattoos');
     }
   } catch (error) {
     console.log(error);

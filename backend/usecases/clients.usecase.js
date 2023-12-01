@@ -50,7 +50,7 @@ exports.updateClient = async (infoUpdate) => {
 };
 
 exports.deleteClient = async (id) => {
-  const clientDeleted = await clientsData.deleteOne(id);
+  const clientDeleted = await clientsData.deleteOne({_id: id});
   if (clientDeleted) {
     return {success: 'Se eliminó'};
   } else {

@@ -10,6 +10,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="stylesheet" href="/assets/styles/landingpage.css">
   <title>Origen Tattoo</title>
 </head>
@@ -40,10 +42,7 @@
           <a class="nav-link text-white" href="#locationpreview"><strong>UBICACIÓN</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><strong>COTIZACIÓN</strong></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#"><strong>CONTACTO</strong></a>
+          <a class="nav-link text-white" href="#contactpreview"><strong>CONTACTO</strong></a>
         </li>
         <nav class="navbar navbar-expand-sm justify-content-center">
           <ul class="navbar-nav mr-auto">
@@ -65,8 +64,8 @@
     <h1 class="col-12">Tatuajes</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <% tattoos.forEach(tattoo=>{%>
-        <div class="card col-md-6 col-lg-6 m-3 ms-4" style="width: 18rem; height: 30rem;">
+      <% tattoos.slice(0,5).forEach(tattoo=>{%>
+        <div class="cardsizetattoos card col-md-6 col-lg-6 m-3 ms-4">
           <img src="<%=tattoo.imagen%>" class="card-img-top" alt="Tatuaje ojo con lineas">
           <div class="mt-2">
             <h5 class="font card-title">
@@ -74,15 +73,21 @@
             </h5>
           </div>
           <div class="mt-2">
-            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfotattoo" onclick="moreInfoTattoo(`<%= tattoo.nombre %>`, `<%= tattoo.descripcion%>`, `<%= tattoo.tamano%>`, `<%= tattoo.color %>`, `<%= tattoo.tecnica%>`, `<%=tattoo.autor%>`, `<%= tattoo.imagen%>`)">Más información</a>
+            <% tattooartists.forEach(tattooartist=>{%>
+              <% if (tattoo.autor.toString()===tattooartist._id.toString()) { %>
+                <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfotattoo"
+                  onclick="moreInfoTattoo(`<%= tattoo.nombre %>`, `<%= tattoo.descripcion%>`, `<%= tattoo.tamano%>`, `<%= tattoo.color %>`, `<%= tattoo.tecnica%>`, `<%=tattooartist.alias%>`, `<%= tattoo.imagen%>`)">Más
+                  información</a>
+                <% } %>
+                  <%})%>
           </div>
         </div>
-      <%})%>
+        <%})%>
     </div>
 
-      <div class="mt-5">
-        <a href="tattoocatalogue" class="btn btn-outline-dark fw-bold ">Ver más</a>
-      </div>
+    <div class="mt-5">
+      <a href="tattoocatalogue" class="btn btn-outline-dark fw-bold ">Ver más</a>
+    </div>
 
   </div>
 
@@ -90,17 +95,21 @@
     <h1 class="col-12">Piercings</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <% piercings.forEach(piercing=>{%>
-      <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
-        <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
-        <div class="mt-2">
-          <h5 class="font card-title"><%=piercing.nombre%></h5>
+      <% piercings.slice(0,5).forEach(piercing=>{%>
+        <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
+          <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
+          <div class="mt-2">
+            <h5 class="font card-title">
+              <%=piercing.nombre%>
+            </h5>
+          </div>
+          <div class="mt-2">
+            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfopiercing"
+              onclick="moreInfoPiercing(`<%= piercing.nombre %>`, `<%= piercing.zona%>`, `<%= piercing.autor%>`, `<%= piercing.imagen%>`)">Más
+              información</a>
+          </div>
         </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfopiercing" onclick="moreInfoPiercing(`<%= piercing.nombre %>`, `<%= piercing.zona%>`, `<%= piercing.imagen%>`)">Más información</a>
-        </div>
-      </div>
-      <%})%>
+        <%})%>
     </div>
 
     <div class="mt-5">
@@ -112,56 +121,21 @@
     <h1 class="col-12">Artistas</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 18rem; height: 28rem;">
-        <img src="/assets/images/casiquetatuador.jpg" class="imageartists card-img-top" alt="casique">
-        <div class="mt-2">
-          <h5 class="font card-title">Casique</h5>
+      <% tattooartists.forEach(tattooartist=>{%>
+        <div class="cardsizetattooartists card col-md-6 col-lg-6 m-2 ms-4">
+          <img src="<%=tattooartist.fotoTatuador%>" class="imageartists card-img-top" alt="Snake bites">
+          <div class="mt-2">
+            <h5 class="font card-title">
+              <%=tattooartist.alias%>
+            </h5>
+          </div>
+          <div class="mt-2">
+            <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#moreInfotattooartists"
+              onclick="moreInfoTattooartists(`<%= tattooartist.alias %>`, `<%= tattooartist.celular%>`, `<%= tattooartist.correo%>`, `<%= tattooartist.fotoTatuador%>`)">Más
+              información</a>
+          </div>
         </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 18rem; height: 28rem;">
-        <img src="/assets/images/eduartetatuador.png" class="imageartists card-img-top" alt="casique">
-        <div class="mt-2">
-          <h5 class="font card-title">Eduarte</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 18rem; height: 28rem;">
-        <img src="/assets/images/odytatuador.png" class="imageartists card-img-top" alt="casique">
-        <div class="mt-2">
-          <h5 class="font card-title">Ody</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 18rem; height: 28rem;">
-        <img src="/assets/images/silviatatuador.jpg" class="imageartists card-img-top" alt="casique">
-        <div class="mt-2">
-          <h5 class="font card-title">Silvia</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 18rem; height: 28rem;">
-        <img src="/assets/images/tovarbeinktatuador.jpg" class="imageartists card-img-top" alt="casique">
-        <div class="mt-2">
-          <h5 class="font card-title">Tovarbeink</h5>
-        </div>
-        <div class="mt-2">
-          <a href="#" class="btn btn-dark">Más información</a>
-        </div>
-      </div>
-
+        <%})%>
     </div>
   </div>
 
@@ -170,7 +144,7 @@
 
     <div class="d-flex justify-content-center flex-wrap">
 
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 600px; height: 450px;">
+      <div class="location card col-md-6 col-lg-6 m-3">
         <div class="embed-responsive embed-responsive-1by1 w-100 h-100 ">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5020943174563!2d-75.5735708!3d6.1972914999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e46831905929e9b%3A0x2434302231041cab!2sORIGEN%20Tattoo%20-%20C.C.%20Santa%20Fe!5e0!3m2!1ses-419!2sco!4v1700926829225!5m2!1ses-419!2sco"
@@ -183,7 +157,7 @@
       </div>
 
 
-      <div class="card col-md-6 col-lg-6 m-3" style="width: 600px; height: 450px;">
+      <div class="location card col-md-6 col-lg-6 m-3">
         <div class="embed-responsive embed-responsive-1by1 w-100 h-100 ">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2613007930263!2d-75.57319972427139!3d6.2292413265113575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44284a5d344ad7%3A0x9364bdfaa7f5c8f!2sORIGEN%20Tattoo%20-%20C.C.%20Premium%20Plaza!5e0!3m2!1ses-419!2sco!4v1700927861459!5m2!1ses-419!2sco"
@@ -196,9 +170,6 @@
       </div>
 
     </div>
-
-
-
   </div>
 
   <div class="modal fade" id="moreInfotattoo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -212,7 +183,7 @@
           <div class="d-flex flex-column w-50  ">
             <h2 class="modalfont ms-3" id="nombretattoo"></h2>
             <div class="ms-3 mt-2 ">
-              <h6 >Descripción:</h6>
+              <h6>Descripción:</h6>
               <p class="text-justify" id="descripciontattoo"></p>
               <h6>Tamaño:</h6>
               <p id="tamanotattoo"></p>
@@ -243,8 +214,10 @@
           <div class="d-flex flex-column w-50  ">
             <h2 class="modalfont ms-3" id="nombrepiercing"></h2>
             <div class="ms-3 mt-2 ">
-              <h6 >Zona:</h5>
-              <p id="zonapiercing"></p>
+              <h6>Zona:</h5>
+                <p id="zonapiercing"></p>
+                <h6>Autor:</h6>
+                <p id="autorpiercing"></p>
             </div>
           </div>
         </div>
@@ -255,9 +228,66 @@
     </div>
   </div>
 
+  <div class="modal fade" id="moreInfotattooartists" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="d-flex modal-body">
+          <div class="w-50">
+            <img class="w-100 " id="fototatuador">
+          </div>
+          <div class="d-flex flex-column w-50  ">
+            <h2 class="modalfont ms-3" id="aliastatuador"></h2>
+            <div class="ms-3 mt-2 ">
+              <h6>Celular:</h5>
+                <p id="celulartatuador"></p>
+                <h6>Correo:</h6>
+                <p id="correotatuador"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenedor">
+        <a href="https://www.instagram.com/origentattoostudio/" target="_blank" class="btn-btn-outline sticky-button"><iconify-icon icon="skill-icons:instagram"></iconify-icon></button>
+  </div>
+
 </body>
+
+<footer class="bg-body-tertiary text-center">
+  <div class="p-4">
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a data-mdb-ripple-init class="logos btn btn-outline btn-floating m-1 btn-lg" href="https://www.instagram.com/origentattoostudio/" target="_blank" role="button"
+        ><iconify-icon icon="ic:baseline-facebook"></iconify-icon></a>
+
+      <!-- Whatsapp -->
+      <a data-mdb-ripple-init class="logos btn btn-outline btn-floating m-1 btn-lg" href="https://api.whatsapp.com/send/?phone=573160552930&text&type=phone_number&app_absent=0" target="_blank" role="button"
+      ><iconify-icon icon="ic:baseline-whatsapp"></iconify-icon></a>
+
+      <!-- Instagram -->
+      <a data-mdb-ripple-init class="logos btn btn-outline btn-floating m-1 btn-lg" href="https://es-la.facebook.com/origentattoostudio" role="button"
+        ><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+
+    <div class="font">
+      <h2 id="contactpreview">Contacto</h2>
+      </div>
+  </div>
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2023 Copyright
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
 <script src="/assets/js/moreinfotattoo.js"> </script>
 <script src="/assets/js/moreinfopiercing.js"></script>
+<script src="/assets/js/moreinfotattooartists.js"></script>
 
 
 </html>

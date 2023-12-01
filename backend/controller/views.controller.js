@@ -5,19 +5,20 @@ const {showBookingController} = require('./booking.controller');
 const {showTattooArtistController} = require('./tattooartists.controller');
 const tattooDataAccess = require('../data-access/tattoos.data');
 const piercingDataAccess = require('../data-access/piercings.data');
-const tattooArtist = require('../models/tattooartists.model');
+const tattooArtistData = require('../data-access/tattooartists.data');
 
 exports.showLandingAdmin = async (req, res) => {
   res.render('landingadmin');
 };
 
 exports.showLandingPage = async (req, res) => {
-  const tattoos = await tattooDataAccess.findAll();
-  const piercings = await piercingDataAccess.findAll();
-  console.log(tattoos);
+  const tattoos = await showTattooController();
+  const piercings = await showPiercingController();
+  const tattooartists = await showTattooArtistController();
   res.render('landingpage', {
-    tattoos: tattoos,
-    piercings: piercings,
+    tattoos: tattoos.success,
+    piercings: piercings.success,
+    tattooartists: tattooartists.success,
   });
 };
 
@@ -30,9 +31,9 @@ exports.showFormLogin = async (req, res) => {
 };
 
 exports.showTattoosCatalogue = async (req, res) => {
-  const tattoo = await showTattooController();
+  const tattoos = await showTattooController();
   res.render('tattooscatalogue', {
-    tattoos: tattoo.success,
+    tattoos: tattoos.success,
   });
 };
 
@@ -47,10 +48,13 @@ exports.showFormBooking = async (req, res) => {
   const piercing = await showPiercingController();
   const tattoo = await showTattooController();
   const tattooartist = await showTattooArtistController();
+  console.log(req.cookies.rol);
+  const client = req.cookies.usuariologueado;
   res.render('makebooking', {
     piercings: piercing.success,
     tattoos: tattoo.success,
     tattooartists: tattooartist.success,
+    client: client,
   });
 };
 
@@ -64,17 +68,12 @@ exports.showSuccessfullBooking = async (req, res) => {
 
 // ADMIN
 
-exports.showFormAdmin = async (req, res) => {
-  const client = await showClientController();
-  console.log(client);
-  res.render('adminusers', {
-    clientes: client.success,
-  });
-};
 exports.showAdminTattoo = async (req, res) => {
   const tattoo = await showTattooController();
+  const tattooartist = await showTattooArtistController();
   res.render('admintattoos', {
     tattoos: tattoo.success,
+    tattooartists: tattooartist.success,
   });
 };
 
@@ -92,16 +91,26 @@ exports.showAdminTattooArtists = async (req, res) => {
   });
 };
 
+exports.showAdminClients = async (req, res) => {
+  const cliente = await showClientController();
+  res.render('adminclients', {
+    clientes: cliente,
+  });
+};
+
 exports.showAdminBooking = async (req, res) => {
   const booking = await showBookingController();
   const piercing = await showPiercingController();
   const tattoo = await showTattooController();
   const tattooartist = await showTattooArtistController();
+  const client = await showClientController();
+  console.log(client);
   res.render('adminbooking', {
     bookings: booking.success,
     piercings: piercing.success,
     tattoos: tattoo.success,
     tattooartists: tattooartist.success,
+    clients: client.success,
   });
 };
 
@@ -113,12 +122,7 @@ exports.showError = async (req, res) => {
   res.render('error');
 };
 
-exports.showAdminUsers = async (req, res) => {
-  const cliente= await showClientController();
-  res.render('adminusers', {
-    clientes: cliente.success,
-  });
-};
+
 
 
 // exports.showFormBooking = async (req, res) => {

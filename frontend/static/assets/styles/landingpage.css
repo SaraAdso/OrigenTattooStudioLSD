@@ -43,6 +43,15 @@ h1 {
     width: 18rem; 
     height: 26rem;
 }
+.cardsizetattoos {
+    width: 18rem; 
+    height: 30rem;
+}
+
+.cardsizetattooartists {
+    width: 18rem; 
+    height: 28rem;
+}
 
 #staticBackdropLabel {
     font-family: sketch;
@@ -54,6 +63,39 @@ h2.font {
 }
 
 .modalfont {
+    text-align: center;
     font-family: sketch;
     font-size: 50px;
   }
+
+.location {
+    width: 600px; height: 450px;
+    width: 600px; height: 450px;
+}
+
+.footerstyle{
+    color: white
+}
+
+.sticky-button{
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    position: fixed;
+    bottom: 10px;
+    left: 93%;
+}
+
+.logos {
+    font-size: 30px;
+    background-color: transparent;
+    color: black;
+}
+
+#contactpreview {
+    text-align: center;
+    font-family: sketch;
+    font-size: 50px;
+}
+
+

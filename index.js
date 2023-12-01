@@ -6,6 +6,7 @@ require('dotenv').config();
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 swaggerSpec = {
   definition: {
@@ -29,6 +30,7 @@ app.set('views', path.join(__dirname, '/frontend/views/pages'))
 app.use(express.static(path.join(__dirname, '/frontend/static')))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/', routes);
 

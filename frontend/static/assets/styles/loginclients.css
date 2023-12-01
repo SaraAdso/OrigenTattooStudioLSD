@@ -15,3 +15,9 @@ body {
 label {
     font-weight: bold;
 }
+
+
+section {
+    background-image: url('/assets/images/fondopintura.png');
+}
+

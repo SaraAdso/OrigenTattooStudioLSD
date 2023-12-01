@@ -16,75 +16,126 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="/assets/images/miproyecto.png" alt="" height="80"
+                    width="100"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tattoocatalogue">TATUAJES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="piercingscatalogue">PIERCINGS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#tattooartistspreview">ARTISTAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">UBICACIÓN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contactpreview">CONTACTO</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a href="formregister" class="btn btn-dark fw-bold me-4 " role="button">REGISTRARSE</a>
+                    <a href="formlogin" class="btn btn-dark fw-bold " role="button">INICIAR SESIÓN</a>
+                </form>
+            </div>
+        </div>
+    </nav>
 
-    <%- include ('../partials/navbar.ejs') %>
-
-        <div class="container mt-5 text-center">
-            <section class="h-100">
-                <div class="container h-100">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col">
-                            <div class="card card-registration my-4">
-                                <div class="row g-0">
-                                    <div class="col-xl-6 d-none d-xl-block">
-                                        <img src="/assets/images/espaldastatuadas.jpeg"
-                                            class="h-100 w-100 object-fit-cover " alt="Sample photo" class="img-fluid"
-                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <div class="card-body p-md-5 text-black">
-                                            <h2 class="mb-5">Registro de clientes</h2>
+    <div class="container mt-5 text-center">
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-6 d-none d-xl-block">
+                                    <img src="/assets/images/espaldastatuadas.jpeg"
+                                        class="h-100 w-100 object-fit-cover " alt="Sample photo" class="img-fluid"
+                                        style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card-body p-md-5 text-black">
+                                        <h2 class="mb-5">Registro de clientes</h2>
 
 
-                                            <form action="/guardarbooking" method="POST">
-                                                <input type="hidden" name="id" class="form-control" id="idactbooking" placeholder="" readonly>
-                                                
-                                                <label for="fechaCita" class="form-label">Fecha de la cita:</label>
-                                                <input type="date" name="fechaCita" class="form-control" id="fechaCita"  min="2023-01-01" placeholder="Ingrese fecha de la cita" >
-                        
-                                                <label for="idTatuador" class="form-label">Tatuador:</label>
-                                                <input type="text" name="idTatuador" class="form-control" id="idTatuador" placeholder="Ingresa tu tatuador de preferencia">
-                                    
-                                                <label for="idCliente" class="form-label">Correo electrónico:</label>
-                                                <input type="text" name="idCliente" class="form-control" id="idCliente" placeholder="Ingresa tu correo electrónico"> <br>
-                                                
-                                                <label for="idPiercing" class="form-label">Piercing:</label>
-                                                <select name="idPiercing" id="idPiercing">
-                                                    <option value="">No Aplica</option>
-                                                    <% piercings.forEach(function(piercing){%>
-                                                        <option value="<%= piercing._id %>"><%= piercing.nombre %></option>
-                                                    <% });%>
-                                                </select><br>
-                                                
-                                                <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
-                                                <select name="idTatuaje" id="idTatuaje">
-                                                    <option value="">No Aplica</option>
-                                                    <% tattoos.forEach(function(tattoo){%>
-                                                        <option value="<%= tattoo._id %>"><%= tattoo.nombre %></option>
-                                                    <% });%>
-                                                </select><br>
-                        
-                                                <label for="fotoConsentimiento" class="form-label">Foto del consentimiento:</label>
-                                                <input type="text" name="fotoConsentimiento" class="form-control" id="fotoConsentimiento" placeholder="Ingrese la foto del consentimiento">
-                        
-                                                <div class="modal-footer">
-                                            
-                                                    <button type="submit" class="btn btn-primary">Agenda tu cita</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                        <form action="/newbooking" method="POST">
+
+
+                                            <label for="fechaCita" class="form-label">Fecha de la cita:</label>
+                                            <input type="date" name="fechaCita" class="form-control" id="fechaCita"
+                                                min="2023-01-01" placeholder="Ingrese fecha de la cita">
+
+                                            <label for="idTatuador" class="form-label">Tatuador:</label>
+                                            <select name="idTatuador" id="idTatuador">
+                                                <option value="" disabled selected>Seleccionar</option>
+                                                <% tattooartists.forEach(function(tattooartist){%>
+                                                    <option value="<%= tattooartist._id%>">
+                                                        <%= tattooartist.alias%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+
+                                            <label for="idCliente" class="form-label">Correo electrónico:</label>
+                                            <input type="text" name="idCliente" class="form-control" id="idCliente"
+                                                placeholder="Ingresa tu correo electrónico" value="<%=locals.client%>"> <br>
+
+                                            <label for="idPiercing" class="form-label">Piercing:</label>
+                                            <select name="idPiercing" id="idPiercing">
+                                                <option value="">No Aplica</option>
+                                                <% piercings.forEach(function(piercing){%>
+                                                    <option value="<%= piercing._id %>">
+                                                        <%= piercing.nombre %>
+                                                    </option>
+                                                    <% })%>
+                                            </select><br>
+
+                                            <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
+                                            <select name="idTatuaje" id="idTatuaje">
+                                                <option value="">No Aplica</option>
+                                                <% tattoos.forEach(function(tattoo){%>
+                                                    <option value="<%= tattoo._id %>">
+                                                        <%= tattoo.nombre %>
+                                                    </option>
+                                                    <% })%>
+                                            </select><br>
+
+                                            <label for="fotoConsentimiento" class="form-label">Foto del
+                                                consentimiento:</label>
+                                            <input type="text" name="fotoConsentimiento" class="form-control"
+                                                id="fotoConsentimiento"
+                                                placeholder="Ingrese la foto del consentimiento">
+
+                                            <div class="modal-footer">
+
+                                                <button type="submit" class="btn btn-primary">Agenda tu cita</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-            <script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- <script>
                 var fecha = new Date();
                 var anio = fecha.getFullYear();
                 var dia = fecha.getDate();
@@ -95,7 +146,7 @@
                     var mes = _mes.toString;
                 }
                 document.getElementById("fechaCita").min = anio+'-'+mes+'-'+dia; 
-            </script>
+            </script> -->
 </body>
 
 </html>

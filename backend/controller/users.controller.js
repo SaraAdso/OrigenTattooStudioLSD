@@ -78,7 +78,7 @@ exports.loginUsersController = async (req, res) => {
         error: result.error,
       });
     } else {
-      return res.redirect(result.path);
+      return res.cookie('rol', result.rol).cookie('usuariologueado', result.email).redirect(result.path);
     }
   } catch (error) {
     console.log(error);

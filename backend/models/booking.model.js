@@ -20,10 +20,6 @@ const SchemaBooking = new mongoose.Schema({
   idTatuaje: {
     type: String,
   },
-  estado: {
-    type: String,
-    required: [true, 'Es requerido establecer un estado para la cita'],
-  },
   fotoConsentimiento: {
     type: String,
   }});

@@ -1,7 +1,5 @@
 const usersData = require('../data-access/users.data');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const jwtSecret = 'private';
 
 exports.showUsers = async () =>{
   const users = await usersData.findAll();
@@ -33,15 +31,12 @@ exports.loginUser = async (clientInfo) => {
     return {error: 'No existe el usuario'};
   }
   const isPasswordCorrect = await bcrypt.compare(contrasena, userInfo.contrasena);
-  // eslint-disable-next-line no-unused-vars
-  const token = await jwt.sign({id: userInfo._id}, jwtSecret, {expiresIn: 18000000});
+
   if (isPasswordCorrect) {
     if (userInfo.rol === 'Cliente') {
-      return {path: '/'};
+      return {path: '/', rol: 'Cliente', email: userInfo.correo};
     } else if (userInfo.rol === 'Administrador') {
-      return {path: '/admin'};
-    } else {
-      return {error: 'NO SE RECONOCE EL ROL'};
+      return {path: '/admin', rol: 'Administrador', email: userInfo.correo};
     }
   } else {
     return {error: 'USUARIO Y/O CONTRASEÑA INCORRECTA'};

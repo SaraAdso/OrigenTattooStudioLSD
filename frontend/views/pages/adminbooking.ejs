@@ -25,10 +25,9 @@
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">Fecha de Cita</th>
-                            <th scope="col" class="text-center">id Tatuador</th>
-                            <th scope="col" class="text-center">id Cliente</th>
-                            <th scope="col" class="text-center">id Piercing</th>
-                            <th scope="col" class="text-center">id Tatuaje</th>
+                            <th scope="col" class="text-center">Tatuador</th>
+                            <th scope="col" class="text-center">Cliente</th>
+                            <th scope="col" class="text-center">Piercing</th>
                             <th scope="col" class="text-center">Estado</th>
                             <th scope="col" class="text-center">Foto de Consentimiento</th>
                             <th scope="col" class="text-center">Opciones</th>
@@ -36,34 +35,40 @@
                     </thead>
                     <tbody>
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" class="btn btn-light btn-sm fw-bold " data-bs-toggle="modal"
-                                data-bs-target="#modalactbooking">
-                                Crear
-                            </button>
                             <% bookings.forEach(function(booking){%>
                                 <tr>
                                     <td>
                                         <%=booking.fechaCita%>
                                     </td>
                                     <td>
-                                        <%=booking.idTatuador%>
+                                        <% tattooartists.forEach(function(tattooartist) { %>
+                                            <% if (booking.idTatuador.toString()===tattooartist._id.toString()) { %>
+                                                <%= tattooartist.alias %>
+                                            <% } %>
+                                        <% }); %>
                                     </td>
                                     <td>
-                                        <%=booking.idCliente%>
+                         
                                     </td>
                                     <td>
-                                        <%=booking.idPiercing%>
+                                        <% piercings.forEach(function(piercing) { %>
+                                            <% if (booking.idPiercing.toString()===piercing._id.toString()) { %>
+                                                <%= piercing.nombre %>
+                                            <% } %>
+                                        <% }); %>
                                     </td>
                                     <td>
-                                        <%=booking.idTatuaje%>
-                                    </td>
-                                    <td>
-                                        <%=booking.estado%>
+                                        <% if(booking.fechaCita > new Date()){ %>
+                                            <p>Vencida</p>
+                                        <% } else { %>
+                                            <p>Activa</p>
+                                        <% } %>
                                     </td>
                                     <td>
                                         <%=booking.fotoConsentimiento%>
                                     </td>
                                     <td>
+
                                         <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modalactbooking"
                                             onclick="llenarBooking('<%=booking._id%>', '<%=booking.fechaCita%>', '<%=booking.idTatuador%>', '<%=booking.idCliente%>', '<%=booking.idPiercing%>', '<%=booking.idTatuaje%>', '<%=booking.estado%>', '<%=booking.fotoConsentimiento%>')">
@@ -77,98 +82,6 @@
                         <% });%>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class="modal fade" id="modalactbooking" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Crear cita</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/newbooking" method="post" enctype="multipart/form-data" class="m-3">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label fw-bold " for="fechaCita">Fecha de la cita</label>
-                                        <input type="date" id="fechaCita" name="fechaCita"
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label for="idTatuador" class="form-label">Id del Tatuador:</label>
-                                        <select name="idTatuador" id="idTatuador">
-                                            <option value="">No Aplica</option>
-                                            <% tattooartists.forEach(function(tattooartist){%>
-                                                 <option value="<%= tattooartist._id %>"><%= tattooartist.nombre %></option>
-                                             <% });%>
-                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label fw-bold" for="idCliente">Cliente</label>
-                                        <input type="text" id="idCliente" name="idCliente"
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label for="idPiercing" class="form-label">Id del Piercing:</label>
-                                        <select name="idPiercing" id="idPiercing">
-                                            <option value="">No Aplica</option>
-                                            <% piercings.forEach(function(piercing){%>
-                                                 <option value="<%= piercing._id %>"><%= piercing.nombre %></option>
-                                              <% });%>
-                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-outline mb-4">
-                                <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
-                                <select name="idTatuaje" id="idTatuaje">
-                                    <option value="">No Aplica</option>
-                                    <% tattoos.forEach(function(tattoo){%>
-                                        <option value="<%= tattoo._id %>"><%= tattoo.nombre %></option>
-                                    <% });%>
-                                </select>      
-                            </div>
-                           
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label fw-bold" for="imagentattoo">Imagen</label>
-                                <input type="file" id="imagentattoo" name="imagen"
-                                    class="form-control form-control-lg" />
-                            </div>
-
-                            <label for="estado" class="form-label">Estado:</label>
-                            <select name="estado" id="estado">
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
-                            </select>
-                            <br>
-
-                            <label for="fotoConsentimiento" class="form-label">Foto del consentimiento:</label>
-                            <input type="text" name="fotoConsentimiento" class="form-control" id="fotoConsentimiento" placeholder="Ingrese la foto del consentimiento">
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger"
-                                    data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-outline-dark ">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -219,8 +132,10 @@
                                         <select name="idPiercing" id="actIdPiercing">
                                             <option value="">No Aplica</option>
                                             <% piercings.forEach(function(piercing){%>
-                                                <option value="<%= piercing._id %>"><%= piercing.nombre %></option>
-                                            <% });%>
+                                                <option value="<%= piercing._id %>">
+                                                    <%= piercing.nombre %>
+                                                </option>
+                                                <% });%>
                                         </select><br>
                                     </div>
                                 </div>
@@ -230,8 +145,10 @@
                                         <select name="idTatuaje" id="actIdTatuaje">
                                             <option value="">No Aplica</option>
                                             <% tattoos.forEach(function(tattoo){%>
-                                                <option value="<%= tattoo._id %>"><%= tattoo.nombre %></option>
-                                            <% });%>
+                                                <option value="<%= tattoo._id %>">
+                                                    <%= tattoo.nombre %>
+                                                </option>
+                                                <% });%>
                                         </select>
                                         <br>
                                     </div>
@@ -241,12 +158,11 @@
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="estado">Técnica</label>
-                                <input type="text" id="actestado" name="estado"
-                                    class="form-control form-control-lg" />
+                                <input type="text" id="actestado" name="estado" class="form-control form-control-lg" />
                             </div>
 
-                            <input type="text" id="fotoConsentimiento" name="imagen" class="form-control form-control-lg"
-                                hidden />
+                            <input type="text" id="fotoConsentimiento" name="imagen"
+                                class="form-control form-control-lg" hidden />
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-danger"
@@ -259,27 +175,7 @@
         </div>
         </div>
 
-        <script>
-            $(document).ready(function () {
-                const table = $('#tablebooking').DataTable({
-                    lengthChange: false,
-                    buttons: ['copy', 'excel', 'pdf', 'colvis'],
-                });
-                table.buttons().container()
-                    .appendTo('#datatable_wrapper .col-md-6:eq(0)');
-            });
-
-            function llenarBooking(id, fechaCita, idTatuador, idCliente, idPiercing, idTatuaje, estado, fotoConsentimiento){
-                console.log(idCliente)
-                id.value = id;
-                fechaCita.value = fechaCita;
-                idTatuador.value = idTatuador;
-                idCliente.value = idCliente;
-                idPiercing.value = idPiercing;
-                idTatuaje.value = idTatuaje;
-                estado.value = estado;
-                fotoConsentimiento.value = fotoConsentimiento;
-            };
+        <script src="/assets/js/adminbooking.js">
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

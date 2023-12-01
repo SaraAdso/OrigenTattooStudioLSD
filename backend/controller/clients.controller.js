@@ -3,15 +3,12 @@ const clientUseCases = require('../usecases/clients.usecase');
 exports.showClientController = async (req, res) =>{
   try {
     const result = await clientUseCases.showClients();
-
     if (result.error) {
       return res.json({
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return result.success;
     }
   } catch (error) {
     console.log(error);
@@ -47,7 +44,7 @@ exports.updateClientController = async (req, res) =>{
         error: result.error,
       });
     } else if (result.success) {
-      return res.redirect('/adminusers');
+      return res.redirect('/adminclients');
     }
   } catch (error) {
     console.log(error);
@@ -56,16 +53,14 @@ exports.updateClientController = async (req, res) =>{
 
 exports.deleteClientController = async (req, res) => {
   try {
-    const result = await clientUseCases.deleteClient(req.body);
+    const result = await clientUseCases.deleteClient(req.params.id);
 
     if (result.error) {
       return res.json({
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      return res.redirect('/adminclients');
     }
   } catch (error) {
     console.log(error);

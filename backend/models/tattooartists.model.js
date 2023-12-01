@@ -5,6 +5,10 @@ const schemaTattooartist = new mongoose.Schema({
     type: String,
     required: [true, 'Se requiere ingresar un nombre'],
   },
+  alias: {
+    type: String,
+    required: [true, 'Se requiere ingresar el nombre que será mostrado en el perfil a los usuarios'],
+  },
   apellido: {
     type: String,
     required: [true, 'Se require ingresar un apellido'],
@@ -28,6 +32,10 @@ const schemaTattooartist = new mongoose.Schema({
   contrasena: {
     type: String,
     required: [true, 'Es requerida una contraseña'],
+    minLength: [8, 'La contraseña debe tener 8 caracteres como mínimo'],
+  },
+  fotoTatuador: {
+    type: String,
   }});
 
 const tattooArtist = mongoose.model('TattooArtist', schemaTattooartist);

@@ -23,13 +23,13 @@
             <table id="tabletattooartists" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-center">id</th>
                         <th scope="col" class="text-center">Nombre</th>
+                        <th scope="col" class="text-center">Alias</th>
                         <th scope="col" class="text-center">Apellido</th>
                         <th scope="col" class="text-center">Celular</th>
                         <th scope="col" class="text-center">Documento</th>
                         <th scope="col" class="text-center">Correo</th>
-                        <th scope="col" class="text-center">Contraseña</th>
+                        <th scope="col" class="text-center">Imagen</th>
                         <th scope="col" class="text-center">Opciones</th>
                     </tr>
                 </thead>
@@ -41,20 +41,20 @@
                         </button>
                         <% tattooartists.forEach(function(tattooartist){ %>
                             <tr>
-                                <td><%= tattooartist._id %></td>
                                 <td><%= tattooartist.nombre %></td>
+                                <td><%=tattooartist.alias %></td>
                                 <td><%= tattooartist.apellido %></td>
                                 <td><%= tattooartist.celular %></td>
                                 <td><%= tattooartist.documento %></td>
                                 <td><%= tattooartist.correo %></td>
-                                <td><%= tattooartist.contrasena %></td>
+                                <td><%= tattooartist.fotoTatuador%></td>
                                 <td>
                                     <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#modalactTattooArtists"
                                         onclick="llenarTattooArtists('<%= tattooartist._id %>', '<%= tattooartist.nombre %>', '<%= tattooartist.apellido %>', '<%= tattooartist.celular %>', '<%= tattooartist.documento %>', '<%= tattooartist.correo %>', '<%= tattooartist.contrasena %>')">
                                         Editar
                                     </button>
-                                    <a href="deletetattoo/<%= tattooartist._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                    <a href="deletetattooartist/<%= tattooartist._id %>" class="btn btn-danger btn-sm">Eliminar</a>
                                 </td>
                             </tr>
                         <% }); %>
@@ -79,44 +79,65 @@
                                 <div class="form-outline">
                                     <label class="form-label fw-bold " for="nombreTattooArtist">Nombre</label>
                                     <input type="text" id="nombreTattooArtist" name="nombre"
-                                        class="form-control form-control-lg" />
+                                        class="form-control form-control-lg" placeholder="Ingrese un nombre"/>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     <label class="form-label fw-bold" for="apellidoTattooArtist">Apellido</label>
                                     <input type="text" id="apellidoTattooArtist" name="apellido"
-                                        class="form-control form-control-lg" />
+                                        class="form-control form-control-lg" placeholder="Ingrese un apellido"/>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <label class="form-label fw-bold" for="celularTattooArtist">Celular</label>
-                            <input type="text" id="celularTattooArtist" name="celular"
-                                class="form-control form-control-lg" />
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <label class="form-label fw-bold" for="documentoTattooArtist">Documento</label>
-                                    <input type="text" id="documentoTattooArtist" name="documento"
-                                        class="form-control form-control-lg" />
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="aliasTattooArtist">Alias</label>
+                                    <input type="text" id="aliasTattooArtist" name="alias"
+                                        class="form-control form-control-lg" placeholder="Ingrese su apodo"/>
                                 </div>
                             </div>
+
                             <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <label class="form-label fw-bold" for="correoTattooArtist">Correo</label>
-                                    <input type="text" id="correoTattooArtist" name="correo"
-                                        class="form-control form-control-lg" />
+                                <div class="form-outline mb-4">
+                                    <label class="form-label fw-bold" for="celularTattooArtist">Celular</label>
+                                    <input type="text" id="celularTattooArtist" name="celular"
+                                        class="form-control form-control-lg" placeholder="Ingrese su celular"/>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="form-outline">
+                                    <label class="form-label fw-bold " for="documentoTattooArtist">Documento</label>
+                                    <input type="text" id="documentoTattooArtist" name="documento"
+                                        class="form-control form-control-lg" placeholder="Ingrese su documento" />
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4" hidden>
+                            </div>
+                        </div>
+    
+                        <div class="form-outline mb-4">
+                            <div class="form-outline">
+                                <label class="form-label fw-bold " for="correoTattooArtist">Correo</label>
+                                <input type="text" id="correoTattooArtist" name="correo"
+                                    class="form-control form-control-lg" placeholder="Ingrese su correo electrónico"/>
+                            </div>
+                        </div>
+    
 
                         <div class="form-outline mb-4">
                             <label class="form-label fw-bold" for="contrasenaTattooArtist">Contraseña</label>
-                            <input type="text" id="contrasenaTattooArtist" name="contrasena"
+                            <input type="password" id="contrasenaTattooArtist" name="contrasena"
+                                class="form-control form-control-lg" placeholder="Ingrese una contraseña"/>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label fw-bold" for="fotoTattooArtist">Foto Tatuador</label>
+                            <input type="file" id="fotoTattooArtist" name="fotoTatuador"
                                 class="form-control form-control-lg" />
                         </div>
 
@@ -148,7 +169,7 @@
 
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="nomactTattooArtist">Nombre</label>
+                                    <label class="form-label fw-bold " for="nomactTattooArtist">Nombre</label>
                                     <input type="text" id="nomactTattooArtist" name="nombre"
                                         class="form-control form-control-lg" placeholder="Ingrese el nombre del tatuador"
                                         required />
@@ -156,46 +177,61 @@
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="apellidoactTattooArtist">Apellido</label>
+                                    <label class="form-label fw-bold " for="apellidoactTattooArtist">Apellido</label>
                                     <input type="text" id="apellidoactTattooArtist" name="apellido"
                                         class="form-control form-control-lg" />
                                 </div>
                             </div>
                         
 
-                        <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label class="form-label" for="celularactTattooArtist">Celular</label>
-                                <input type="text" id="celularactTattooArtist" name="celular"
-                                    class="form-control form-control-lg" />
+                        
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label fw-bold" for="aliasactTattooArtist">Alias</label>
+                                        <input type="text" id="aliasactTattooArtist" name="alias"
+                                            class="form-control form-control-lg" />
+                                    </div>
+                                </div>
+    
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label fw-bold" for="celularactTattooArtist">Celular</label>
+                                        <input type="text" id="celularactTattooArtist" name="celular"
+                                            class="form-control form-control-lg" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
-                                <label class="form-label" for="documentoactTattooArtist">Documento</label>
+                                <label class="form-label fw-bold " for="documentoactTattooArtist">Documento</label>
                                 <input type="text" id="documentoactTattooArtist" name="documento"
                                     class="form-control form-control-lg" />
                             </div>
                         </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <label class="form-label" for="correoactTattooArtist">Correo</label>
-                                <input type="text" id="correoactTattooArtist" name="correo"
-                                    class="form-control form-control-lg" />
-                            </div>
+                        <div class="col-md-6 mb-4" hidden>
+                        </div>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <div class="form-outline">
+                            <label class="form-label fw-bold " for="correoactTattooArtist">Correo</label>
+                            <input type="text" id="correoactTattooArtist" name="correo"
+                                class="form-control form-control-lg" />
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
                         <div class="form-outline"></div>
-                        <label class="form-label" for="contrasenaactTattooArtist">Contraseña</label>
-                        <input type="text" id="contrasenaactTattooArtist" name="contrasena"
+                        <label class="form-label fw-bold " for="contrasenaactTattooArtist">Contraseña</label>
+                        <input type="password" id="contrasenaactTattooArtist" name="contrasena"
                             class="form-control form-control-lg" />
                     </div>
+
+                        <input type="file" id="fotoactTattooArtist" name="fotoTatuador"
+                            class="form-control form-control-lg" hidden/>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>

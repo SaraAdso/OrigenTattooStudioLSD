@@ -1,4 +1,6 @@
 const tattooartistsData = require('../data-access/tattooartists.data');
+const userData = require('../data-access/users.data');
+const bcrypt = require('bcrypt');
 
 exports.showTattooArtists = async () => {
   const tattooArtists = await tattooartistsData.findAll();
@@ -10,13 +12,16 @@ exports.showTattooArtists = async () => {
 };
 
 exports.createTattooArtists = async (tattooartistInfo) => {
-  const {documento} = tattooartistInfo;
+  const {documento, correo, contrasena} = tattooartistInfo;
+  const passwordencrypted = await bcrypt.hash(contrasena, 10);
+  tattooartistInfo.contrasena = passwordencrypted;
   const tattooArtistExists = await tattooartistsData.findOneResult({documento: documento});
   if (tattooArtistExists) {
     return {error: 'Ya existe el tatuador'};
   }
   const createTattooArtists = await tattooartistsData.insertOne(tattooartistInfo);
-  if (!createTattooArtists) {
+  const createUser = await userData.insertOne({correo: correo, contrasena: passwordencrypted, rol: 'Administrador'})
+  if (!createTattooArtists && !createUser) {
     return {error: 'No se creó'};
   } else {
     return {success: 'Se creó'};
@@ -42,9 +47,9 @@ exports.updateTattooArtist = async (infoUpdate) => {
 };
 
 exports.deleteTattooArtist = async (id) =>{
-  const tattooArtistDeleted = await tattooartistsData.deleteOne(id);
+  const tattooArtistDeleted = await tattooartistsData.deleteOne({_id: id});
   if (tattooArtistDeleted) {
-    return {success: 'Se eliminó exitosamente'};
+    return {tattooArtistDeleted};
   } else {
     return {error: 'No se eliminó'};
   }

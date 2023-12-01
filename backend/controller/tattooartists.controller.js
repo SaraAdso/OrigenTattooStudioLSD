@@ -1,6 +1,6 @@
 const tattooArtistUseCases = require('../usecases/tattooartists.usecase');
-
-exports.showTattooArtistController = async (req, res) =>{
+const fs = require('fs');
+exports.showTattooArtistController = async (req, res) => {
   try {
     const result = await tattooArtistUseCases.showTattooArtists();
 
@@ -18,10 +18,10 @@ exports.showTattooArtistController = async (req, res) =>{
   }
 };
 
-exports.createtattooArtistController = async (req, res) =>{
+exports.createtattooArtistController = async (req, res) => {
   try {
     const imageDestination = `/assets/images/${req.file.originalname}`;
-    req.body.imagen = imageDestination;
+    req.body.fotoTatuador = imageDestination;
     const result = await tattooArtistUseCases.createTattooArtists(req.body);
 
     if (result.error) {
@@ -36,9 +36,7 @@ exports.createtattooArtistController = async (req, res) =>{
   }
 };
 
-
-
-exports.updatetattooArtistController = async (req, res) =>{
+exports.updatetattooArtistController = async (req, res) => {
   try {
     const result = await tattooArtistUseCases.updateTattooArtist(req.body);
 
@@ -56,16 +54,20 @@ exports.updatetattooArtistController = async (req, res) =>{
 
 exports.deletetattooArtistController = async (req, res) => {
   try {
-    const result = await tattooArtistUseCases.deleteTattooArtist(req.body);
-
+    const result = await tattooArtistUseCases.deleteTattooArtist(req.params.id);
+    console.log(result);
     if (result.error) {
       return res.json({
         error: result.error,
       });
-    } else if (result.success) {
-      return res.json({
-        error: result.success,
+    } else if (result) {
+      fs.unlink(`./frontend/static${ result.tattooArtistDeleted.fotoTatuador }`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
       });
+      return res.redirect('/admintattooartists');
     }
   } catch (error) {
     console.log(error);

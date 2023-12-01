@@ -33,7 +33,7 @@ router.get('/adminpiercings', controllerViews.showAdminPiercing);
 router.get('/admintattooartists', controllerViews.showAdminTattooArtists);
 
 // Clientes
-router.get('/adminusers', controllerViews.showAdminUsers);
+router.get('/adminclients', controllerViews.showAdminClients);
 
 // Citas
 router.get('/adminbooking', controllerViews.showAdminBooking);
@@ -55,7 +55,7 @@ router.post('/newclient', upload.single('fotoDocumento'), controllerClients.crea
 // UPDATE CLIENT
 router.post('/updateclient', controllerClients.updateClientController);
 // DELETE CLIENT
-router.delete('/deleteclient', controllerClients.deleteClientController);
+router.get('/deleteclient/:id', controllerClients.deleteClientController);
 router.post('/loginclient', controllerUsers.loginUsersController);
 
 
@@ -77,7 +77,7 @@ router.post('/newtattoo', upload.single('imagen'), controllerTattoos.createTatto
 // UPDATE TATTOO
 router.post('/updatetattoo', controllerTattoos.updateTattooController);
 // DELETE TATTOO
-router.delete('/deletetattoo', controllerTattoos.deleteTattooController);
+router.get('/deletetattoo/:id', controllerTattoos.deleteTattooController);
 
 // Users
 // SHOW USERS
@@ -93,9 +93,9 @@ router.delete('/deleteuser', controllerUsers.deleteUserController);
 // SHOW TATTOOARTISTS
 router.get('/showtattooartist', controllerTattooArtists.showTattooArtistController);
 // CREATE TATTOOARTIST
-router.post('/newtattooartist', upload.single('fotoDocumento'), controllerTattooArtists.createtattooArtistController);
+router.post('/newtattooartist', upload.single('fotoTatuador'), controllerTattooArtists.createtattooArtistController);
 // UPDATE TATTOOARTIST
 router.post('/updatetattoartist', controllerTattooArtists.updatetattooArtistController);
 // DELETE TATTOOARTIST
-router.delete('/deletetattoortist', controllerTattooArtists.deletetattooArtistController);
+router.get('/deletetattooartist/:id', controllerTattooArtists.deletetattooArtistController);
 module.exports = router;
