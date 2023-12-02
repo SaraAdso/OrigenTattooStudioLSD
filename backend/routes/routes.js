@@ -1,6 +1,7 @@
 /* eslint-disable new-cap */
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/uploadimages');
 
 // Controllers
 const controllerBooking = require('../controller/booking.controller');
@@ -13,6 +14,7 @@ const controllerViews = require('../controller/views.controller');
 
 router.get('/admin', controllerViews.showLandingAdmin);
 router.get('/', controllerViews.showLandingPage);
+router.get('/clientprofile', controllerViews.showClientProfile);
 router.get('/formregister', controllerViews.showFormRegister);
 router.get('/formlogin', controllerViews.showFormLogin);
 router.get('/tattoocatalogue', controllerViews.showTattoosCatalogue);
@@ -20,7 +22,7 @@ router.get('/piercingscatalogue', controllerViews.showPiercingsCatalogue);
 router.get('/makeabooking', controllerViews.showFormBooking);
 router.get('/bookingerror', controllerViews.showErrorBooking);
 router.get('/bookingsuccess', controllerViews.showSuccessfullBooking);
-const upload = require('../middleware/uploadimages');
+router.get('/logout', controllerViews.logout);
 
 // ADMIN
 // Tatuajes

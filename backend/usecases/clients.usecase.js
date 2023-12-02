@@ -1,4 +1,5 @@
 const clientsData = require('../data-access/clients.data');
+const bookingsData = require('../data-access/booking.data')
 const usersData = require('../data-access/users.data');
 const bcrypt = require('bcrypt');
 
@@ -9,6 +10,12 @@ exports.showClients = async () => {
   } else {
     return {success: clients};
   }
+};
+
+exports.showClient = async (email) => {
+  const client = await clientsData.findOneResult({correo: email});
+  const bookings = await bookingsData.findAll({idCliente: email});
+  return {client: client, bookings: bookings};
 };
 
 exports.createClient = async (clientInfo) => {
@@ -24,7 +31,7 @@ exports.createClient = async (clientInfo) => {
   if (!createClient && !createUser) {
     return {error: 'No se creó'};
   } else {
-    return {success: 'Se creó'};
+    return {success: 'Se creó', rol: createUser.rol, email: createUser.correo};
   }
 };
 

@@ -1,4 +1,5 @@
 const usersData = require('../data-access/users.data');
+const bookingsData = require('../data-access/booking.data');
 const bcrypt = require('bcrypt');
 
 exports.showUsers = async () =>{
@@ -42,6 +43,7 @@ exports.loginUser = async (clientInfo) => {
     return {error: 'USUARIO Y/O CONTRASEÑA INCORRECTA'};
   }
 };
+
 
 exports.updateUser = async (infoUpdate) => {
   const {correo, contrasena, rol} = infoUpdate;

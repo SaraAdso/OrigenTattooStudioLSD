@@ -3,9 +3,8 @@ const {showPiercingController} = require('./piercings.controller');
 const {showTattooController} = require('./tattoos.controller');
 const {showBookingController} = require('./booking.controller');
 const {showTattooArtistController} = require('./tattooartists.controller');
-const tattooDataAccess = require('../data-access/tattoos.data');
-const piercingDataAccess = require('../data-access/piercings.data');
-const tattooArtistData = require('../data-access/tattooartists.data');
+const {showClient} = require('../usecases/clients.usecase');
+const booking = require('../models/booking.model');
 
 exports.showLandingAdmin = async (req, res) => {
   res.render('landingadmin');
@@ -19,15 +18,30 @@ exports.showLandingPage = async (req, res) => {
     tattoos: tattoos.success,
     piercings: piercings.success,
     tattooartists: tattooartists.success,
+    rol: req.cookies.rol,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
+exports.showClientProfile = async (req, res) => {
+  const client = await showClient(req.cookies.usuariologueado);
+  const tattooartist = await showTattooArtistController();
+  res.render('clientprofile', {
+    client: client.client,
+    bookings: client.bookings,
+    tattooartist: tattooartist,
+  });
+}
 exports.showFormRegister = async (req, res) => {
   res.render('registerclients');
 };
 
 exports.showFormLogin = async (req, res) => {
-  res.render('loginclients');
+  if (req.cookies.usuariologueado) {
+    res.redirect('/profile');
+  } else {
+    res.render('loginclients');
+  }
 };
 
 exports.showTattoosCatalogue = async (req, res) => {
@@ -122,9 +136,13 @@ exports.showError = async (req, res) => {
   res.render('error');
 };
 
-
-
-
+exports.logout = async (req, res) => {
+  try {
+    return res.clearCookie('usuariologueado').clearCookie('rol').redirect('/');
+  } catch (error) {
+    console.log(error);
+  }
+};
 // exports.showFormBooking = async (req, res) => {
 //  res.render('booking')
 // };

@@ -1,4 +1,5 @@
 const clientsModel = require('../models/clients.model');
+const bookingsModel = require('../models/booking.model');
 
 exports.findAll = async (filter, projection) => {
   if (filter && projection) {
