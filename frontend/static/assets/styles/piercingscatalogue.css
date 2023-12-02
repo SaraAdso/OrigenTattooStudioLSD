@@ -27,8 +27,8 @@ text-align: center;
 
 
 .cardsizepiercings {
-  width: 18rem; 
-  height: 26rem;
+  width: 18rem !important; 
+  height: 26rem !important;
 }
 
 .modalfont {
