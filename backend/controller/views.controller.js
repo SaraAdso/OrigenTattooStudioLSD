@@ -30,10 +30,13 @@ exports.showClientProfile = async (req, res) => {
     client: client.client,
     bookings: client.bookings,
     tattooartist: tattooartist,
+    usuariologueado: req.cookies.usuariologueado,
   });
 }
 exports.showFormRegister = async (req, res) => {
-  res.render('registerclients');
+  res.render('registerclients',{
+    usuariologueado: req.cookies.usuariologueado,
+  });
 };
 
 exports.showFormLogin = async (req, res) => {
@@ -48,6 +51,7 @@ exports.showTattoosCatalogue = async (req, res) => {
   const tattoos = await showTattooController();
   res.render('tattooscatalogue', {
     tattoos: tattoos.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -55,6 +59,7 @@ exports.showPiercingsCatalogue = async (req, res) => {
   const piercing = await showPiercingController();
   res.render('piercingscatalogue', {
     piercings: piercing.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -69,6 +74,7 @@ exports.showFormBooking = async (req, res) => {
     tattoos: tattoo.success,
     tattooartists: tattooartist.success,
     client: client,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -88,6 +94,7 @@ exports.showAdminTattoo = async (req, res) => {
   res.render('admintattoos', {
     tattoos: tattoo.success,
     tattooartists: tattooartist.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -95,6 +102,7 @@ exports.showAdminPiercing = async (req, res) => {
   const piercing = await showPiercingController();
   res.render('adminpiercings', {
     piercings: piercing.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -102,6 +110,7 @@ exports.showAdminTattooArtists = async (req, res) => {
   const tattooartist = await showTattooArtistController();
   res.render('admintattooartists', {
     tattooartists: tattooartist.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -109,6 +118,7 @@ exports.showAdminClients = async (req, res) => {
   const cliente = await showClientController();
   res.render('adminclients', {
     clientes: cliente,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 
@@ -125,6 +135,7 @@ exports.showAdminBooking = async (req, res) => {
     tattoos: tattoo.success,
     tattooartists: tattooartist.success,
     clients: client.success,
+    usuariologueado: req.cookies.usuariologueado,
   });
 };
 

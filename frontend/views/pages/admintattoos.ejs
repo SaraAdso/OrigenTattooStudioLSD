@@ -94,19 +94,23 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/newtattoo" method="post" enctype="multipart/form-data" class="m-3">
+                       <form action="/newtattoo" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold " for="nombre">Nombre</label>
                                         <input type="text" id="nombretattoo" name="nombre"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" required/>
+                                            <div class="invalid-feedback">
+                                                Ingresa el nombre, por favor.
+                                            </div>
+                  
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="autortattoo">Autor</label>
-                                        <select class="form-control form-control-lg" name="autor" id="autortattoo">
+                                        <select class="form-control form-control-lg" name="autor" id="autortattoo" required>
                                             <option value="" disabled selected>Seleccionar</option>
                                             <% tattooartists.forEach(function(tattooartist){%>
                                                 <option value="<%= tattooartist._id %>">
@@ -114,6 +118,9 @@
                                                 </option>
                                                 <% });%>
                                         </select>
+                                        <div class="invalid-feedback">
+                                            Selecciona el tatuador, por favor.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +128,10 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="descripciontattoo">Descripción</label>
                                 <input type="text" id="descripciontattoo" name="descripcion"
-                                    class="form-control form-control-lg" />
+                                    class="form-control form-control-lg" required/>
+                                    <div class="invalid-feedback">
+                                        Ingresa la descripcion, por favor.
+                                    </div>
                             </div>
 
                             <div class="row">
@@ -129,14 +139,20 @@
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="tamanotattoo">Tamaño</label>
                                         <input type="text" id="tamanotattoo" name="tamano"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" required/>
+                                            <div class="invalid-feedback">
+                                                Ingresa el tamaño, por favor.
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="colortattoo">Color</label>
                                         <input type="text" id="colortattoo" name="color"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" required/>
+                                            <div class="invalid-feedback">
+                                                Ingresa el color, por favor.
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -145,13 +161,19 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="tecnicatattoo">Técnica</label>
                                 <input type="text" id="tecnicatattoo" name="tecnica"
-                                    class="form-control form-control-lg" />
+                                    class="form-control form-control-lg" required/>
+                                    <div class="invalid-feedback">
+                                        Ingresa la técnica, por favor.
+                                    </div>
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="imagentattoo">Imagen</label>
                                 <input type="file" id="imagentattoo" name="imagen"
-                                    class="form-control form-control-lg" />
+                                    class="form-control form-control-lg" required/>
+                                    <div class="invalid-feedback">
+                                        Ingresa la imagen, por favor.
+                                    </div>
                             </div>
 
                             <div class="modal-footer">
@@ -176,7 +198,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/updatetattoo" method="post" class="m-3 ">
+                        <form action="/updatetattoo" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
                             <div class="row">
                                 <input type="text" id="idacttattoo" name="id" class="form-control form-control-lg"
                                     hidden />
@@ -188,6 +210,9 @@
                                         <input type="text" id="nomacttattoo" name="nombre"
                                             class="form-control form-control-lg"
                                             placeholder="Ingrese el nombre del tatuaje" required />
+                                            <div class="invalid-feedback">
+                                                Ingresa el nombre, por favor.
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
@@ -202,7 +227,10 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="descripciontattoo">Descripción</label>
                                 <input type="text" id="desacttattoo" name="descripcion"
-                                    class="form-control form-control-lg" />
+                                    class="form-control form-control-lg" required/>
+                                    <div class="invalid-feedback">
+                                        Ingresa la descripcion, por favor.
+                                    </div>
                             </div>
 
                             <div class="row">
@@ -210,14 +238,20 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="tamanotattoo">Tamaño</label>
                                         <input type="text" id="tamacttattoo" name="tamano"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" required/>
+                                            <div class="invalid-feedback">
+                                                Ingresa el tamaño, por favor.
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label" for="colortattoo">Color</label>
                                         <input type="text" id="coloracttattoo" name="color"
-                                            class="form-control form-control-lg" />
+                                            class="form-control form-control-lg" required/>
+                                            <div class="invalid-feedback">
+                                                Ingresa el color, por favor.
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +260,10 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="tecnicatattoo">Técnica</label>
                                 <input type="text" id="tecnacttattoo" name="tecnica"
-                                    class="form-control form-control-lg" />
+                                    class="form-control form-control-lg" required/>
+                                    <div class="invalid-feedback">
+                                        Ingresa la tćnica, por favor.
+                                    </div>
                             </div>
 
                             <input type="text" id="imagenacttattoo" name="imagen" class="form-control form-control-lg"
@@ -249,6 +286,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
+        <script src="/assets/js/validationstattoos.js"></script>
 
 </body>
 
