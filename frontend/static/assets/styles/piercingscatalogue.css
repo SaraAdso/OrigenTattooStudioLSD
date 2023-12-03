@@ -8,7 +8,7 @@ h1 {
   font-size: 80px;
 }
 
-h5 {
+.font {
 font-family: sketch;
 font-size: 2rem;
 }
@@ -34,4 +34,10 @@ text-align: center;
 .modalfont {
   font-family: sketch;
   font-size: 50px;
+}
+
+.card-img-top {
+  width: 286px;
+  height: 286px;
+  object-fit: cover;
 }

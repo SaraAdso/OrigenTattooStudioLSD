@@ -44,25 +44,25 @@
                                         <% tattooartists.forEach(function(tattooartist) { %>
                                             <% if (booking.idTatuador.toString()===tattooartist._id.toString()) { %>
                                                 <%= tattooartist.alias %>
-                                            <% } %>
-                                        <% }); %>
+                                                    <% } %>
+                                                        <% }); %>
                                     </td>
                                     <td>
-                         
+
                                     </td>
                                     <td>
                                         <% piercings.forEach(function(piercing) { %>
                                             <% if (booking.idPiercing.toString()===piercing._id.toString()) { %>
                                                 <%= piercing.nombre %>
-                                            <% } %>
-                                        <% }); %>
+                                                    <% } %>
+                                                        <% }); %>
                                     </td>
                                     <td>
-                                        <% if(booking.fechaCita > new Date()){ %>
+                                        <% if(booking.fechaCita < new Date()){ %>
                                             <p>Vencida</p>
-                                        <% } else { %>
-                                            <p>Activa</p>
-                                        <% } %>
+                                            <% } else { %>
+                                                <p>Activa</p>
+                                                <% } %>
                                     </td>
                                     <td>
                                         <%=booking.fotoConsentimiento%>

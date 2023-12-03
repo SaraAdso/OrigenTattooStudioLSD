@@ -75,7 +75,7 @@
 
 
                                             <label for="fechaCita" class="form-label">Fecha de la cita:</label>
-                                            <input type="date" name="fechaCita" class="form-control" id="fechaCita"
+                                            <input type="datetime-local" name="fechaCita" class="form-control" id="fechaCita"
                                                 min="2023-01-01" placeholder="Ingrese fecha de la cita">
 
                                             <label for="idTatuador" class="form-label">Tatuador:</label>
@@ -90,7 +90,7 @@
 
                                             <label for="idCliente" class="form-label">Correo electrónico:</label>
                                             <input type="text" name="idCliente" class="form-control" id="idCliente"
-                                                placeholder="Ingresa tu correo electrónico" value="<%=locals.client%>"> <br>
+                                                placeholder="Ingresa tu correo electrónico" value="<%=locals.client%>" readonly> <br>
 
                                             <label for="idPiercing" class="form-label">Piercing:</label>
                                             <select name="idPiercing" id="idPiercing">

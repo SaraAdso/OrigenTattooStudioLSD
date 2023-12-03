@@ -81,7 +81,7 @@
     <h1 class="col-12">Tatuajes</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <% tattoos.slice(0,5).forEach(tattoo=>{%>
+      <% tattoos.slice(0,4).forEach(tattoo=>{%>
         <div class="cardsizetattoos card col-md-6 col-lg-6 m-3 ms-4">
           <img src="<%=tattoo.imagen%>" class="card-img-top" alt="Tatuaje ojo con lineas">
           <div class="mt-2">
@@ -112,7 +112,7 @@
     <h1 class="col-12">Piercings</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <% piercings.slice(0,5).forEach(piercing=>{%>
+      <% piercings.slice(0,4).forEach(piercing=>{%>
         <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
           <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
           <div class="mt-2">
@@ -138,7 +138,7 @@
     <h1 class="col-12">Artistas</h1>
 
     <div class="d-flex justify-content-center flex-wrap">
-      <% tattooartists.forEach(tattooartist=>{%>
+      <% tattooartists.slice(0,8).forEach(tattooartist=>{%>
         <div class="cardsizetattooartists card col-md-6 col-lg-6 m-2 ms-4">
           <img src="<%=tattooartist.fotoTatuador%>" class="imageartists card-img-top" alt="Snake bites">
           <div class="mt-2">

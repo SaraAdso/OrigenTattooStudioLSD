@@ -12,7 +12,7 @@ const controllerTattoos = require('../controller/tattoos.controller');
 const controllerUsers = require('../controller/users.controller');
 const controllerViews = require('../controller/views.controller');
 
-router.get('/admin', controllerViews.showLandingAdmin);
+router.get('/admin', controllerViews.adminUser, controllerViews.showLandingAdmin);
 router.get('/', controllerViews.showLandingPage);
 router.get('/clientprofile', controllerViews.showClientProfile);
 router.get('/formregister', controllerViews.showFormRegister);
@@ -26,19 +26,18 @@ router.get('/logout', controllerViews.logout);
 
 // ADMIN
 // Tatuajes
-router.get('/admintattoos', controllerViews.showAdminTattoo);
+router.get('/admintattoos', controllerViews.adminUser, controllerViews.showAdminTattoo);
 
 // Piercings
-router.get('/adminpiercings', controllerViews.showAdminPiercing);
+router.get('/adminpiercings', controllerViews.adminUser, controllerViews.showAdminPiercing);
 
 // Tatuadores
-router.get('/admintattooartists', controllerViews.showAdminTattooArtists);
-
+router.get('/admintattooartists', controllerViews.adminUser, controllerViews.showAdminTattooArtists);
 // Clientes
-router.get('/adminclients', controllerViews.showAdminClients);
+router.get('/adminclients', controllerViews.adminUser, controllerViews.showAdminClients);
 
 // Citas
-router.get('/adminbooking', controllerViews.showAdminBooking);
+router.get('/adminbooking', controllerViews.adminUser, controllerViews.showAdminBooking);
 // Booking
 // SHOW BOOKING
 router.get('/showbooking', controllerBooking.showBookingController);

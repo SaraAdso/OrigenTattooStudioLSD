@@ -39,7 +39,6 @@ exports.createtattooArtistController = async (req, res) => {
 exports.updatetattooArtistController = async (req, res) => {
   try {
     const result = await tattooArtistUseCases.updateTattooArtist(req.body);
-
     if (result.error) {
       return res.json({
         error: result.error,

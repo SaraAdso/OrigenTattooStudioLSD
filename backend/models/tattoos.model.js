@@ -4,6 +4,7 @@ const schemaTattoo = new mongoose.Schema({
   nombre: {
     type: String,
     required: [true, 'Se requiere un nombre para el tatuaje'],
+    unique: [true],
   },
   descripcion: {
     type: String,

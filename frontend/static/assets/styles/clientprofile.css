@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Sketch';
+    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+}
+
+.nameclient {
+    font-family: sketch;
+    font-size: 2.5rem
+}
