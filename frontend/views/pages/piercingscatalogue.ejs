@@ -20,13 +20,13 @@
 <body style="background-color: #ffffff;">
     <%- include ('../partials/navbar.ejs') %>
 
-        <div class="container mt-5">
-            <h1 class="text-center">Piercings </h1>
+        <div class="container mt-2">
+            <h1 class="title text-center">Piercings </h1>
         </div>
         <div class="d-flex justify-content-center flex-wrap" id="piercingscatalogue">
             <% piercings.forEach(piercing=>{%>
-                <div class="cardsizepiercings card col-md-6 col-lg-6 m-2 ms-4">
-                    <img src="<%=piercing.imagen%>" class="card-img-top" alt="Snake bites">
+                <div id="cardsizepiercings"class="card col-md-6 col-lg-6 m-2 ms-4">
+                    <img src="<%=piercing.imagen%>" class="card-img-top" alt="<%=piercing.nombre%>">
                     <div class="mt-2">
                         <h5 class="font card-title">
                             <%=piercing.nombre%>

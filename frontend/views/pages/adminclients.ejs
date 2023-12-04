@@ -64,13 +64,15 @@
                                         <%=cliente.fotoDocumento%>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                        <div class="d-flex ">
+                                            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modalactclients"
                                             onclick="llenarClients('<%=cliente._id%>', '<%=cliente.nombre%>', '<%=cliente.apellido%>', '<%=cliente.celular%>', '<%=cliente.documento%>', '<%=cliente.correo%>', '<%=cliente.fechaNacimiento%>', '<%=cliente.alergias%>', '<%=cliente.fotoDocumento%>', '<%=cliente.contrasena%>')">
                                             Editar
                                         </button>
                                         <a href="deleteclient/<%= cliente._id %>"
                                             class="btn btn-danger btn-sm">Eliminar</a>
+                                        </div>
                         </div>
                         </td>
                         </tr>
@@ -165,7 +167,7 @@
                             </div>
                     </div>
 
-                    <input type="text" id="actfotoDocumeto" name="fotoDocumeto" class="form-control form-control-lg"
+                    <input type="text" id="actfotoDocumeto" class="form-control form-control-lg"
                         hidden required/>
 
                     <div class="modal-footer">

@@ -56,16 +56,18 @@ exports.updateBookingController = async (req, res) =>{
 
 exports.deleteBookingController = async (req, res) => {
   try {
-    const result = await bookingUseCases.deleteDate(req.body);
-
+    const result = await bookingUseCases.deleteDate(req.params.id);
+    const usuariologueado = req.cookies.rol;
     if (result.error) {
       return res.json({
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
-      });
+      if (usuariologueado == 'Administrador') {
+        return res.redirect('/adminbooking');
+      } else {
+        return res.redirect('/clientprofile');
+      }
     }
   } catch (error) {
     console.log(error);

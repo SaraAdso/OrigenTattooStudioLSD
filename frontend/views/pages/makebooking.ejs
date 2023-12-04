@@ -47,8 +47,21 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <a href="formregister" class="btn btn-dark fw-bold me-4 " role="button">REGISTRARSE</a>
-                    <a href="formlogin" class="btn btn-dark fw-bold " role="button">INICIAR SESIÓN</a>
+                    <% if (!locals.usuariologueado) { %>
+                        <a href="formregister" class="btn btn-dark fw-bold me-4 " role="button">REGISTRARSE</a>
+                        <a href="formlogin" class="btn btn-dark fw-bold " role="button">INICIAR SESIÓN</a>
+                        <% } else { %>
+                            <a href="logout" class="btn btn-dark fw-bold me-4 " role="button">CERRAR SESIÓN</a>
+                            <% if (locals.rol=='Cliente' ) { %>
+                                <a href="/clientprofile" class="btn btn-dark fw-bold me-4 " role="button"><i
+                                        class="bi bi-person-circle"></i></a>
+                                <% } %>
+                                    <% if (locals.rol=='Administrador' ) { %>
+                                        <a href="/admin" class="btn btn-dark fw-bold " role="button"><i
+                                                class="bi bi-bar-chart-line"></i></a>
+                                        <% } %>
+                                            <% } %>
+
                 </form>
             </div>
         </div>
@@ -62,65 +75,63 @@
                         <div class="card card-registration my-4">
                             <div class="row g-0">
                                 <div class="col-xl-6 d-none d-xl-block">
-                                    <img src="/assets/images/espaldastatuadas.jpeg"
-                                        class="h-100 w-100 object-fit-cover " alt="Sample photo" class="img-fluid"
+                                    <img src="/assets/images/blackoubooking.jpeg" class="h-100 w-100 object-fit-cover "
+                                        alt="Sample photo" class="img-fluid"
                                         style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="card-body p-md-5 text-black">
-                                        <h2 class="mb-5">Registro de clientes</h2>
+                                        <h2 class="mb-5">Registro de citas</h2>
 
 
-                                        <form action="/newbooking" method="POST">
+                                        <form action="/newbooking" method="POST" enctype="multipart/form-data">
 
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <label for="fechaCita" class="form-label">Fecha de la cita:</label>
+                                                    <input type="datetime-local" name="fechaCita" class="form-control"
+                                                        id="fechaCita" min="2023-01-01"
+                                                        placeholder="Ingrese fecha de la cita">
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label for="idTatuador" class="form-label">Tatuador:</label>
+                                                    <select name="idTatuador" id="idTatuador" class="form-control">
+                                                        <option value="" disabled selected>Seleccionar</option>
+                                                        <% tattooartists.forEach(function(tattooartist){%>
+                                                            <option value="<%= tattooartist._id%>">
+                                                                <%= tattooartist.alias%>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                            <label for="fechaCita" class="form-label">Fecha de la cita:</label>
-                                            <input type="datetime-local" name="fechaCita" class="form-control" id="fechaCita"
-                                                min="2023-01-01" placeholder="Ingrese fecha de la cita">
-
-                                            <label for="idTatuador" class="form-label">Tatuador:</label>
-                                            <select name="idTatuador" id="idTatuador">
-                                                <option value="" disabled selected>Seleccionar</option>
-                                                <% tattooartists.forEach(function(tattooartist){%>
-                                                    <option value="<%= tattooartist._id%>">
-                                                        <%= tattooartist.alias%>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
-
-                                            <label for="idCliente" class="form-label">Correo electrónico:</label>
-                                            <input type="text" name="idCliente" class="form-control" id="idCliente"
-                                                placeholder="Ingresa tu correo electrónico" value="<%=locals.client%>" readonly> <br>
-
-                                            <label for="idPiercing" class="form-label">Piercing:</label>
-                                            <select name="idPiercing" id="idPiercing">
-                                                <option value="">No Aplica</option>
-                                                <% piercings.forEach(function(piercing){%>
-                                                    <option value="<%= piercing._id %>">
-                                                        <%= piercing.nombre %>
-                                                    </option>
-                                                    <% })%>
-                                            </select><br>
-
-                                            <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
-                                            <select name="idTatuaje" id="idTatuaje">
-                                                <option value="">No Aplica</option>
-                                                <% tattoos.forEach(function(tattoo){%>
-                                                    <option value="<%= tattoo._id %>">
-                                                        <%= tattoo.nombre %>
-                                                    </option>
-                                                    <% })%>
-                                            </select><br>
+                                            
+                                            <div class="col-6 mb-3 ">
+                                                <label for="idPiercing" class="form-label">Piercing (Opcional):</label>
+                                                <select name="idPiercing" id="idPiercing" class="form-control">
+                                                    <option value="">No Aplica</option>
+                                                    <% piercings.forEach(function(piercing){%>
+                                                        <option value="<%= piercing._id %>">
+                                                            <%= piercing.nombre %>
+                                                        </option>
+                                                        <% })%>
+                                                    </select><br>
+                                                </div>
+                                                
+                                                <label for="idCliente" class="form-label">Correo electrónico:</label>
+                                                <input type="text" name="idCliente" class="form-control" id="idCliente"
+                                                    placeholder="Ingresa tu correo electrónico" value="<%=locals.client%>"
+                                                    readonly> <br>
 
                                             <label for="fotoConsentimiento" class="form-label">Foto del
-                                                consentimiento:</label>
-                                            <input type="text" name="fotoConsentimiento" class="form-control"
+                                                consentimiento (Menor de edad):</label>
+                                            <input type="file" name="fotoConsentimiento" class="form-control mb-5"
                                                 id="fotoConsentimiento"
                                                 placeholder="Ingrese la foto del consentimiento">
 
                                             <div class="modal-footer">
-
-                                                <button type="submit" class="btn btn-primary">Agenda tu cita</button>
+                                                <button type="submit" class="btn btn-dark">Agenda tu cita</button>
                                             </div>
                                         </form>
                                     </div>

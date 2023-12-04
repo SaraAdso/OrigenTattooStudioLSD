@@ -35,7 +35,7 @@
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="correo">Correo</label>
                                                 <input type="email" id="correo" name="correo"
-                                                    class="form-control form-control-lg" required/>
+                                                    class="form-control form-control-lg" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Debe contener por lo menos un símbolo '@' y un '.'."  required/>
                                                 <div class="invalid-feedback">
                                                     Ingresa el correo electrónico con el que creaste tu cuenta.
                                                 </div>

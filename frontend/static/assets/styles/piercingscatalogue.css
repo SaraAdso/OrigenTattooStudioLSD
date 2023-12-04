@@ -3,7 +3,7 @@
   src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
 }
 
-h1 {
+.title {
   font-family: sketch;
   font-size: 80px;
 }
@@ -26,9 +26,9 @@ text-align: center;
 }
 
 
-.cardsizepiercings {
-  width: 18rem !important; 
-  height: 26rem !important;
+#cardsizepiercings {
+  width: 18rem; 
+  height: 26rem;
 }
 
 .modalfont {

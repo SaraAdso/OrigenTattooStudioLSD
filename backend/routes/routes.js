@@ -42,11 +42,9 @@ router.get('/adminbooking', controllerViews.adminUser, controllerViews.showAdmin
 // SHOW BOOKING
 router.get('/showbooking', controllerBooking.showBookingController);
 // CREATE BOOKING
-router.post('/newbooking', controllerBooking.createBookingController);
-
-router.post('/updatebooking', controllerBooking.updateBookingController);
+router.post('/newbooking', upload.single('fotoConsentimiento'), controllerBooking.createBookingController);
 // DELETE BOOKING
-router.delete('/deletebooking', controllerBooking.deleteBookingController);
+router.get('/deletebooking/:id', controllerBooking.deleteBookingController);
 
 // Clients
 // SHOW CLIENT

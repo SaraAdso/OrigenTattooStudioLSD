@@ -117,9 +117,16 @@
                                         </div>
                                     </div>
                                     <hr class="mt-0 mb-4">
-                                    <h6 class="nameclient">Citas</h6>
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <h6 class="nameclient">Citas</h6>
+                                        </div>
+                                        <div class="col-6 mt-2">
+                                            <a href="/makeabooking" class="btn btn-dark fw-bold ">Agendar cita</a>
+                                        </div>
+                                    </div>
                                     <% if(bookings.length==0){%>
-                                        <p>No tienes citas en este momento</p>
+                                        <p id="noDate">No tienes citas en este momento...</p>
                                         <%}%>
                                             <% bookings.forEach(function(booking){ %>
                                                 <hr class="mt-0 mb-4">
@@ -141,11 +148,8 @@
                                                                 <%}})%>
                                                             </div>
                                                             <div class="d-flex flex-column col-4 mb-3">
-                                                                <button class="btn btn-outline-dark mb-2 " type="button"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#modaleditbooking"
-                                                                    onclick="llenarCita('<%=booking._id%>', '<%=booking.fechaCita%>', '<%=booking.idTatuador%>', '<%=booking.idCliente%>', '<%=booking.idPiercing%>')">Editar</button>
-                                                                <button class="btn btn-outline-danger">Eliminar</button>
+                                                                <a href="deletebooking/<%=booking._id%>"
+                                                                    class="btn btn-outline-danger">Eliminar</a>
                                                             </div>
                                                 </div>
                                                 <%})%>
@@ -190,7 +194,7 @@
 
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="nomactclient">Nombre</label>
+                                    <label class="form-label fw-bold " for="nomactclient">Nombre</label>
                                     <input type="text" id="nomactclient" name="nombre"
                                         class="form-control form-control-lg" placeholder="Ingrese el nombre del tatuaje"
                                         required />
@@ -198,7 +202,7 @@
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="apellidoactclient">Apellido</label>
+                                    <label class="form-label fw-bold " for="apellidoactclient">Apellido</label>
                                     <input type="text" id="apellidoactclient" name="apellido"
                                         class="form-control form-control-lg" />
                                 </div>
@@ -206,7 +210,7 @@
                         </div>
 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="correoactclient">Correo</label>
+                            <label class="form-label fw-bold " for="correoactclient">Correo</label>
                             <input type="text" id="correoactclient" name="correo"
                                 class="form-control form-control-lg" />
                         </div>
@@ -214,14 +218,14 @@
                         <div class="row">
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="documentoactclient">Documento</label>
+                                    <label class="form-label fw-bold " for="documentoactclient">Documento</label>
                                     <input type="text" id="documentoactclient" name="documento"
                                         class="form-control form-control-lg" readonly />
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="celularactclient">Celular</label>
+                                    <label class="form-label fw-bold " for="celularactclient">Celular</label>
                                     <input type="text" id="celularactclient" name="celular"
                                         class="form-control form-control-lg" />
                                 </div>
@@ -230,23 +234,23 @@
 
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
-                                <label class="form-label" for="alergiasactclient">Alergias</label>
+                                <label class="form-label fw-bold " for="alergiasactclient">Alergias</label>
                                 <input type="text" id="alergiasactclient" name="alergias"
                                     class="form-control form-control-lg" />
                             </div>
                         </div>
 
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="fechaactclient">Fecha de Nacimiento</label>
+                            <label class="form-label fw-bold " for="fechaactclient">Fecha de Nacimiento</label>
                             <input type="date" id="fechaactclient" name="fechaNacimiento"
                                 class="form-control form-control-lg" readonly />
                         </div>
 
                         <input type="text" id=" imagenactclient" name="fotoDocumento"
-                            class="form-control form-control-lg" hidden />
+                            class="form-control form-control-lg " hidden />
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger"
+                            <button type="button" class="btn btn-outline-danger "
                                 data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-outline-dark ">Actualizar</button>
                     </form>
@@ -254,82 +258,6 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="modal fade" id="modaleditbooking" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Cita</h5>
-                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/updatebooking" method="post" class="m-3 ">
-                        <div class="row">
-                            <input type="text" id="idactbooking" name="id" class="form-control form-control-lg"
-                                hidden />
-
-
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <label class="form-label" for="fechaCita">Fecha cita</label>
-                                    <input type="datetime-loca" id="idfechaCita" name="fechaCita"
-                                        class="form-control form-control-lg" placeholder="Ingrese el nombre del tatuaje"
-                                        required />
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <label class="form-label" for="idTatuador">Tatuador</label>
-                                    <select name="idTatuador" id="actidTatuador" class="form-control form-control-lg">
-                                        <option value="">No aplica</option>
-                                        <% tattooartist.forEach(function(tattooartist){%>
-                                            <option value="<%=tattooartist._id%>">
-                                                <%= tattooartist.alias %>
-                                            </option>
-                                            <%})%>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="idCliente">Cliente</label>
-                            <input type="text" id="actidCliente" name="idCliente" class="form-control form-control-lg"
-                                readonly />
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="form-outline">
-                                    <label for="idPiercing" class="form-label">Piercing:</label>
-                                    <select name="idPiercing" id="actIdPiercing" class="form-control form-control-lg">
-                                        <option value="">No Aplica</option>
-                                        <% piercing.forEach(function(piercing){%>
-                                            <option value="<%= piercing._id %>">
-                                                <%= piercing.nombre %>
-                                            </option>
-                                            <% });%>
-                                    </select><br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <input type="text" id="fotoConsentimiento" name="imagen" class="form-control form-control-lg"
-                            hidden />
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger"
-                                data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-outline-dark ">Actualizar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </body>
 <script src="/assets/js/profileclient.js"> </script>
 

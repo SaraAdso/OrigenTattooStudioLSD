@@ -9,12 +9,3 @@ function llenarClients(id, nombre, apellido, correo, documento, celular, alergia
     fechaactclient.value = fechaNacimiento;
     imagenactclient.value = imagen;
 };
-
-function llenarCita(id, fechaCita, tatuador, cliente, piercing){
-    idactbooking.value = id;
-    idfechaCita.value = fechaCita.toISOString().slice(0,16);
-    actidTatuador.value = tatuador;
-    actidCliente.value = cliente;
-    actIdPiercing.value = piercing;
-
-}

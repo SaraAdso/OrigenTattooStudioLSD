@@ -3,7 +3,7 @@
     src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
 }
 
-h1{
+.title{
     font-family: sketch;
     font-size: 80px;
 }
@@ -29,3 +29,15 @@ h1{
   font-family: sketch;
   font-size: 50px;
 }
+
+.card-img-top {
+  width: 286px;
+  height: 356.333px;
+  object-fit: cover;
+}
+
+#cardtattoo{
+  width: 18rem; 
+  height: 30rem;
+}
+

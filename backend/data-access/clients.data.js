@@ -23,7 +23,7 @@ exports.insertOne = async (info) =>{
 };
 
 exports.updateOne = async (filter, dataUpdated) =>{
-  return await clientsModel.findOneAndReplace(filter, dataUpdated);
+  return await clientsModel.findOneAndUpdate(filter, dataUpdated);
 };
 
 exports.deleteOne = async (filter) =>{

@@ -52,7 +52,7 @@
                                     </td>
                                     <td>
                                         <% piercings.forEach(function(piercing) { %>
-                                            <% if (booking.idPiercing.toString()===piercing._id.toString()) { %>
+                                            <% if (booking.idPiercing===piercing._id.toString()) { %>
                                                 <%= piercing.nombre %>
                                                     <% } %>
                                                         <% }); %>
@@ -68,12 +68,6 @@
                                         <%=booking.fotoConsentimiento%>
                                     </td>
                                     <td>
-
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modalactbooking"
-                                            onclick="llenarBooking('<%=booking._id%>', '<%=booking.fechaCita%>', '<%=booking.idTatuador%>', '<%=booking.idCliente%>', '<%=booking.idPiercing%>', '<%=booking.idTatuaje%>', '<%=booking.estado%>', '<%=booking.fotoConsentimiento%>')">
-                                            Editar
-                                        </button>
                                         <a href="deletebooking/<%= booking._id %>"
                                             class="btn btn-danger btn-sm">Eliminar</a>
                         </div>
@@ -84,97 +78,6 @@
                 </table>
             </div>
         </div>
-
-        <div class="modal fade" id="modalactbooking" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar tatuaje</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/updatebooking" method="post" class="m-3 ">
-                            <div class="row">
-                                <input type="text" id="idactbooking" name="id" class="form-control form-control-lg"
-                                    hidden />
-
-
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="fechaCita">Nombre</label>
-                                        <input type="date" id="actfechaCita" name="fechaCita"
-                                            class="form-control form-control-lg"
-                                            placeholder="Ingrese el nombre del tatuaje" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="idTatuador">Autor</label>
-                                        <input type="text" id="actidTatuador" name="idTatuador"
-                                            class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="idCliente">Cliente</label>
-                                <input type="text" id="actidCliente" name="idCliente"
-                                    class="form-control form-control-lg" />
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label for="idPiercing" class="form-label">Id del Piercing:</label>
-                                        <select name="idPiercing" id="actIdPiercing">
-                                            <option value="">No Aplica</option>
-                                            <% piercings.forEach(function(piercing){%>
-                                                <option value="<%= piercing._id %>">
-                                                    <%= piercing.nombre %>
-                                                </option>
-                                                <% });%>
-                                        </select><br>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label for="idTatuaje" class="form-label">Id del Tatuaje:</label>
-                                        <select name="idTatuaje" id="actIdTatuaje">
-                                            <option value="">No Aplica</option>
-                                            <% tattoos.forEach(function(tattoo){%>
-                                                <option value="<%= tattoo._id %>">
-                                                    <%= tattoo.nombre %>
-                                                </option>
-                                                <% });%>
-                                        </select>
-                                        <br>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="estado">Técnica</label>
-                                <input type="text" id="actestado" name="estado" class="form-control form-control-lg" />
-                            </div>
-
-                            <input type="text" id="fotoConsentimiento" name="imagen"
-                                class="form-control form-control-lg" hidden />
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger"
-                                    data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-outline-dark ">Actualizar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
         <script src="/assets/js/adminbooking.js">
         </script>
 

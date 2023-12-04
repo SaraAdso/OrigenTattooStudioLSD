@@ -1,4 +1,5 @@
 const bookingData = require('../data-access/booking.data');
+const moment = require('moment-timezone');
 
 exports.showBooking = async () => {
   const booking = await bookingData.findAll();
@@ -14,8 +15,19 @@ exports.showBooking = async () => {
 exports.createDate = async (dateInfo) => {
   const {fechaCita} = dateInfo;
 
-  const dateCreated = await bookingData.findOneResult({fechaCita: fechaCita});
-  if (dateCreated) {
+  const fechaCitaFormatUTC = moment.utc(fechaCita).toISOString();
+  dateInfo.fechaCita = fechaCitaFormatUTC;
+
+  const fechaCitaLocal = moment(fechaCitaFormatUTC).tz('America/Bogota');
+
+  const twoHoursLater = moment(fechaCitaLocal).add(2, 'hours').toDate();
+  const overlappingDates = await bookingData.findOneResult({
+    fechaCita: {
+      $gte: fechaCitaLocal,
+      $lt: twoHoursLater,
+    },
+  });
+  if (overlappingDates) {
     return {error: 'Ya existe una cita para esa fecha y hora'};
   }
   const createDate = await bookingData.insertOne(dateInfo);
@@ -23,24 +35,6 @@ exports.createDate = async (dateInfo) => {
     return {error: 'No se creó la cita'};
   } else {
     return {success: 'Se agendó la cita exitosamente'};
-  }
-};
-
-exports.updateDate = async (dateUpdate) => {
-  const {id, fechaCita, estado, idTatuador} = dateUpdate;
-  const dateToUpdate = {
-    fechaCita: fechaCita,
-    estado: estado,
-    idTatuador: idTatuador,
-  };
-  const dateExists = await bookingData.findOneResult({fechaCita: fechaCita});
-  const dateUpdated = await bookingData.updateOne({_id: id}, dateToUpdate);
-  if (!dateUpdated) { // Verificar tambien si el tatuador a elegir está ocupado
-    return {error: 'No se actualizó'};
-  } else if (dateExists) {
-    return {error: `La fecha ${fechaCita} ya está ocupada`};
-  } else {
-    return {success: 'Se actualizo correctamente'};
   }
 };
 

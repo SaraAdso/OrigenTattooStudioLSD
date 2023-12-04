@@ -22,10 +22,6 @@ exports.insertOne = async (info) => {
   return await booking.save();
 };
 
-exports.updateOne = async (filter, dataUpdated) => {
-  return await bookingModel.findOneAndReplace(filter, dataUpdated);
-};
-
 exports.deleteOne = async (filter) =>{
   return await bookingModel.findOneAndDelete(filter);
 };

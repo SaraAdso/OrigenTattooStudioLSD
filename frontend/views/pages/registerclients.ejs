@@ -37,7 +37,7 @@
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" required />
+                            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" pattern="[A-Za-z]+ÁÉÍÓÚáéíóú" title="Debe introducir solo letras" required />
                             <div class="invalid-feedback">
                               Ingresa tu nombre de usuario.
                           </div>
@@ -46,7 +46,7 @@
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" class="form-control form-control-lg" required/>
+                            <input type="text" id="apellido" name="apellido" class="form-control form-control-lg" pattern="[A-Za-z]+ÁÉÍÓÚáéíóú" title="Debe introducir solo letras" required/>
                             <div class="invalid-feedback">
                               Ingresa tu apellido.
                           </div>
@@ -58,7 +58,7 @@
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="celular">Celular</label>
-                            <input type="text" id="celular" name="celular" class="form-control form-control-lg" required/>
+                            <input type="text" id="celular" name="celular" class="form-control form-control-lg" pattern="[0-9]{10,}" title="Debe introducir solo números y un mínimo de 10 dígitos" required/>
                             <div class="invalid-feedback">
                               Ingresa tu celular.
                           </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="documento">Documento</label>
-                            <input type="text" id="documento" name="documento" class="form-control form-control-lg" required/>
+                            <input type="text" id="documento" name="documento" class="form-control form-control-lg" pattern="[0-9]{8,}" title="Debe introducir solo números, un mínimo de 8 dígitos y un máximo de 10" maxlength="10" required/>
                             <div class="invalid-feedback">
                               Ingresa tu documento.
                           </div>
@@ -94,7 +94,7 @@
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="alergias">Alergias</label>
-                        <input type="text" id="alergias" name="alergias" class="form-control form-control-lg"/>
+                        <input type="text" id="alergias" name="alergias" class="form-control form-control-lg" pattern="[A-Za-z]+ÁÉÍÓÚáéíóú" title="Debe introducir solo letras"/>
                       </div>
 
                       <div class="row">

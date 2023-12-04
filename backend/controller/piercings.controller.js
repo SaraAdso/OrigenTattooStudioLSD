@@ -38,7 +38,7 @@ exports.createPiercingController = async (req, res) =>{
 exports.updatePiercingController = async (req, res) =>{
   try {
     const result = await piercingsUseCases.updatePiercing(req.body);
-
+    console.log(req.body)
     if (result.error) {
       return res.json({
         error: result.error,

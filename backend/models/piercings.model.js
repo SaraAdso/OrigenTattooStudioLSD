@@ -4,9 +4,6 @@ const SchemaPiercing = new mongoose.Schema({
     type: String,
     required: [true, 'Se require el nombre del piercing'],
   },
-  autor: {
-    type: String,
-  },
   zona: {
     type: String,
     required: [true, 'Se requiere establecer la zona donde se ubica la perforación'],

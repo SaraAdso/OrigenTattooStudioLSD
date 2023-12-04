@@ -7,7 +7,7 @@ const {showClient} = require('../usecases/clients.usecase');
 const booking = require('../models/booking.model');
 
 exports.adminUser = async (req, res, next) => {
-  if (req.cookies.rol === 'admin') {
+  if (req.cookies.rol === 'Administrador') {
     next();
   } else {
     res.send('No tienes permisos para acceder a esta página');
@@ -59,8 +59,10 @@ exports.showFormLogin = async (req, res) => {
 
 exports.showTattoosCatalogue = async (req, res) => {
   const tattoos = await showTattooController();
+  const tattooartist = await showTattooArtistController();
   res.render('tattooscatalogue', {
     tattoos: tattoos.success,
+    tattooartists: tattooartist.success,
     usuariologueado: req.cookies.usuariologueado,
     rol: req.cookies.rol,
   });
