@@ -53,7 +53,7 @@ exports.updatePiercingController = async (req, res) =>{
 
 exports.deletePiercingController = async (req, res) => {
   try {
-    const result = await piercingsUseCases.deletePiercing(req.body);
+    const result = await piercingsUseCases.deletePiercing(req.params.id);
 
     if (result.error) {
       return res.json({

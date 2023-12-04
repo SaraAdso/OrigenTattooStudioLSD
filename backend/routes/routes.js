@@ -66,7 +66,7 @@ router.post('/newpiercing', upload.single('imagen'), controllerPiercings.createP
 // UPDATE PIERCING
 router.post('/updatepiercing', controllerPiercings.updatePiercingController);
 // DELETE PIERCING
-router.delete('/deletepiercing', controllerPiercings.deletePiercingController);
+router.get('/deletepiercing/:id', controllerPiercings.deletePiercingController);
 
 // Tattoos
 // SHOW TATTOOS
