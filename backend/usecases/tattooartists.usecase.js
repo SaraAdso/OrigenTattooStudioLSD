@@ -48,6 +48,7 @@ exports.updateTattooArtist = async (infoUpdate) => {
 
 exports.deleteTattooArtist = async (id) =>{
   const tattooArtistDeleted = await tattooartistsData.deleteOne({_id: id});
+  const userDeleted = await userData.deleteOne({correo: tattooArtistDeleted.correo});
   if (tattooArtistDeleted) {
     return {tattooArtistDeleted};
   } else {
