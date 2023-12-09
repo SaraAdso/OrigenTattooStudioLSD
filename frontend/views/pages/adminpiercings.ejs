@@ -55,7 +55,7 @@
                                             onclick="llenarPiercings(`<%=piercing._id%>`, `<%=piercing.nombre%>`, `<%=piercing.zona%>`, `<%=piercing.imagen%>`)">
                                             Editar
                                         </button>
-                                        <a href="deletepiercing/<%= piercing._id %>"
+                                        <a href="deletepiercing/<%=piercing._id %>"
                                             class="btn btn-danger btn-sm">Eliminar</a>
                         </div>
                         </td>
@@ -82,7 +82,7 @@
                                     <div class="form-outline">
                                         <label class="form-label fw-bold " for="nombre">Nombre</label>
                                         <input type="text" id="nombrepiercing" name="nombre"
-                                            class="form-control form-control-lg" required />
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                             <div class="invalid-feedback">
                                                 Ingresa el nombre, por favor.
                                             </div>
@@ -92,7 +92,7 @@
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="zonapiercing">Zona</label>
                                         <input type="text" id="zonapiercing" name="zona"
-                                            class="form-control form-control-lg" required/>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
                                             <div class="invalid-feedback">
                                                 Ingresa la zona, por favor.
                                             </div>
@@ -142,7 +142,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="nomactpiercing">Nombre</label>
                                         <input type="text" id="nomactpiercing" name="nombre"
-                                            class="form-control form-control-lg" required />
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                             <div class="invalid-feedback">
                                                 Ingresa el nombre, por favor.
                                             </div>  
@@ -152,7 +152,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="zonaactpiercing">Zona</label>
                                         <input type="text" id="zonaactpiercing" name="zona"
-                                            class="form-control form-control-lg" required/>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
                                             <div class="invalid-feedback">
                                                 Ingresa la zona, por favor.
                                             </div>

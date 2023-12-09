@@ -19,3 +19,8 @@ label {
 section {
     background-image: url('/assets/images/fondopintura.png');
 }
+
+.showpass {
+    background-color: transparent;
+    border: none;
+}

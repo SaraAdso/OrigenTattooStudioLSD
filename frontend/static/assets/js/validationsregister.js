@@ -13,3 +13,24 @@
     }, false);
   });
 })();
+
+const documentoInput = document.getElementById('documento');
+documentoInput.addEventListener('input', function() {
+  this.setCustomValidity('');
+    if (!this.value.match(/^\d{8,}$/)) {
+     this.setCustomValidity('El documento debe contener solo números y tener un mínimo de 8 dígitos.');
+    }
+  });
+
+
+  const celularInput = document.getElementById('celular');
+
+
+  celularInput.addEventListener('input', function() {
+    this.setCustomValidity('');
+    if (!this.value.match(/^\d{10,}$/)) {
+      this.setCustomValidity('El número de celular debe contener solo números y tener un mínimo de 10 dígitos.');
+    }
+  });
+
+

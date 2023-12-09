@@ -196,15 +196,15 @@
                                 <div class="form-outline">
                                     <label class="form-label fw-bold " for="nomactclient">Nombre</label>
                                     <input type="text" id="nomactclient" name="nombre"
-                                        class="form-control form-control-lg" placeholder="Ingrese el nombre del tatuaje"
-                                        required />
+                                        class="form-control form-control-lg" placeholder="Ingrese el nombre"
+                                        pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     <label class="form-label fw-bold " for="apellidoactclient">Apellido</label>
                                     <input type="text" id="apellidoactclient" name="apellido"
-                                        class="form-control form-control-lg" />
+                                        class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@
                         <div class="form-outline mb-4">
                             <label class="form-label fw-bold " for="correoactclient">Correo</label>
                             <input type="text" id="correoactclient" name="correo"
-                                class="form-control form-control-lg" />
+                                class="form-control form-control-lg" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Por favor, introduce una dirección de correo electrónico válida" required/>
                         </div>
 
                         <div class="row">
@@ -227,7 +227,7 @@
                                 <div class="form-outline">
                                     <label class="form-label fw-bold " for="celularactclient">Celular</label>
                                     <input type="text" id="celularactclient" name="celular"
-                                        class="form-control form-control-lg" />
+                                        class="form-control form-control-lg" pattern="[0-9]{10,}" title="Por favor, introduce solo números y un mínimo de 10 dígitos" required />
                                 </div>
                             </div>
                         </div>

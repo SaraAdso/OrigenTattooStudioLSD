@@ -96,7 +96,7 @@
                                         <label class="form-label fw-bold " for="nombreTattooArtist">Nombre</label>
                                         <input type="text" id="nombreTattooArtist" name="nombre"
                                             class="form-control form-control-lg" placeholder="Ingrese un nombre"
-                                            required />
+                                            pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                             <div class="invalid-feedback">
                                                 Ingrese el nombre del tatuador.
                                             </div>
@@ -107,7 +107,7 @@
                                         <label class="form-label fw-bold" for="apellidoTattooArtist">Apellido</label>
                                         <input type="text" id="apellidoTattooArtist" name="apellido"
                                             class="form-control form-control-lg" placeholder="Ingrese un apellido"
-                                            required />
+                                            pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                         <label class="form-label fw-bold" for="aliasTattooArtist">Alias</label>
                                         <input type="text" id="aliasTattooArtist" name="alias"
                                             class="form-control form-control-lg" placeholder="Ingrese su apodo"
-                                            required />
+                                            pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
                                     </div>
                                 </div>
 
@@ -127,7 +127,7 @@
                                         <label class="form-label fw-bold" for="celularTattooArtist">Celular</label>
                                         <input type="text" id="celularTattooArtist" name="celular"
                                             class="form-control form-control-lg" placeholder="Ingrese su celular"
-                                            required />
+                                            pattern="[0-9]{10,}" title="Por favor, introduce solo números y un mínimo de 10 dígitos" required/>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                                         <label class="form-label fw-bold " for="documentoTattooArtist">Documento</label>
                                         <input type="text" id="documentoTattooArtist" name="documento"
                                             class="form-control form-control-lg" placeholder="Ingrese su documento"
-                                            required />
+                                            pattern="[0-9]{8,}" title="Por favor, introduce solo números y un mínimo de 8 dígitos" required />
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4" hidden>
@@ -149,7 +149,7 @@
                                     <label class="form-label fw-bold " for="correoTattooArtist">Correo</label>
                                     <input type="text" id="correoTattooArtist" name="correo"
                                         class="form-control form-control-lg" placeholder="Ingrese su correo electrónico"
-                                        required />
+                                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Debe contener por lo menos un símbolo '@' y un '.'." required />
                                 </div>
                             </div>
 
@@ -199,7 +199,7 @@
                                         <label class="form-label fw-bold " for="nomactTattooArtist">Nombre</label>
                                         <input type="text" id="nomactTattooArtist" name="nombre"
                                             class="form-control form-control-lg"
-                                            placeholder="Ingrese el nombre del tatuador" required />
+                                            placeholder="Ingrese el nombre del tatuador" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                         <div class="invalid-feedback">
                                             Ingrese el nombre del tatuador.
                                         </div>
@@ -210,7 +210,7 @@
                                         <label class="form-label fw-bold "
                                             for="apellidoactTattooArtist">Apellido</label>
                                         <input type="text" id="apellidoactTattooArtist" name="apellido"
-                                            class="form-control form-control-lg" required />
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                         <div class="invalid-feedback">
                                             Ingresa el apellido del tatuador.
                                         </div>
@@ -224,7 +224,7 @@
                                         <div class="form-outline mb-4">
                                             <label class="form-label fw-bold" for="aliasactTattooArtist">Alias</label>
                                             <input type="text" id="aliasactTattooArtist" name="alias"
-                                                class="form-control form-control-lg" required />
+                                                class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
                                             <div class="invalid-feedback">
                                                 Ingresa el apodo que será mostrado al usuario.
                                             </div>
@@ -236,7 +236,7 @@
                                             <label class="form-label fw-bold"
                                                 for="celularactTattooArtist">Celular</label>
                                             <input type="text" id="celularactTattooArtist" name="celular"
-                                                class="form-control form-control-lg" required />
+                                                class="form-control form-control-lg" pattern="[0-9]{10,}" title="Por favor, introduce solo números y un mínimo de 10 dígitos" required />
                                             <div class="invalid-feedback">
                                                 Ingresa el celular del tatuador.
                                             </div>
@@ -250,7 +250,7 @@
                                             <label class="form-label fw-bold "
                                                 for="documentoactTattooArtist">Documento</label>
                                             <input type="text" id="documentoactTattooArtist" name="documento"
-                                                class="form-control form-control-lg" required />
+                                                class="form-control form-control-lg" pattern="[0-9]{8,}" title="Por favor, introduce solo números y un mínimo de 8 dígitos" required  />
                                             <div class="invalid-feedback">
                                                 Ingresa el documento de identidad del tatuador.
                                             </div>
@@ -264,7 +264,7 @@
                                     <div class="form-outline">
                                         <label class="form-label fw-bold " for="correoactTattooArtist">Correo</label>
                                         <input type="text" id="correoactTattooArtist" name="correo"
-                                            class="form-control form-control-lg" required />
+                                            class="form-control form-control-lg" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Debe contener por lo menos un símbolo '@' y un '.'." required />
                                         <div class="invalid-feedback">
                                             Ingresa el correo electrónico del tatuador.
                                         </div>
@@ -296,7 +296,7 @@
         </div>
         </div>
 
-        <script src="/assets/js/validationstattooartist.js">//corregir</script>
+        <script src="/assets/js/validationstattooartist.js"></script>
         <script src="/assets/js/admintattooartists.js">
          
         </script>
