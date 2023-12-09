@@ -66,7 +66,11 @@ exports.deleteClientController = async (req, res) => {
         error: result.error,
       });
     } else if (result.success) {
-      return res.redirect('/adminclients');
+      if (req.cookies.rol == 'Administrador') {
+        return res.redirect('/adminclients');
+      } else {
+        return res.redirect('/')
+      }
     }
   } catch (error) {
     console.log(error);

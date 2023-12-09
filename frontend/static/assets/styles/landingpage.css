@@ -98,4 +98,14 @@ h2.font {
     font-size: 50px;
 }
 
+.tattoopicture {
+    width: 286px;
+    height: 356.333px;
+    object-fit: cover;
+}
 
+.piercingpicture {
+    width: 286px;
+    height: 286px;
+    object-fit: cover;
+}

@@ -58,6 +58,7 @@ exports.updateClient = async (infoUpdate) => {
 
 exports.deleteClient = async (id) => {
   const clientDeleted = await clientsData.deleteOne({_id: id});
+  const userDeleted = await usersData.deleteOne({correo: clientDeleted.correo})
   if (clientDeleted) {
     return {success: 'Se eliminó'};
   } else {
