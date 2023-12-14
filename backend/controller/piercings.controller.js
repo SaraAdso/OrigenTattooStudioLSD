@@ -5,16 +5,18 @@ exports.showPiercingController = async (req, res) =>{
     const result = await piercingsUseCases.showPiercings();
 
     if (result.error) {
-      return {
+      return res.render('error', {
         error: result.error,
-      };
+      });
     } else if (result.success) {
       return {
         success: result.success,
       };
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 exports.createPiercingController = async (req, res) =>{
@@ -24,30 +26,34 @@ exports.createPiercingController = async (req, res) =>{
     const result = await piercingsUseCases.createPiercing(req.body);
 
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/adminpiercings');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
 exports.updatePiercingController = async (req, res) =>{
   try {
     const result = await piercingsUseCases.updatePiercing(req.body);
-    console.log(req.body)
+    console.log(req.body);
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/adminpiercings');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -56,7 +62,7 @@ exports.deletePiercingController = async (req, res) => {
     const result = await piercingsUseCases.deletePiercing(req.params.id);
 
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
@@ -65,6 +71,8 @@ exports.deletePiercingController = async (req, res) => {
       });
     }
   } catch (error) {
-
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };

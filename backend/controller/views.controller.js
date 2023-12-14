@@ -1,16 +1,18 @@
-const {showClientController} = require('./clients.controller');
-const {showPiercingController} = require('./piercings.controller');
-const {showTattooController} = require('./tattoos.controller');
-const {showBookingController} = require('./booking.controller');
-const {showTattooArtistController} = require('./tattooartists.controller');
-const {showClient} = require('../usecases/clients.usecase');
+const { showClientController } = require('./clients.controller');
+const { showPiercingController } = require('./piercings.controller');
+const { showTattooController } = require('./tattoos.controller');
+const { showBookingController } = require('./booking.controller');
+const { showTattooArtistController } = require('./tattooartists.controller');
+const { showClient } = require('../usecases/clients.usecase');
 const booking = require('../models/booking.model');
 
 exports.adminUser = async (req, res, next) => {
   if (req.cookies.rol === 'Administrador') {
     next();
   } else {
-    res.send('No tienes permisos para acceder a esta página');
+    return res.render('error', {
+      error: 'No tienes permisos para acceder a esta página',
+    });
   }
 };
 
@@ -44,9 +46,11 @@ exports.showClientProfile = async (req, res) => {
   });
 }
 exports.showFormRegister = async (req, res) => {
-  res.render('registerclients',{
-    usuariologueado: req.cookies.usuariologueado,
-  });
+  if (!req.cookies.usuariologueado) {
+    res.render('registerclients');
+  } else {
+    res.redirect('/');
+  }
 };
 
 exports.showFormLogin = async (req, res) => {
@@ -93,14 +97,6 @@ exports.showFormBooking = async (req, res) => {
       usuariologueado: req.cookies.usuariologueado,
     });
   }
-};
-
-exports.showErrorBooking = async (req, res) => {
-  res.render('error');
-};
-
-exports.showSuccessfullBooking = async (req, res) => {
-  res.render('successfull');
 };
 
 // ADMIN

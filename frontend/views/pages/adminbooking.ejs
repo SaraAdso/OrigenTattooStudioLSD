@@ -38,7 +38,7 @@
                             <% bookings.forEach(function(booking){%>
                                 <tr>
                                     <td>
-                                        <%=booking.fechaCita%>
+                                        <%=booking.fechaCita.toISOString().slice(0,16)%>
                                     </td>
                                     <td>
                                         <% tattooartists.forEach(function(tattooartist) { %>
@@ -48,7 +48,7 @@
                                                         <% }); %>
                                     </td>
                                     <td>
-
+                                        <%=booking.idCliente%>
                                     </td>
                                     <td>
                                         <% piercings.forEach(function(piercing) { %>

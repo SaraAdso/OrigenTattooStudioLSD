@@ -5,16 +5,18 @@ exports.showTattooController = async (req, res) =>{
     const result = await tattooUseCases.showTattoos();
 
     if (result.error) {
-      return {
+      return res.render('error', {
         error: result.error,
-      };
+      });
     } else if (result.success) {
       return {
         success: result.success,
       };
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -25,14 +27,16 @@ exports.createTattooController = async (req, res) => {
     const result = await tattooUseCases.createTattoo(req.body);
 
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/admintattoos');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -41,14 +45,16 @@ exports.updateTattooController = async (req, res) =>{
     const result = await tattooUseCases.updateTattoo(req.body);
     console.log(req.body);
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/admintattoos');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -56,14 +62,16 @@ exports.deleteTattooController = async (req, res) =>{
   try {
     const result = await tattooUseCases.deleteTattoo(req.params.id);
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/admintattoos');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 

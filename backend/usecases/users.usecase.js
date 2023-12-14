@@ -29,7 +29,7 @@ exports.loginUser = async (clientInfo) => {
   const {correo, contrasena} = clientInfo;
   const userInfo = await usersData.findOneResult({correo: correo});
   if (!userInfo) {
-    return {error: 'No existe el usuario'};
+    return {error: 'El usuario ingresado no existe'};
   }
   const isPasswordCorrect = await bcrypt.compare(contrasena, userInfo.contrasena);
 
@@ -40,7 +40,7 @@ exports.loginUser = async (clientInfo) => {
       return {path: '/admin', rol: 'Administrador', email: userInfo.correo};
     }
   } else {
-    return {error: 'USUARIO Y/O CONTRASEÑA INCORRECTA'};
+    return {error: 'Usuario y/o contraseña incorrecta'};
   }
 };
 

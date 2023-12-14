@@ -5,16 +5,18 @@ exports.showTattooArtistController = async (req, res) => {
     const result = await tattooArtistUseCases.showTattooArtists();
 
     if (result.error) {
-      return {
+      return res.render('error', {
         error: result.error,
-      };
+      });
     } else if (result.success) {
       return {
         success: result.success,
       };
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -25,14 +27,16 @@ exports.createtattooArtistController = async (req, res) => {
     const result = await tattooArtistUseCases.createTattooArtists(req.body);
 
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/admintattooartists');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -40,14 +44,16 @@ exports.updatetattooArtistController = async (req, res) => {
   try {
     const result = await tattooArtistUseCases.updateTattooArtist(req.body);
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result.success) {
       return res.redirect('/admintattooartists');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };
 
@@ -56,7 +62,7 @@ exports.deletetattooArtistController = async (req, res) => {
     const result = await tattooArtistUseCases.deleteTattooArtist(req.params.id);
     console.log(result);
     if (result.error) {
-      return res.json({
+      return res.render('error', {
         error: result.error,
       });
     } else if (result) {
@@ -69,6 +75,8 @@ exports.deletetattooArtistController = async (req, res) => {
       return res.redirect('/admintattooartists');
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: result.error,
+    });
   }
 };

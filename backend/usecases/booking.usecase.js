@@ -4,7 +4,7 @@ const moment = require('moment-timezone');
 exports.showBooking = async () => {
   const booking = await bookingData.findAll();
   if (!booking) {
-    return {error: 'No se encontró ningún cliente'};
+    return {error: 'No se encontró ninguna cita'};
   } else {
     return {success: booking};
   }
@@ -20,7 +20,7 @@ exports.createDate = async (dateInfo) => {
 
   const fechaCitaLocal = moment(fechaCitaFormatUTC).tz('America/Bogota');
 
-  const twoHoursLater = moment(fechaCitaLocal).add(2, 'hours').toDate();
+  const twoHoursLater = moment(fechaCitaLocal).add(3, 'hours').toDate();
   const overlappingDates = await bookingData.findOneResult({
     fechaCita: {
       $gte: fechaCitaLocal,
@@ -32,7 +32,7 @@ exports.createDate = async (dateInfo) => {
   }
   const createDate = await bookingData.insertOne(dateInfo);
   if (!createDate) {
-    return {error: 'No se creó la cita'};
+    return {error: 'No se pudo crear la cita exitosamente'};
   } else {
     return {success: 'Se agendó la cita exitosamente'};
   }

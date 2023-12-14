@@ -19,10 +19,12 @@ const SchemaClient = new mongoose.Schema({
     required: [true, 'Se require un número de documento'],
     minLength: [8, 'El documento debe tener 8 dígitos como mínimo'],
     maxLength: [10, 'El documento debe tener menos de 10 dígitos para ser válido'],
+    unique: true
   },
   correo: {
     type: String,
-    required: [true, 'Se require ingresar un correo electrónic'],
+    required: [true, 'Se require ingresar un correo electrónico'],
+    unique: true,
   },
   fechaNacimiento: {
     type: String,

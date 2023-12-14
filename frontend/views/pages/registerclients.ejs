@@ -12,16 +12,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/styles/navbar.css">
   <link rel="stylesheet" href="/assets/styles/registerclients.css">
-  </head>
+</head>
 
 <body>
   <%- include ('../partials/navbar.ejs') %>
-    <section class="h-100" >
+    <section class="h-100">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col">
@@ -34,25 +34,34 @@
                 </div>
                 <div class="col-xl-6">
                   <div class="card-body p-md-5 text-black">
-                    <h2 class="mb-5">Registro de clientes</h2>
-                    <form onsubmit="validatePassword()" action="/newclient" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+                    <h2 class="mb-3">Registro de clientes</h2>
+                    <% if(locals.error) { %>
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <%= locals.error %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  <%} %>
+                    <form onsubmit="validatePassword()" action="/newclient" method="post" class="needs-validation mt-3"
+                      enctype="multipart/form-data" novalidate id="formregister">
                       <div class="row">
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras" required />
+                            <input type="text" id="nombre" name="nombre" class="form-control form-control-lg"
+                              pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras" required />
                             <div class="invalid-feedback">
                               Ingresa tu nombre de usuario.
-                          </div>
+                            </div>
                           </div>
                         </div>
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras" required/>
+                            <input type="text" id="apellido" name="apellido" class="form-control form-control-lg"
+                              pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras" required />
                             <div class="invalid-feedback">
                               Ingresa tu apellido.
-                          </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -61,43 +70,51 @@
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="celular">Celular</label>
-                            <input type="text" id="celular" name="celular" class="form-control form-control-lg" pattern="[0-9]{10,}" title="Debe introducir solo números y un mínimo de 10 dígitos" required/>
+                            <input type="text" id="celular" name="celular" class="form-control form-control-lg"
+                              pattern="[0-9]{10,}" title="Debe introducir solo números y un mínimo de 10 dígitos"
+                              required />
                             <div class="invalid-feedback">
                               Ingresa tu celular.
-                          </div>
+                            </div>
                           </div>
                         </div>
                         <div class="col-md-6 mb-4">
                           <div class="form-outline">
                             <label class="form-label" for="documento">Documento</label>
-                            <input type="text" id="documento" name="documento" class="form-control form-control-lg" pattern="[0-9]{8,}" title="Debe introducir solo números, un mínimo de 8 dígitos y un máximo de 10" maxlength="10" required/>
+                            <input type="text" id="documento" name="documento" class="form-control form-control-lg"
+                              pattern="[0-9]{8,}"
+                              title="Debe introducir solo números, un mínimo de 8 dígitos y un máximo de 10"
+                              maxlength="10" required />
                             <div class="invalid-feedback">
                               Ingresa tu documento.
-                          </div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="correo">Correo</label>
-                        <input type="email" id="correo" name="correo" class="form-control form-control-lg" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Debe contener por lo menos un símbolo '@' y un '.'." required/>
+                        <input type="email" id="correo" name="correo" class="form-control form-control-lg"
+                          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                          title="Debe contener por lo menos un símbolo '@' y un '.'." required />
                         <div class="invalid-feedback">
                           Ingresa tu correo electrónico.
-                      </div>
+                        </div>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="fechaNacimiento ">Fecha Nacimiento</label>
                         <input type="date" id="fechaNacimiento" name="fechaNacimiento"
-                          class="form-control form-control-lg" required/>
-                          <div class="invalid-feedback">
-                            Ingresa tu fecha de nacimiento.
+                          class="form-control form-control-lg" required />
+                        <div class="invalid-feedback">
+                          Ingresa tu fecha de nacimiento.
                         </div>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="alergias">Alergias</label>
-                        <input type="text" id="alergias" name="alergias" class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras"/>
+                        <input type="text" id="alergias" name="alergias" class="form-control form-control-lg"
+                          pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Debe introducir solo letras" />
                       </div>
 
                       <div class="row">
@@ -106,12 +123,12 @@
                             <label class="form-label" for="contrasena">Contraseña</label>
                             <div class="d-flex ms-0 ">
                               <input type="password" id="contrasena" name="contrasena"
-                              class="form-control form-control-lg  "
-                              required/>
-                              <button type="button" class="showpass btn btn-outline-dark  ms-2" onclick="showPassword('contrasena')"><i class="bi bi-eye"></i></button>
+                                class="form-control form-control-lg  " required />
+                              <button type="button" class="showpass btn btn-outline-dark  ms-2"
+                                onclick="showPassword('contrasena')"><i class="bi bi-eye"></i></button>
                             </div>
-                              <div class="invalid-feedback">
-                                Crea una contraseña.
+                            <div class="invalid-feedback">
+                              Crea una contraseña.
                             </div>
                           </div>
                         </div>
@@ -119,32 +136,36 @@
                           <div class="form-outline mb-4">
                             <label class="form-label" for="contrasenaconfirmar">Repetir contraseña</label>
                             <div class="d-flex ">
-                              <input type="password" id="contrasenaconfirmar" name="contrasena2" 
-                              class="form-control form-control-lg withoutp" required/> 
-                              <button type="button" class="showpass btn btn-outline-dark ms-2" onclick="showPassword('contrasenaconfirmar')"><i class="bi bi-eye"></i></button>
+                              <input type="password" id="contrasenaconfirmar" name="contrasena2"
+                                class="form-control form-control-lg withoutp" required />
+                              <button type="button" class="showpass btn btn-outline-dark ms-2"
+                                onclick="showPassword('contrasenaconfirmar')"><i class="bi bi-eye"></i></button>
                             </div>
-                              <div class="invalid-feedback">
-                                Ingresa nuevamente la contraseña.
+                            <div class="invalid-feedback">
+                              Ingresa nuevamente la contraseña.
                             </div>
                           </div>
                         </div>
                         <div>
-
-                      </div>
+                          <div class="alert alert-warning" role="alert" id="alertPassword" style="display:none;">
+                            Las contraseñas no coinciden.
+                          </div>
+                        </div>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="fotoDocumento">Foto del Documento</label>
-                        <input type="file" id="fotoDocumento" name="fotoDocumento"
-                          class="form-control form-control-lg" required />
-                          <div class="invalid-feedback">
-                            Debes adjuntar una foto de tu documento de identidad
+                        <input type="file" id="fotoDocumento" name="fotoDocumento" class="form-control form-control-lg"
+                          required accept="image/*" />
+                        <div class="invalid-feedback">
+                          Debes adjuntar una foto de tu documento de identidad
                         </div>
                       </div>
 
                       <a href="/formlogin">¿ya tienes una cuenta?</a>
                       <div class="d-flex justify-content-end pt-3">
-                        <button type="submit" id="botom"class="btn btn-dark btn-lg ms-2">Registrarse</button>
+                        <button type="submit" id="botom" class="btn btn-dark btn-lg ms-2"
+                          onclick="validatePassword()">Registrarse</button>
                       </div>
                     </form>
                   </div>

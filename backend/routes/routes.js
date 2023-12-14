@@ -20,8 +20,6 @@ router.get('/formlogin', controllerViews.showFormLogin);
 router.get('/tattoocatalogue', controllerViews.showTattoosCatalogue);
 router.get('/piercingscatalogue', controllerViews.showPiercingsCatalogue);
 router.get('/makeabooking', controllerViews.showFormBooking);
-router.get('/bookingerror', controllerViews.showErrorBooking);
-router.get('/bookingsuccess', controllerViews.showSuccessfullBooking);
 router.get('/logout', controllerViews.logout);
 
 // ADMIN

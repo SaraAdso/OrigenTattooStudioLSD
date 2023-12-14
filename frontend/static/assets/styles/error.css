@@ -1,0 +1,16 @@
+img {
+    width: 500px;
+    height: 500px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    color: #8B8A6C;
+    font-family: Arial;
+    font-size: 20px;
+}

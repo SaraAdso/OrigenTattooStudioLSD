@@ -4,6 +4,7 @@
   "description": "Proyecto formativo del estudio de tatuajes en node.js. Serà una tienda virtual de servicios con exposiciòn de tatuajes y piercings por medio de un catàlogo.  El software busca automatizar el proceso de reservas de citas y otras características, a través de un aplicativo web, el cual le permitirá al usuario visualizar el catálogo de diseños y su disponibilidad, a su vez facilitará a los funcionarios de Origen Tattoo controlar las citas, galería de imágenes y su perfil de manera más eficiente, y de esa manera establecer un contacto más ágil con los usuarios.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "lint": "eslint .  --ext .js",

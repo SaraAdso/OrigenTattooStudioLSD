@@ -5,32 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Origen Tattoo</title>
-    <style>
-        body {
-            background-color: #333; 
-            color: white; 
-            font-size: 24px; 
-            text-align: center; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        h1 {
-            font-size: 36px; 
-            margin-bottom: 20px; 
-        }
-    </style>
-</head>
-
+    <link rel="stylesheet" href="/assets/styles/error.css">
 <body>
-    <div>
-        <h1>¡Oops! Intenta con otra fecha</h1>
-        <a href="/formbooking" class="btn btn-light">Regresar a agendar citas</a>
-     
-    </div>
+<div class="container ">
+<img src="/assets/images/Web_Photo_Editor.jpg" alt="" id="imagen">
+</div>
+<div class="container ">
+    <p><%= error %></p>
+</div>
 </body>
 
 </html>
