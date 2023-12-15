@@ -27,5 +27,5 @@ exports.updateOne = async (filter, dataUpdated) =>{
 };
 
 exports.deleteOne = async (filter) =>{
-  return await clientsModel.findOneAndDelete(filter);
+  return await clientsModel.findOneAndDelete({_id: filter});
 };

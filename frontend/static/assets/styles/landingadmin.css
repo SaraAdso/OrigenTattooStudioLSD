@@ -1,0 +1,17 @@
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@font-face {
+    font-family: 'Sketch';
+    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+}
+
+h1 {
+    font-size: 5rem !important;
+    font-family: sketch;
+}

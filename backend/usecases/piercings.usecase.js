@@ -41,7 +41,7 @@ exports.updatePiercing = async (infoUpdate) => {
 exports.deletePiercing = async (id) => {
   const piercingDeleted = await piercingsData.deleteOne(id);
   if (piercingDeleted) {
-    return {success: 'Se eliminó'};
+    return {success: 'Se eliminó', piercing: piercingDeleted};
   } else {
     return {error: 'No se elimino'};
   }

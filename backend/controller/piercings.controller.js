@@ -1,4 +1,5 @@
 const piercingsUseCases = require('../usecases/piercings.usecase');
+const fs = require('fs');
 
 exports.showPiercingController = async (req, res) =>{
   try {
@@ -15,7 +16,7 @@ exports.showPiercingController = async (req, res) =>{
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -34,7 +35,7 @@ exports.createPiercingController = async (req, res) =>{
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -52,7 +53,7 @@ exports.updatePiercingController = async (req, res) =>{
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -66,13 +67,17 @@ exports.deletePiercingController = async (req, res) => {
         error: result.error,
       });
     } else if (result.success) {
-      return res.json({
-        success: result.success,
+      fs.unlink(`./frontend/static${ result.piercing.imagen}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
       });
+      return res.redirect('/adminpiercings');
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };

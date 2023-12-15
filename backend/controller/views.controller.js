@@ -42,6 +42,7 @@ exports.showClientProfile = async (req, res) => {
     bookings: client.bookings,
     tattooartist: tattooartist.success,
     piercing: piercing.success,
+    rol: req.cookies.rol,
     usuariologueado: req.cookies.usuariologueado,
   });
 }
@@ -95,6 +96,7 @@ exports.showFormBooking = async (req, res) => {
       tattooartists: tattooartist.success,
       client: client,
       usuariologueado: req.cookies.usuariologueado,
+      rol: req.cookies.rol,
     });
   }
 };
@@ -161,7 +163,7 @@ exports.showError = async (req, res) => {
 
 exports.logout = async (req, res) => {
   try {
-    return res.clearCookie('usuariologueado').clearCookie('rol').redirect('/');
+    return res.clearCookie('usuariologueado').clearCookie('rol').clearCookie('id').redirect('/');
   } catch (error) {
     console.log(error);
   }

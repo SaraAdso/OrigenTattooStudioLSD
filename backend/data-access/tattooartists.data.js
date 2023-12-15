@@ -26,5 +26,5 @@ exports.updateOne = async (filter, dataUpdated) =>{
 };
 
 exports.deleteOne = async (filter) =>{
-  return await tattooArtistsModel.findOneAndDelete(filter);
+  return await tattooArtistsModel.findOneAndDelete({_id: filter});
 };

@@ -13,13 +13,3 @@
       }, false);
     });
   })();
-
-const celularInput = document.getElementById('celularactclient');
-
-
-  celularInput.addEventListener('input', function() {
-    this.setCustomValidity('');
-    if (!this.value.match(/^\d{10,}$/)) {
-      this.setCustomValidity('El número de celular debe contener solo números y tener un mínimo de 10 dígitos.');
-    }
-  });

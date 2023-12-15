@@ -42,6 +42,7 @@ exports.createClient = async (clientInfo) => {
 
 exports.updateClient = async (infoUpdate) => {
   const {nombre, apellido, celular, documento, correo, alergias, contrasena, fechaNacimiento} = infoUpdate;
+  const infoUser = await clientsData.findOneResult({documento: documento});
   const infoToUpdate = {
     nombre: nombre,
     apellido: apellido,
@@ -54,18 +55,20 @@ exports.updateClient = async (infoUpdate) => {
   };
   // const clientExists = await clientsData.findOneResult({docu})
   const clientUpdated = await clientsData.updateOne({documento: documento}, infoToUpdate);
+  const userUpdated = await usersData.updateOne({correo: infoUser.correo}, {correo: correo, contrasena: contrasena});
   if (clientUpdated) {
-    return {success: 'Se actualizó'};
+    return {success: 'Se actualizó', client: clientUpdated};
   } else {
     return {error: 'No se actualizó'};
   }
 };
 
 exports.deleteClient = async (id) => {
-  const clientDeleted = await clientsData.deleteOne({_id: id});
-  const userDeleted = await usersData.deleteOne({correo: clientDeleted.correo})
-  if (clientDeleted) {
-    return {success: 'Se eliminó'};
+  const clientDeleted = await clientsData.deleteOne(id);
+  console.log(clientDeleted);
+  const userDeleted = await usersData.deleteOne(clientDeleted.correo)
+  if (clientDeleted && userDeleted) {
+    return {success: 'Se eliminó', client: clientDeleted};
   } else {
     return {error: 'No se eliminó'};
   }

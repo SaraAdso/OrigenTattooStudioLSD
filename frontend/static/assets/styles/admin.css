@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Sketch';
+    src: url('/assets/fonts/sketch_gothic_school/SketchGothicSchool.ttf');
+}
+
+h1 {
+    font-size: 5rem !important;
+    font-family: sketch;
+}
+
+.modal-title{
+    font-family: sketch;
+    font-size: 2.5rem;
+    font-weight: 100;
+}
+.container{
+    display: flex;
+    justify-content: center;
+
+}
+
+th {
+letter-spacing: 1px;
+text-align: center;
+}
+td{
+    text-align: center;
+}
+
+body {
+    text-align: center;
+}
+
+select,
+input {
+    margin-bottom: 15px;
+    width: 100%; 
+}
+
+.imgpreview{
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}

@@ -11,7 +11,7 @@
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <link rel="stylesheet" href="/assets/styles/navbaradmin.css">
-        <link rel="stylesheet" href="/assets/styles/admintattoo.css">
+        <link rel="stylesheet" href="/assets/styles/admin.css">
 
 </head>
 
@@ -20,6 +20,12 @@
 
         <div class="mx-3 mt-3">
             <h1 class="text-center">Tatuajes</h1>
+            <div class="container">
+                <button type="button" class="createbutton btn btn-outline-dark  btn-sm fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#modalcreatetattoos">
+                    CREAR
+                </button>
+            </div>
             <div class="table-responsive">
                 <table id="tabletattoos" class="table table-striped" style="width:100%">
                     <thead>
@@ -36,10 +42,7 @@
                     </thead>
                     <tbody>
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" class="btn btn-light btn-sm fw-bold " data-bs-toggle="modal"
-                                data-bs-target="#modalcreatetattoos">
-                                Crear
-                            </button>
+
                             <% tattoos.forEach(function(tattoo){%>
                                 <tr>
                                     <td>
@@ -63,18 +66,18 @@
                                                 <%= tattooartist.alias %>
                                     </td>
                                     <td>
-                                        <%=tattoo.imagen%>
+                                        <img class="imgpreview" src="<%=tattoo.imagen%>" alt="">
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm mb-1" data-bs-toggle="modal"
-                                            data-bs-target="#modalacttattoos"
+                                        <button type="button" class="btn btn-outline-dark fw-bold btn-sm mb-1"
+                                            data-bs-toggle="modal" data-bs-target="#modalacttattoos"
                                             onclick="llenarTattoos('<%=tattoo._id%>', '<%=tattoo.nombre%>', '<%=tattoo.descripcion%>', '<%=tattoo.tamano%>', '<%=tattoo.color%>', '<%=tattoo.tecnica%>', '<%=tattooartist.alias%>', '<%=tattoo.imagen%>')">
                                             Editar
                                         </button>
                                         <% } %>
-                                        <% }); %>
-                                        <a href="deletetattoo/<%= tattoo._id %>"
-                                            class="btn btn-danger btn-sm">Eliminar</a>
+                                            <% }); %>
+                                                <a href="deletetattoo/<%= tattoo._id %>"
+                                                    class="btn btn-outline-danger fw-bold  btn-sm">Eliminar</a>
                         </div>
                         </td>
                         </tr>
@@ -89,27 +92,30 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Crear tatuaje</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Crear Tatuaje</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                         </button>
                     </div>
-                    <div class="modal-body">
-                       <form action="/newtattoo" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+                    <div class="modal-body m-3 ">
+                        <form action="/newtattoo" method="post" class="needs-validation " enctype="multipart/form-data"
+                            novalidate>
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold " for="nombre">Nombre</label>
                                         <input type="text" id="nombretattoo" name="nombre"
-                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                            <div class="invalid-feedback">
-                                                Ingresa el nombre, por favor.
-                                            </div>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                            title="Por favor, introduce solo letras" required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el nombre, por favor.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="autortattoo">Autor</label>
-                                        <select class="form-control form-control-lg" name="autor" id="autortattoo" required>
+                                        <select class="form-control form-control-lg" name="autor" id="autortattoo"
+                                            required>
                                             <option value="" disabled selected>Seleccionar</option>
                                             <% tattooartists.forEach(function(tattooartist){%>
                                                 <option value="<%= tattooartist._id %>">
@@ -127,10 +133,11 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="descripciontattoo">Descripción</label>
                                 <input type="text" id="descripciontattoo" name="descripcion"
-                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                    <div class="invalid-feedback">
-                                        Ingresa la descripcion, por favor.
-                                    </div>
+                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                    title="Por favor, introduce solo letras" required />
+                                <div class="invalid-feedback">
+                                    Ingresa la descripcion, por favor.
+                                </div>
                             </div>
 
                             <div class="row">
@@ -138,20 +145,21 @@
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="tamanotattoo">Tamaño</label>
                                         <input type="text" id="tamanotattoo" name="tamano"
-                                            class="form-control form-control-lg" required/>
-                                            <div class="invalid-feedback">
-                                                Ingresa el tamaño, por favor.
-                                            </div>
+                                            class="form-control form-control-lg" required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el tamaño, por favor.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <label class="form-label fw-bold" for="colortattoo">Color</label>
                                         <input type="text" id="colortattoo" name="color"
-                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ0-9\s]+" title="Por favor, introduce solo letras y números" required/>
-                                            <div class="invalid-feedback">
-                                                Ingresa el color, por favor.
-                                            </div>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ0-9\s]+"
+                                            title="Por favor, introduce solo letras y números" required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el color, por favor.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -160,19 +168,20 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="tecnicatattoo">Técnica</label>
                                 <input type="text" id="tecnicatattoo" name="tecnica"
-                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                    <div class="invalid-feedback">
-                                        Ingresa la técnica, por favor.
-                                    </div>
+                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                    title="Por favor, introduce solo letras" required />
+                                <div class="invalid-feedback">
+                                    Ingresa la técnica, por favor.
+                                </div>
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label fw-bold" for="imagentattoo">Imagen</label>
-                                <input type="file" id="imagentattoo" name="imagen"
-                                    class="form-control form-control-lg" required accept="image/*"/>
-                                    <div class="invalid-feedback">
-                                        Ingresa la imagen, por favor.
-                                    </div>
+                                <input type="file" id="imagentattoo" name="imagen" class="form-control form-control-lg"
+                                    required accept="image/*" />
+                                <div class="invalid-feedback">
+                                    Ingresa la imagen, por favor.
+                                </div>
                             </div>
 
                             <div class="modal-footer">
@@ -191,12 +200,13 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar tatuaje</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Actualizar tatuaje</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body m-3 ">
                         <form action="/updatetattoo" method="post" class="needs-validation" novalidate>
                             <div class="row">
                                 <input type="text" id="idacttattoo" name="id" class="form-control form-control-lg"
@@ -205,64 +215,70 @@
 
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="nombre">Nombre</label>
+                                        <label class="form-label fw-bold " for="nombre">Nombre</label>
                                         <input type="text" id="nomacttattoo" name="nombre"
                                             class="form-control form-control-lg"
-                                            placeholder="Ingrese el nombre del tatuaje" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required />
-                                            <div class="invalid-feedback">
-                                                Ingresa el nombre, por favor.
-                                            </div>
+                                            placeholder="Ingrese el nombre del tatuaje"
+                                            pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras"
+                                            required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el nombre, por favor.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="autortattoo">Autor</label>
-                                        <input type="text" id="autoracttattoo"
-                                            class="form-control form-control-lg" readonly/>
+                                        <label class="form-label fw-bold" for="autortattoo">Autor</label>
+                                        <input type="text" id="autoracttattoo" class="form-control form-control-lg"
+                                            readonly />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="descripciontattoo">Descripción</label>
+                                <label class="form-label fw-bold" for="descripciontattoo">Descripción</label>
                                 <input type="text" id="desacttattoo" name="descripcion"
-                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                    <div class="invalid-feedback">
-                                        Ingresa la descripcion, por favor.
-                                    </div>
+                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                    title="Por favor, introduce solo letras" required />
+                                <div class="invalid-feedback">
+                                    Ingresa la descripcion, por favor.
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="tamanotattoo">Tamaño</label>
+                                        <label class="form-label fw-bold" for="tamanotattoo">Tamaño</label>
                                         <input type="text" id="tamacttattoo" name="tamano"
-                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ0-9\s]+" title="Por favor, introduce solo letras y números" required/>
-                                            <div class="invalid-feedback">
-                                                Ingresa el tamaño, por favor.
-                                            </div>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ0-9\s]+"
+                                            title="Por favor, introduce solo letras y números" required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el tamaño, por favor.
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <label class="form-label" for="colortattoo">Color</label>
+                                        <label class="form-label fw-bold" for="colortattoo">Color</label>
                                         <input type="text" id="coloracttattoo" name="color"
-                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                            <div class="invalid-feedback">
-                                                Ingresa el color, por favor.
-                                            </div>
+                                            class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                            title="Por favor, introduce solo letras" required />
+                                        <div class="invalid-feedback">
+                                            Ingresa el color, por favor.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="tecnicatattoo">Técnica</label>
+                                <label class="form-label fw-bold" for="tecnicatattoo">Técnica</label>
                                 <input type="text" id="tecnacttattoo" name="tecnica"
-                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+" title="Por favor, introduce solo letras" required/>
-                                    <div class="invalid-feedback">
-                                        Ingresa la tćnica, por favor.
-                                    </div>
+                                    class="form-control form-control-lg" pattern="[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+"
+                                    title="Por favor, introduce solo letras" required />
+                                <div class="invalid-feedback">
+                                    Ingresa la tćnica, por favor.
+                                </div>
                             </div>
 
                             <input type="text" id="imagenacttattoo" name="imagen" class="form-control form-control-lg"

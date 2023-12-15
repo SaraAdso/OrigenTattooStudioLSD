@@ -17,7 +17,7 @@ exports.showBookingController = async (req, res) => {
     };
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -31,17 +31,19 @@ exports.createBookingController = async (req, res) => {
         tattooartists: tattooartist.success,
         piercings: piercing.success,
         error: result.error,
+        client: req.cookies.usuariologueado,
+        usuariologueado: req.cookies.usuariologueado,
       });
     } else if (result.success) {
       return res.redirect('/clientprofile');
     }
   } catch (error) {
+    console.error(error);
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
-
 
 exports.updateBookingController = async (req, res) => {
   try {
@@ -58,7 +60,7 @@ exports.updateBookingController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   };
 };
@@ -81,7 +83,7 @@ exports.deleteBookingController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };

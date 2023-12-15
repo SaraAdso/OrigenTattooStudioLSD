@@ -23,5 +23,5 @@ exports.insertOne = async (info) => {
 };
 
 exports.deleteOne = async (filter) =>{
-  return await bookingModel.findOneAndDelete(filter);
+  return await bookingModel.findOneAndDelete({_id: filter});
 };

@@ -6,14 +6,13 @@ $(document).ready(function () {
     table.buttons().container().appendTo('#datatable_wrapper .col-md-6:eq(0)');
 });
 
-function llenarTattooArtists(id, nombre, apellido, alias, celular, documento, correo, contrasena) {
+function llenarTattooArtists(id, nombre, apellido, alias, celular, documento, correo) {
     idactTattooArtist.value = id;
     nomactTattooArtist.value = nombre;
     apellidoactTattooArtist.value = apellido,
-    aliasactTattooArtist.value = alias
+    aliasactTattooArtist.value = alias;
     celularactTattooArtist.value = celular;
     documentoactTattooArtist.value = documento;
     correoactTattooArtist.value = correo;
-    contrasenaactTattooArtist.value = contrasena;
     fotoactTattooArtist.value = imagen
 };

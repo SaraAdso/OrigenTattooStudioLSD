@@ -15,7 +15,7 @@ exports.showTattooArtistController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -35,7 +35,7 @@ exports.createtattooArtistController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -52,7 +52,7 @@ exports.updatetattooArtistController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -60,7 +60,6 @@ exports.updatetattooArtistController = async (req, res) => {
 exports.deletetattooArtistController = async (req, res) => {
   try {
     const result = await tattooArtistUseCases.deleteTattooArtist(req.params.id);
-    console.log(result);
     if (result.error) {
       return res.render('error', {
         error: result.error,
@@ -76,7 +75,7 @@ exports.deletetattooArtistController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };

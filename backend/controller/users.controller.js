@@ -14,7 +14,7 @@ exports.showUserController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -33,7 +33,7 @@ exports.createUserController = async (req, res) =>{
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -53,7 +53,7 @@ exports.updateUserController = async (req, res) =>{
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -72,7 +72,7 @@ exports.deleteUserController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -87,6 +87,8 @@ exports.loginUsersController = async (req, res) => {
       return res.cookie('rol', result.rol).cookie('usuariologueado', result.email).redirect(result.path);
     }
   } catch (error) {
-    console.log(error);
+    return res.render('error', {
+      error: error,
+    });
   }
 };

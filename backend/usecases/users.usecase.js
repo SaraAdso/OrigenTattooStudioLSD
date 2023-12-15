@@ -46,15 +46,14 @@ exports.loginUser = async (clientInfo) => {
 
 
 exports.updateUser = async (infoUpdate) => {
-  const {correo, contrasena, rol} = infoUpdate;
+  const {correo, contrasena} = infoUpdate;
   const infoToUpdate = {
     correo: correo,
     contrasena: contrasena,
-    rol: rol,
   };
   const userUpdated = await usersData.updateOne({correo: correo}, infoToUpdate);
   if (userUpdated) {
-    return {success: 'Si dió!!'};
+    return {success: 'Se actualizó', };
   } else {
     return {error: 'No se actualizó'};
   }

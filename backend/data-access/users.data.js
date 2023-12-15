@@ -26,5 +26,5 @@ exports.updateOne = async (filter, dataUpdated) =>{
 };
 
 exports.deleteOne = async (filter) =>{
-  return await usersModel.findOneAndDelete(filter);
+  return await usersModel.findOneAndDelete({correo: filter});
 };

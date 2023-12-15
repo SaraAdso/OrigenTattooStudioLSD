@@ -1,4 +1,5 @@
 const clientUseCases = require('../usecases/clients.usecase');
+const fs = require('fs');
 
 exports.showClientController = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ exports.showClientController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -34,7 +35,7 @@ exports.createClientController = async (req, res) => {
     }
   } catch (error) {
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -51,12 +52,13 @@ exports.updateClientController = async (req, res) => {
       if (req.cookies.rol == 'Administrador') {
         return res.redirect('/adminclients');
       } else if (req.cookies.rol == 'Cliente') {
-        return res.redirect('/clientprofile');
+        return res.clearCookie('usuariologueado').cookie('usuariologueado', req.body.correo).redirect('/clientprofile');
       }
     }
   } catch (error) {
+    console.log(error);
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };
@@ -71,15 +73,22 @@ exports.deleteClientController = async (req, res) => {
         error: result.error,
       });
     } else if (result.success) {
+      fs.unlink(`./frontend/static${ result.client.fotoDocumento}`, (err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
       if (req.cookies.rol == 'Administrador') {
         return res.redirect('/adminclients');
       } else {
-        return res.redirect('/');
+        return res.clearCookie('usuariologueado').clearCookie('rol').redirect('/');
       }
     }
   } catch (error) {
+    console.log(error)
     return res.render('error', {
-      error: result.error,
+      error: error,
     });
   }
 };

@@ -26,5 +26,5 @@ exports.updateOne = async (filter, dataUpdated) => {
 };
 
 exports.deleteOne = async (filter) => {
-  return await tattoosModel.findOneAndDelete(filter);
+  return await tattoosModel.findOneAndDelete({_id: filter});
 };

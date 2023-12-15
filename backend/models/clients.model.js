@@ -47,6 +47,7 @@ const SchemaClient = new mongoose.Schema({
   fotoDocumento: {
     type: String,
     required: [true, 'Se requiere adjuntar una foto del documento de identidad'],
+    default: 'https://images-ext-2.discordapp.net/external/TvbVQey0cfblYAhQdF4nXk7DvliJgZFKZZiWZstLlhI/%3Fw%3D996%26t%3Dst%3D1702607649~exp%3D1702608249~hmac%3D1b2a8bf071d5243f17df7b0be4ded69ed052f13565aeb489dabd47ec9b2201ae/https/img.freepik.com/vector-gratis/senal-roja-prohibida-icono-advertencia-o-simbolo-parada-peligro-seguridad-aislado-ilustracion-vectorial_56104-912.jpg?format=webp&width=550&height=440',
   }});
 
 const client = mongoose.model('Client', SchemaClient);

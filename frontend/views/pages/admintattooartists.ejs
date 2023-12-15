@@ -11,7 +11,7 @@
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <link rel="stylesheet" href="/assets/styles/navbaradmin.css">
-        <link rel="stylesheet" href="/assets/styles/admintattoo.css">
+        <link rel="stylesheet" href="/assets/styles/admin.css">
 </head>
 
 <body>
@@ -19,6 +19,12 @@
 
         <div class="mx-3 mt-3">
             <h1 class="text-center">Tatuadores</h1>
+            <div class="container">
+                <button type="button" class="createbutton btn btn-outline-dark  btn-sm fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#modalcreateTattooArtists">
+                    CREAR
+                </button>
+            </div>
             <div class="table-responsive">
                 <table id="tabletattooartists" class="table table-striped" style="width:100%">
                     <thead>
@@ -35,10 +41,6 @@
                     </thead>
                     <tbody>
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" class="btn btn-light btn-sm fw-bold " data-bs-toggle="modal"
-                                data-bs-target="#modalcreateTattooArtists">
-                                Crear
-                            </button>
                             <% tattooartists.forEach(function(tattooartist){ %>
                                 <tr>
                                     <td>
@@ -60,16 +62,16 @@
                                         <%= tattooartist.correo %>
                                     </td>
                                     <td>
-                                        <%= tattooartist.fotoTatuador%>
+                                        <img class="imgpreview" src="<%= tattooartist.fotoTatuador%>" alt="">
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-dark fw-bold btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modalactTattooArtists"
-                                            onclick="llenarTattooArtists('<%= tattooartist._id %>', '<%= tattooartist.nombre %>', '<%= tattooartist.apellido %>', '<%=tattooartist.alias%>', '<%= tattooartist.celular %>', '<%= tattooartist.documento %>', '<%= tattooartist.correo %>', '<%= tattooartist.contrasena %>', '<%= tattooartist.fotoTatuador%>')">
+                                            onclick="llenarTattooArtists('<%= tattooartist._id %>', '<%= tattooartist.nombre %>', '<%= tattooartist.apellido %>', '<%=tattooartist.alias%>', '<%= tattooartist.celular %>', '<%= tattooartist.documento %>', '<%= tattooartist.correo %>', '<%= tattooartist.fotoTatuador%>')">
                                             Editar
                                         </button>
                                         <a href="deletetattooartist/<%= tattooartist._id %>"
-                                            class="btn btn-danger btn-sm">Eliminar</a>
+                                            class="btn btn-outline-danger fw-bold  btn-sm">Eliminar</a>
                                     </td>
                                 </tr>
                                 <% }); %>

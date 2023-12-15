@@ -11,18 +11,24 @@
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <link rel="stylesheet" href="/assets/styles/navbaradmin.css">
-        <link rel="stylesheet" href="/assets/styles/admintattoo.css">
+        <link rel="stylesheet" href="/assets/styles/admin.css">
 
 </head>
 
 <body>
     <%- include ('../partials/navbaradmin.ejs') %>
         <div class="mx-3 mt-3">
+            <h1 class="text-center">Piercings</h1>
+            <div class="container">
+                <button type="button" class="createbutton btn btn-outline-dark  btn-sm fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#modalcreatepiercings">
+                    CREAR
+                </button>
+            </div>
             <div class="table-responsive">
                 <table id="tablepiercings" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                            <th scope="col" class="text-center">id</th>
                             <th scope="col" class="text-center">Nombre</th>
                             <th scope="col" class="text-center">Zona</th>
                             <th scope="col" class="text-center">Imagen</th>
@@ -31,15 +37,8 @@
                     </thead>
                     <tbody>
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modalcreatepiercings">
-                                Crear
-                            </button>
                             <% piercings.forEach(function(piercing){%>
                                 <tr>
-                                    <td>
-                                        <%=piercing._id%>
-                                    </td>
                                     <td>
                                         <%=piercing.nombre%>
                                     </td>
@@ -47,16 +46,16 @@
                                         <%=piercing.zona%>
                                     </td>
                                     <td>
-                                        <%=piercing.imagen%>
+                                        <img class="imgpreview" src="<%=piercing.imagen%>" alt="">
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-outline-dark fw-bold  btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#modalactpiercings"
                                             onclick="llenarPiercings(`<%=piercing._id%>`, `<%=piercing.nombre%>`, `<%=piercing.zona%>`, `<%=piercing.imagen%>`)">
                                             Editar
                                         </button>
                                         <a href="deletepiercing/<%=piercing._id %>"
-                                            class="btn btn-danger btn-sm">Eliminar</a>
+                                            class="btn btn-outline-danger fw-bold  btn-sm">Eliminar</a>
                         </div>
                         </td>
                         </tr>
