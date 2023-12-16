@@ -100,7 +100,7 @@
                                                                 cita:</label>
                                                             <input type="datetime-local" name="fechaCita"
                                                                 class="form-control" id="fechaCita" min="2023-01-01"
-                                                                placeholder="Ingrese fecha de la cita">
+                                                                placeholder="Ingrese fecha de la cita" required>
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <label for="idTatuador" class="form-label">Tatuador:</label>
@@ -162,14 +162,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script>
             function validateDate() {
-                // const fechaActual = new Date();
-                // const fechaSeleccionada = new Date(document.getElementById('fechaCita').value);
-                // fechaSeleccionada.min = fechaActual;
-                // if(fechaSeleccionada < fechaActual){
-                //     alert('No se puede ingresar fechas anteriores al día de hoy');
-                // }
-                // console.log(fechaActual)
-                // console.log(fechaSeleccionada)
                 const fechaSeleccionada = document.getElementById('fechaCita').min = new Date().toISOString().slice(0, 16);
             }
         </script>
